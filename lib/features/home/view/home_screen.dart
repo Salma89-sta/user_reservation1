@@ -22,6 +22,7 @@ class HomeScreen extends StatelessWidget {
       ),
 
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.white),
         backgroundColor: Colors.deepOrange,
         title:const Center(child: Text("حجوزاتي", style: TextStyle(
             color: Colors.white,
@@ -46,11 +47,11 @@ class HomeScreen extends StatelessWidget {
                 itemCount: cubit.userReservationsData.length,
                 itemBuilder: (context, index) {
                   return ReservedCardToUser(
-                    reservedProductImage: "cubit.userReservationsData[index].",
+                    reservedProductImage: cubit.userReservationsData[index].item!.image1.toString(),
                     reservedProductName: cubit.userReservationsData[index]
                         .categoryName.toString(),
-                    fromDate: cubit.userReservationsData[index].time.toString(),
-                    toDate: cubit.userReservationsData[index].time.toString(),
+                    fromDate: cubit.userReservationsData[index].timeOfReservationFrom.toString(),
+                    toDate: cubit.userReservationsData[index].timeOfReservationTo.toString(),
                     status: cubit.userReservationsData[index].status
                         .toString(), ReservationId: cubit.userReservationsData[index].id!,
 

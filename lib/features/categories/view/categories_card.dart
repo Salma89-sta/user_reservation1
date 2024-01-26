@@ -25,7 +25,7 @@ class CategoryCard extends StatelessWidget {
               color: Colors.grey,
               width: 3,
             ),
-            boxShadow: [
+            boxShadow:const [
               BoxShadow(
                 color: Colors.grey,
                 spreadRadius: 0.5,
@@ -37,10 +37,10 @@ class CategoryCard extends StatelessWidget {
           child: Column(
             children: [
               Image.network("${categoryImage}", width: 100.w, height: 15.h,fit: BoxFit.fill,),
-              SizedBox(height: 10,),
+              const SizedBox(height: 10,),
 
               Center(child: Text("${categoryName}",style: TextStyle(color: Colors.indigo, fontFamily: 'Cairo', fontSize: 20),)),
-              SizedBox(height: 10,),
+              const SizedBox(height: 10,),
 
 
 

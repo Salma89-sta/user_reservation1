@@ -36,6 +36,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -88,6 +89,9 @@ dev_dependencies:
   robusta_firebase_core: ^0.1.1
   toast: ^0.3.0
   flutter_easyloading: ^3.0.5
+  intl: ^0.18.1
+
+
 
 
 

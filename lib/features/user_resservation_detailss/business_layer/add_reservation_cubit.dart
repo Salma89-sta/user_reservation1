@@ -26,13 +26,19 @@ class AddReservationCubit extends Cubit<AddReservationState> {
        required String price,
       String? paid,
       String? additionalOp,
-      required String maritalStatus})
+      required String maritalStatus,
+        String? offer,
+        String? comment,
+        required String packageId
+
+      })
   async {
     try{
       var response = await MyHttp.post(endPoint: API.addReservation, data: {
         'user_id':userId,
         'category_name':categoryName,
         'item_id':itemId,
+        'package_id':packageId,
         'time':time.toString(),
         'time_of_reservation_from':from.toString(),
         'time_of_reservation_to':to.toString(),
@@ -41,7 +47,9 @@ class AddReservationCubit extends Cubit<AddReservationState> {
         'price':price,
         'paid':paid,
         'additional_options':additionalOp,
-        'marital_status': maritalStatus
+        'marital_status': maritalStatus,
+        'offer' :offer,
+        'comment': comment,
       }
       );
 
@@ -51,15 +59,9 @@ class AddReservationCubit extends Cubit<AddReservationState> {
         print("add reservation ${response.statusCode}");
 
         var jsonResponse = AdditionalOptionsModel.fromJson(jsonDecode(response.body.toString()));
-
-
-        print("................................");
-        print(jsonResponse.success.toString());
-
         if(jsonResponse.success.toString() =='true'){
 
           print("reservation added successfully");
-
           emit(AddReservationSuccessfully());
         }else{
           print("..........................");

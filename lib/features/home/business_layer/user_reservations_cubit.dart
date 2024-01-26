@@ -31,13 +31,13 @@ class UserReservationsCubit extends Cubit<UserReservationsState> {
       print(response!.body.toString());
 
       var jsonResponse = UserReservationsModel.fromJson(jsonDecode(response.body));
-
+      print("......................................");
       print(jsonResponse.success);
 
-      if(jsonResponse.success.toString() =="true"){
+      if(jsonResponse.success.toString() == "true"){
 
         userReservationsData = jsonResponse.data!;
-        print(userReservationsData);
+        print("................ $userReservationsData");
         emit(UserReservationsLoaded());
 
       }else{

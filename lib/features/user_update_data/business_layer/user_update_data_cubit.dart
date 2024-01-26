@@ -16,7 +16,12 @@ class UserUpdateDataCubit extends Cubit<UserUpdateDataState> {
   static UserUpdateDataCubit get(context) => BlocProvider.of(context);
   UserReservationsModel? userReservationsModel;
 
-  updateData(String name, String email, String id, String nid, String password) async {
+  updateData(
+      {required String name,
+        required String email,
+        required String id,
+        required String nid,
+        required String password}) async {
 
 
 
@@ -28,6 +33,12 @@ class UserUpdateDataCubit extends Cubit<UserUpdateDataState> {
       'password':password,
     });
 
+    print(email);
+    print(password);
+    print(nid);
+    print(name);
+
+
 
     if(response.statusCode == 200){
       print(response.statusCode);
@@ -35,12 +46,14 @@ class UserUpdateDataCubit extends Cubit<UserUpdateDataState> {
       var jsonResponse = UserReservationsModel.fromJson(jsonDecode(response.body.toString()));
 
       if(jsonResponse.success.toString() =='true'){
+        print("data updated success...");
         print(jsonResponse.success.toString());
         emit(UserUpdateDataSuccess());
       }
 
 
     }else{
+      print("data updated failed...");
       emit(UserUpdateDataFailed());
     }
 

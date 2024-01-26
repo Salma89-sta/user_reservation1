@@ -1,21 +1,27 @@
 class CalenderModel {
-  bool? success;
-  List<int>? availableTime;
-  int? percent;
+  bool success;
+  List<String>? availableTime;
+  double percent;
 
-  CalenderModel({this.success, this.availableTime, this.percent});
+  CalenderModel({
+    required this.success,
+    this.availableTime,
+    required this.percent,
+  });
 
-  CalenderModel.fromJson(Map<String, dynamic> json) {
-    success = json['success'];
-    availableTime = json['available_time'].cast<int>();
-    percent = json['percent'];
+  factory CalenderModel.fromJson(Map<String, dynamic> json) {
+    return CalenderModel(
+      success: json['success'],
+      availableTime: List<String>.from(json['available_time'] ?? []),
+      percent: json['percent'] ?? 0.0,
+    );
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['success'] = this.success;
-    data['available_time'] = this.availableTime;
-    data['percent'] = this.percent;
-    return data;
+    return {
+      'success': success,
+      'available_time': availableTime,
+      'percent': percent,
+    };
   }
 }

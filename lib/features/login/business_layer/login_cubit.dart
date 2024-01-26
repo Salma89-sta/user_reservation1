@@ -56,6 +56,8 @@ class AuthCubit extends Cubit<LoginState> {
               await CacheHelper.init();
               CacheHelper.saveData(key: "name", value: jsonResponse.userData!.name.toString());
               CacheHelper.saveData(key: "email", value: jsonResponse.userData!.email.toString());
+              print("....................email.........................");
+              print(CacheHelper.getData(key: 'email'));
               CacheHelper.saveData(key: "nid", value: jsonResponse.userData!.nid.toString());
               CacheHelper.saveData(key: "password", value: jsonResponse.userData!.password.toString());
               CacheHelper.saveData(key: "id", value: jsonResponse.userData!.id.toString());

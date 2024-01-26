@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rservation_user/common/button.dart';
 import 'package:rservation_user/common/text-form-field.dart';
+import 'package:rservation_user/features/home/business_layer/user_reservations_cubit.dart';
 import 'package:rservation_user/features/home/view/home_screen.dart';
 import '../../../core/cache_helper/cache_helper.dart';
 import '../../drawer/drawe_widget.dart';
@@ -8,7 +9,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../business_layer/user_update_data_cubit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class UserUpdateDataScreen extends StatelessWidget {
 
@@ -29,11 +30,11 @@ class UserUpdateDataScreen extends StatelessWidget {
       drawer: DrawerWidget(),
 
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.white),
 
         backgroundColor: Colors.deepOrange,
         title: Center(child: Text("تعديل البيانات الشخصيه", style: TextStyle(color: Colors.white, fontFamily: 'Cairo', fontWeight: FontWeight.bold),)),
       ),
-
       body: Directionality(
             textDirection: TextDirection.rtl,
             child: SingleChildScrollView(
@@ -47,7 +48,7 @@ class UserUpdateDataScreen extends StatelessWidget {
                     SizedBox(height: 5,),
                     TextFormFieldWidget(
                       prefix: Icon(Icons.people_outline),
-                        labelText: CacheHelper.getData(key: 'name')??"",
+                        labelText: CacheHelper.getData(key: 'name'),
                         IsObsecure: false,
                         textFieldController:
                         _nameController
@@ -58,7 +59,7 @@ class UserUpdateDataScreen extends StatelessWidget {
                     SizedBox(height: 5,),
                     TextFormFieldWidget(
                         prefix: Icon(Icons.email_outlined),
-                        labelText: CacheHelper.getData(key: 'email')??"",
+                        labelText: CacheHelper.getData(key: 'email'),
                         IsObsecure: false,
                         textFieldController:
                         _emailController
@@ -69,7 +70,7 @@ class UserUpdateDataScreen extends StatelessWidget {
                     SizedBox(height: 5,),
                     TextFormFieldWidget(
                         prefix: Icon(Icons.camera_front_outlined),
-                        labelText: CacheHelper.getData(key: 'nid')??"",
+                        labelText: CacheHelper.getData(key: 'nid'),
                         IsObsecure: false,
                         textFieldController:
                         _nidController
@@ -81,7 +82,7 @@ class UserUpdateDataScreen extends StatelessWidget {
       
                     TextFormFieldWidget(
                       prefix: Icon(Icons.lock_open),
-                      labelText: CacheHelper.getData(key: 'password')??"",
+                      labelText: CacheHelper.getData(key: 'password'),
                         IsObsecure: false,
                         textFieldController:
                         _passController,
@@ -92,26 +93,49 @@ class UserUpdateDataScreen extends StatelessWidget {
          BlocConsumer<UserUpdateDataCubit, UserUpdateDataState>(
   listener: (context, state) {
     if(state is UserUpdateDataSuccess){
-      Fluttertoast.showToast(msg: "تم تعديل البيانات بنجاح",textColor: Colors.white, backgroundColor: Colors.deepOrange);
-      Navigator.push(context, MaterialPageRoute(builder: (_)=> HomeScreen()));
+      print("update success");
+      EasyLoading.dismiss();
 
+      Fluttertoast.showToast(msg: "تم تعديل البيانات بنجاح",textColor: Colors.white, backgroundColor: Colors.deepOrange);
+      Navigator.push(context, MaterialPageRoute(builder: (_)=> BlocProvider(
+        create: (context) => UserReservationsCubit()..getUserReservations(CacheHelper.getData(key: 'id')),
+        child: HomeScreen(),
+      )));
+
+    }else{
+      print("update wrong ");
     }
   },
   builder: (context, state) {
     return Button0(widget: Center(child: Text("تعديل", style: TextStyle(color: Colors.white,
              fontSize: 20.sp, fontFamily: 'Cairo', fontWeight: FontWeight.bold),)), function: (){
-      
-           print(".........try to update");
-        final updateData = UserUpdateDataCubit.get(context);
+      EasyLoading.show(status: 'loading...');
+
+      print("try to update user data ");
+print(CacheHelper.getData(key: 'email'));
+
+      final updateData = UserUpdateDataCubit.get(context);
         updateData.updateData(
-          _nameController.text.toString().trim().isEmpty?
+          name: _nameController.text.toString().trim().isEmpty?
           CacheHelper.getData(key: 'name').toString():
           _nameController.text.toString() ,
-            _emailController.text.toString().trim().isEmpty? CacheHelper.getData(key: 'emil').toString():_emailController.text.toString(),
-           CacheHelper.getData(key: 'id').toString(),
-            _nidController.text.toString().trim().isEmpty? CacheHelper.getData(key: 'nid').toString() :_nidController.text.toString(),
-            _passController.text.toString().trim().isEmpty? CacheHelper.getData(key: 'password'):_passController.text.toString(),
+          email:  _emailController.text.toString().trim().isEmpty?
+          CacheHelper.getData(key: 'email').toString():
+          _emailController.text.toString(),
+          id: CacheHelper.getData(key: 'id').toString(),
+           nid: _nidController.text.toString().trim().isEmpty? CacheHelper.getData(key: 'nid').toString() :_nidController.text.toString(),
+          password:  _passController.text.toString().trim().isEmpty? CacheHelper.getData(key: 'password'):_passController.text.toString(),
         );
+
+        if(_nameController.text.trim().isNotEmpty){
+          CacheHelper.saveData(key: 'name', value: _nameController.text);
+        } if(_emailController.text.trim().isNotEmpty){
+         CacheHelper.saveData(key: 'email', value: _emailController.text);
+       } if(_passController.text.trim().isNotEmpty){
+         CacheHelper.saveData(key: 'password', value: _passController.text);
+       } if(_nidController.text.trim().isNotEmpty){
+         CacheHelper.saveData(key: 'nid', value: _nidController.text);
+       }
       
                     }
                     

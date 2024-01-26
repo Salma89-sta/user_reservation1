@@ -1,3 +1,4 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rservation_user/features/drawer/drawe_widget.dart';
@@ -5,6 +6,7 @@ import 'package:rservation_user/features/list_of_category/business_layer/items_c
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:rservation_user/features/list_of_category_details/additional_options+business_layer/additional_options_cubit.dart';
+import 'package:rservation_user/features/list_of_category_details/item_package_business_layer/item_package_cubit.dart';
 import 'package:rservation_user/features/list_of_category_details/view/slider_widget.dart';
 import '../../list_of_category_details/view/List_of_category_details_screen.dart';
 import 'card_of_category_list.dart';
@@ -24,10 +26,12 @@ class _ListOfCategoryScreenState extends State<ListOfCategoryScreen> {
     var categoryItems = ItemsCubit.get(context);
 
     return Scaffold(
-      drawer: DrawerWidget(),
+      drawer:const DrawerWidget(),
       appBar: AppBar(
+        iconTheme:const IconThemeData(color: Colors.white),
+
         backgroundColor: Colors.deepOrange,
-        title: Center(child: Text("العناصر", style: TextStyle(
+        title:const Center(child: Text("العناصر", style: TextStyle(
             color: Colors.white,
             fontFamily: 'Cairo',
             fontWeight: FontWeight.bold),)),
@@ -37,20 +41,18 @@ class _ListOfCategoryScreenState extends State<ListOfCategoryScreen> {
           // TODO: implement listener
         },
         builder: (context, state) {
-          return (state is ItemsLoading)? Center(child: CircularProgressIndicator()):
+          return (state is ItemsLoading)?const Center(child: CircularProgressIndicator()):
           (state is ItemsLoaded)?(categoryItems.categoryItems.isNotEmpty)?
           Container(
             width: 100.w,
             height: 90.h,
             // color: Colors.red,
               child: ListView.builder(
-
-                // physics: NeverScrollableScrollPhysics(),
-                  itemCount:categoryItems.categoryItems.length,
+                shrinkWrap: true,
+                 itemCount:categoryItems.categoryItems.length,
                   itemBuilder: (context, index){
 
-                    return ListOfCategory(calenderWidget: categoryItems.categoryItems[index].availableTimeFrom!,
-                      // listOfCategoryImage: categoryItems.categoryItems[index].logo!,
+                    return ListOfCategory(
                       listOfCategoryImage:  CachedNetworkImage(
                         imageUrl:
                         categoryItems.categoryItems[index].logo!,
@@ -85,6 +87,8 @@ class _ListOfCategoryScreenState extends State<ListOfCategoryScreen> {
 
                       Navigator.push(context, MaterialPageRoute(builder: (context)=> MultiBlocProvider(
 providers: [
+  BlocProvider( create: (context) => ItemPackageCubit()..getIemPackage(categoryItems.categoryItems[index].id!), ),
+
   BlocProvider( create: (context) => ItemsCubit(), ),
                         BlocProvider( create: (context) =>
                         AdditionalOptionsCubit()..getAdditionalOptions(categoryItems.categoryItems[index].id!),
@@ -97,7 +101,8 @@ providers: [
                                             priceIn:  categoryItems.categoryItems[index].type!,
                                             categoryName: categoryItems.categoryItems[index].categoryName!,
                                             itemId: categoryItems.categoryItems[index].id!,
-                                            itemDevices: categoryItems.categoryItems[index].devices!
+                                            itemDevices: categoryItems.categoryItems[index].devices!,
+                                            offer: categoryItems.categoryItems[index].offer!,
                       ),
 ) )
                       );

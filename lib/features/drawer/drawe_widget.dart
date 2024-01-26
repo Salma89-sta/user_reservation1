@@ -109,7 +109,7 @@ String  email =CacheHelper.getData(key: 'email');
 
               await CacheHelper.init();
               CacheHelper.clearAllData();
-              Navigator.push(context,MaterialPageRoute(builder: (_)=> LogIn()));
+              Navigator.pushReplacement(context,MaterialPageRoute(builder: (_)=> LogIn()));
               print(CacheHelper.getData(key: 'id'));
 
             },

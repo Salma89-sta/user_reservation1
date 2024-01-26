@@ -512,176 +512,176 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
                 key: _formKey,
                 child: Column(
                   children: [
+                    // Padding(
+                    //   padding: const EdgeInsets.only(right: 50.0, bottom: 10),
+                    //   child: Container(
+                    //     alignment: AlignmentDirectional.centerEnd,
+                    //     child: const Text(
+                    //       "الحاله الاجتماعيه",
+                    //       textAlign: TextAlign.end,
+                    //       style: TextStyle(
+                    //         fontFamily: 'Cairo',
+                    //         color: AppColors.lightGrey,
+                    //         fontSize: 20,
+                    //         fontWeight: FontWeight.bold,
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
+                    // // DropDownListWidget(),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(left: 20.0, right: 20),
+                    //   child: Container(
+                    //     alignment: AlignmentDirectional.topEnd,
+                    //     width: 80.w,
+                    //     height: 10.h,
+                    //     child: DropdownButtonFormField<int>(
+                    //       decoration: const InputDecoration(
+                    //         border: OutlineInputBorder(
+                    //           borderRadius:
+                    //               BorderRadius.all(Radius.circular(15.0)),
+                    //           borderSide: BorderSide(color: Colors.red),
+                    //         ),
+                    //       ),
+                    //       isExpanded: true,
+                    //       hint: Text(
+                    //         widget.status.toString() == '0' ? 'أعزب' : "متزوج",
+                    //         style: TextStyle(color: AppColors.lightGrey),
+                    //       ),
+                    //       items: status.map((value) {
+                    //         return DropdownMenuItem<int>(
+                    //           value: status.indexOf(value),
+                    //           child: Container(
+                    //             width: 80.w,
+                    //             child: Text(
+                    //               value,
+                    //               style: TextStyle(
+                    //                   color: AppColors.lightGrey,
+                    //                   fontFamily: 'Cairo',
+                    //                   fontSize: 19.sp),
+                    //             ),
+                    //           ),
+                    //         );
+                    //       }).toList(),
+                    //       onChanged: (int? value) {
+                    //         statusIndex = value.toString();
+                    //         print(".................................");
+                    //         print(value);
+                    //       },
+                    //     ),
+                    //   ),
+                    // ),
+                    //
+                    // const SizedBox(
+                    //   height: 15,
+                    // ),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(right: 50.0, bottom: 10),
+                    //   child: Container(
+                    //     alignment: AlignmentDirectional.centerEnd,
+                    //     child: const Text(
+                    //       " من تاريخ /وقت ",
+                    //       textAlign: TextAlign.end,
+                    //       style: TextStyle(
+                    //         fontFamily: 'Cairo',
+                    //         color: AppColors.lightGrey,
+                    //         fontSize: 20,
+                    //         fontWeight: FontWeight.bold,
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(left: 20.0, right: 20),
+                    //   child: TextFormField(
+                    //     controller: _fromDateTimeController,
+                    //     readOnly: true,
+                    //     onTap: () => _selectDateTime(_fromDateTimeController),
+                    //     decoration: InputDecoration(
+                    //       labelText: widget.from,
+                    //       suffixIcon: Icon(Icons.calendar_today),
+                    //       focusedBorder: OutlineInputBorder(
+                    //         borderSide: BorderSide(
+                    //           width: 2,
+                    //           color: Colors.indigo,
+                    //         ),
+                    //         borderRadius: BorderRadius.circular(15),
+                    //       ),
+                    //       enabledBorder: OutlineInputBorder(
+                    //         borderSide: BorderSide(
+                    //             color: AppColors.lightGrey, width: 1.5),
+                    //         borderRadius: BorderRadius.circular(15),
+                    //       ),
+                    //     ),
+                    //     // validator: (value) {
+                    //     //   if (value!.isEmpty) {
+                    //     //     return 'برجاء اختيار الوقت';
+                    //     //   }
+                    //     //   return null;
+                    //     // },
+                    //   ),
+                    // ),
+                    //
+                    // const SizedBox(
+                    //   height: 15,
+                    // ),
+                    //
+                    // Padding(
+                    //   padding: const EdgeInsets.only(right: 50.0, bottom: 10),
+                    //   child: Container(
+                    //     alignment: AlignmentDirectional.centerEnd,
+                    //     child: const Text(
+                    //       " الي تاريخ و وقت ",
+                    //       textAlign: TextAlign.end,
+                    //       style: TextStyle(
+                    //         fontFamily: 'Cairo',
+                    //         color: AppColors.lightGrey,
+                    //         fontSize: 20,
+                    //         fontWeight: FontWeight.bold,
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(left: 20.0, right: 20),
+                    //   child: TextFormField(
+                    //     controller: _toDateTimeController,
+                    //     readOnly: true,
+                    //     onTap: () => _selectDateTime(_toDateTimeController),
+                    //     decoration: InputDecoration(
+                    //       labelText: widget.to,
+                    //       suffixIcon: Icon(Icons.calendar_today),
+                    //       focusedBorder: OutlineInputBorder(
+                    //         borderSide: BorderSide(
+                    //           width: 2,
+                    //           color: Colors.indigo,
+                    //         ),
+                    //         borderRadius: BorderRadius.circular(15),
+                    //       ),
+                    //       enabledBorder: OutlineInputBorder(
+                    //         borderSide: BorderSide(
+                    //             color: AppColors.lightGrey, width: 1.5),
+                    //         borderRadius: BorderRadius.circular(15),
+                    //       ),
+                    //     ),
+                    //     // validator: (value) {
+                    //     //   if (value!.isEmpty) {
+                    //     //     return 'برجاء اختيار الوقت';
+                    //     //   }
+                    //     //   return null;
+                    //     // },
+                    //   ),
+                    // ),
+                    // const SizedBox(
+                    //   height: 15,
+                    // ),
+
                     Padding(
                       padding: const EdgeInsets.only(right: 50.0, bottom: 10),
                       child: Container(
                         alignment: AlignmentDirectional.centerEnd,
                         child: const Text(
-                          "الحاله الاجتماعيه",
-                          textAlign: TextAlign.end,
-                          style: TextStyle(
-                            fontFamily: 'Cairo',
-                            color: AppColors.lightGrey,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ),
-                    // DropDownListWidget(),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20.0, right: 20),
-                      child: Container(
-                        alignment: AlignmentDirectional.topEnd,
-                        width: 80.w,
-                        height: 10.h,
-                        child: DropdownButtonFormField<int>(
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15.0)),
-                              borderSide: BorderSide(color: Colors.red),
-                            ),
-                          ),
-                          isExpanded: true,
-                          hint: Text(
-                            widget.status.toString() == '0' ? 'أعزب' : "متزوج",
-                            style: TextStyle(color: AppColors.lightGrey),
-                          ),
-                          items: status.map((value) {
-                            return DropdownMenuItem<int>(
-                              value: status.indexOf(value),
-                              child: Container(
-                                width: 80.w,
-                                child: Text(
-                                  value,
-                                  style: TextStyle(
-                                      color: AppColors.lightGrey,
-                                      fontFamily: 'Cairo',
-                                      fontSize: 19.sp),
-                                ),
-                              ),
-                            );
-                          }).toList(),
-                          onChanged: (int? value) {
-                            statusIndex = value.toString();
-                            print(".................................");
-                            print(value);
-                          },
-                        ),
-                      ),
-                    ),
-
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 50.0, bottom: 10),
-                      child: Container(
-                        alignment: AlignmentDirectional.centerEnd,
-                        child: const Text(
-                          " من تاريخ /وقت ",
-                          textAlign: TextAlign.end,
-                          style: TextStyle(
-                            fontFamily: 'Cairo',
-                            color: AppColors.lightGrey,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20.0, right: 20),
-                      child: TextFormField(
-                        controller: _fromDateTimeController,
-                        readOnly: true,
-                        onTap: () => _selectDateTime(_fromDateTimeController),
-                        decoration: InputDecoration(
-                          labelText: widget.from,
-                          suffixIcon: Icon(Icons.calendar_today),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              width: 2,
-                              color: Colors.indigo,
-                            ),
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                color: AppColors.lightGrey, width: 1.5),
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                        ),
-                        // validator: (value) {
-                        //   if (value!.isEmpty) {
-                        //     return 'برجاء اختيار الوقت';
-                        //   }
-                        //   return null;
-                        // },
-                      ),
-                    ),
-
-                    const SizedBox(
-                      height: 15,
-                    ),
-
-                    Padding(
-                      padding: const EdgeInsets.only(right: 50.0, bottom: 10),
-                      child: Container(
-                        alignment: AlignmentDirectional.centerEnd,
-                        child: const Text(
-                          " الي تاريخ و وقت ",
-                          textAlign: TextAlign.end,
-                          style: TextStyle(
-                            fontFamily: 'Cairo',
-                            color: AppColors.lightGrey,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20.0, right: 20),
-                      child: TextFormField(
-                        controller: _toDateTimeController,
-                        readOnly: true,
-                        onTap: () => _selectDateTime(_toDateTimeController),
-                        decoration: InputDecoration(
-                          labelText: widget.to,
-                          suffixIcon: Icon(Icons.calendar_today),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              width: 2,
-                              color: Colors.indigo,
-                            ),
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                color: AppColors.lightGrey, width: 1.5),
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                        ),
-                        // validator: (value) {
-                        //   if (value!.isEmpty) {
-                        //     return 'برجاء اختيار الوقت';
-                        //   }
-                        //   return null;
-                        // },
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 15,
-                    ),
-
-                    Padding(
-                      padding: const EdgeInsets.only(right: 50.0, bottom: 10),
-                      child: Container(
-                        alignment: AlignmentDirectional.centerEnd,
-                        child: const Text(
-                          " ادخل القيمه التي تم تسديدها ",
+                          " ادخل القيمه التي تريد تسديدها ",
                           textAlign: TextAlign.end,
                           style: TextStyle(
                             fontFamily: 'Cairo',
@@ -724,31 +724,27 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
                       height: 15,
                     ),
 
-                    Padding(
-                      padding: const EdgeInsets.only(right: 50.0, bottom: 10),
-                      child: Container(
-                        alignment: AlignmentDirectional.centerEnd,
-                        child: const Text(
-                          "الاضافات",
-                          textAlign: TextAlign.end,
-                          style: TextStyle(
-                            fontFamily: 'Cairo',
-                            color: AppColors.lightGrey,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(right: 50.0, bottom: 10),
+                    //   child: Container(
+                    //     alignment: AlignmentDirectional.centerEnd,
+                    //     child: const Text(
+                    //       "الاضافات",
+                    //       textAlign: TextAlign.end,
+                    //       style: TextStyle(
+                    //         fontFamily: 'Cairo',
+                    //         color: AppColors.lightGrey,
+                    //         fontSize: 20,
+                    //         fontWeight: FontWeight.bold,
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
 
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    BlocProvider(
-                      create: (context) => AdditionalOptionsCubit()
-                        ..getAdditionalOptions(widget.itemId),
-                      child: ChecklistPage(),
-                    ),
+                    // const SizedBox(
+                    //   height: 5,
+                    // ),
+
 
                     const SizedBox(
                       height: 15,

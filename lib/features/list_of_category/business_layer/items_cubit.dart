@@ -24,7 +24,7 @@ class ItemsCubit extends Cubit<ItemsState> {
 
       if(response?.statusCode == 200){
         var decodedData = json.decode(response?.data);
-        var jsonResponse = ItemsModel.fromJson(decodedData);
+        var jsonResponse = ItemModel.fromJson(decodedData);
 
         if(jsonResponse.success.toString() == "true"){
           if(jsonResponse.data != null){
@@ -54,34 +54,7 @@ class ItemsCubit extends Cubit<ItemsState> {
     }
   }
 
-  List<int> freeTimes=[];
-  getItemFreeTimes(String date, String itemId) async{
-    try{
 
-      emit(ItemFreeTimesLoading());
-      var response = await MyHttp.post(endPoint: API.calenderData, data: {
-        'date': date,
-        'item_id' : itemId,
-      });
-
-      if(response.statusCode == 200){
-
-        var responseDecode = CalenderModel.fromJson(jsonDecode(response.body));
-
-        if(responseDecode.success.toString() == 'true'){
-
-          freeTimes= responseDecode.availableTime!;
-          print(freeTimes);
-          emit(ItemsLoaded());
-
-        }
-      }else{
-        emit(ItemFreeTimesFailed());
-      }
-    }catch (e){
-      print(e.toString());
-    }
-  }
 
 
 

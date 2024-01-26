@@ -30,7 +30,7 @@ class ReservedCardToUser extends StatelessWidget {
       padding: const EdgeInsets.only(top:20.0),
       child: Center(
         child: Container(
-          width: 85.w,
+          width: 75.w,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             border:Border.all(
@@ -48,13 +48,13 @@ class ReservedCardToUser extends StatelessWidget {
                 borderRadius: BorderRadius.only(topRight: Radius.circular(20), topLeft: Radius.circular(20)),
                 child: CachedNetworkImage(
                   imageUrl: reservedProductImage,
-                  width: 98.w,
+                  width: 100.w,
+                  height: 20.h,
                   placeholder: (context, url) => CircularProgressIndicator(), // Placeholder widget
-                  errorWidget: (context, url, error) => Icon(Icons.error), // Error widget
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                  fit: BoxFit.fill,// Error widget
                 ),
               ),
-              SizedBox(height: 5,),
-
               Text("${reservedProductName}", style: TextStyle(color: Colors.indigo, fontFamily: 'Cairo', fontWeight: FontWeight.bold, fontSize: 20.sp),),
               SizedBox(height: 5,),
 
@@ -90,6 +90,10 @@ class ReservedCardToUser extends StatelessWidget {
   listener: (context, state) {
     if(state is UserDeleteReservationSuccess){
       Fluttertoast.showToast(msg: "تم الغاء الحجز", textColor: Colors.white, backgroundColor: Colors.deepOrange);
+      Navigator.push(context, MaterialPageRoute(builder: (context)=> BlocProvider(
+  create: (context) => UserReservationsCubit()..getUserReservations(CacheHelper.getData(key: 'id')),
+  child: HomeScreen(),
+)));
     }else{
       Fluttertoast.showToast(msg: "حدث خطا اثناء الالغاء", textColor: Colors.white, backgroundColor: Colors.deepOrange);
 

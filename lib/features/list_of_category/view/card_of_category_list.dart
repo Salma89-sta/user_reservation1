@@ -1,18 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:rservation_user/features/list_of_category/business_layer/items_cubit.dart';
+import 'package:rservation_user/features/list_of_category/business_layer_free_times/free_times_cubit.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../colors/app_colors.dart';
+import 'package:intl/intl.dart';
 
-class ListOfCategory extends StatefulWidget {
+class ListOfCategory extends StatelessWidget {
 
   final Widget listOfCategoryImage;
   final String listOfCategoryName;
   final String priceIn;
-  final String calenderWidget;
+  // final String calenderWidget;
   final String listOfCategoryDescription;
   final String listOfCategoryPricePerDay;
   final VoidCallback forMoreDetails;
@@ -23,13 +22,10 @@ class ListOfCategory extends StatefulWidget {
   final String listOfCategoryStatus;
 
 
-  const ListOfCategory({Key? key,required this.calenderWidget,required this.listOfCategoryImage, required this.listOfCategoryName, required this.listOfCategoryDescription, required this.listOfCategoryPricePerDay, required this.listOfCategoryStatus, required this.forMoreDetails, required this.priceIn, required this.offer, required this.itemId}) : super(key: key);
+   ListOfCategory({Key? key,required this.listOfCategoryImage, required this.listOfCategoryName, required this.listOfCategoryDescription, required this.listOfCategoryPricePerDay, required this.listOfCategoryStatus, required this.forMoreDetails, required this.priceIn, required this.offer, required this.itemId}) : super(key: key);
 
-  @override
-  State<ListOfCategory> createState() => _ListOfCategoryState();
-}
+  Widget? calenderWidget;
 
-class _ListOfCategoryState extends State<ListOfCategory> {
   @override
   Widget build(BuildContext context) {
     CalendarFormat _calendarFormat = CalendarFormat.month;
@@ -51,44 +47,30 @@ class _ListOfCategoryState extends State<ListOfCategory> {
     child: Column(
     children: [
     ClipRRect(
-    borderRadius: BorderRadius.only(topRight: Radius.circular(20), topLeft: Radius.circular(20)),
-    child:widget.listOfCategoryImage ,
-
+    borderRadius:const BorderRadius.only(topRight: Radius.circular(20), topLeft: Radius.circular(20)),
+    child:listOfCategoryImage ,
 
     ),
-      SizedBox(height: 5,),
+      const SizedBox(height: 5,),
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(width: 10,),
+          const SizedBox(width: 10,),
           // calenderWidget,
-          SizedBox(width: 10,),
-          Text("${widget.listOfCategoryName}", style: TextStyle(color: Colors.indigo, fontFamily: 'Cairo', fontWeight: FontWeight.bold, fontSize: 18.sp),),
+          const SizedBox(width: 10,),
+          Text("$listOfCategoryName", style: TextStyle(color: Colors.indigo, fontFamily: 'Cairo', fontWeight: FontWeight.bold, fontSize: 18.sp),),
         ],
       ),
-      // SizedBox(height: 5,),
-      // Padding(
-      //   padding: const EdgeInsets.only(right: 10.0),
-      //   child: Row(
-      //     mainAxisAlignment: MainAxisAlignment.end ,
-      //     crossAxisAlignment: CrossAxisAlignment.end,
-      //     children: [
-      //       SizedBox(width: 10,),
-      //       Text("${widget.listOfCategoryDescription}", style: TextStyle(color: Colors.indigo, fontFamily: 'Cairo',fontSize: 18.sp),),
-      //       Text(" : الوصف", style: TextStyle(color: Colors.indigo, fontFamily: 'Cairo', fontWeight: FontWeight.bold, fontSize: 18.sp),),
-      //     ],
-      //   ),
-      // ),
 
       SizedBox(height: 5,),
       Row(
         mainAxisAlignment: MainAxisAlignment.end ,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          SizedBox(width: 10,),
-          Text("${widget.listOfCategoryPricePerDay}", style: TextStyle(color: Colors.indigo, fontFamily: 'Cairo',  fontSize: 18.sp),),
-          Text(" : ${widget.priceIn} ",style: TextStyle(color: Colors.indigo, fontFamily: 'Cairo', fontWeight: FontWeight.bold, fontSize: 18.sp),),
+          const SizedBox(width: 10,),
+          Text("$listOfCategoryPricePerDay", style: TextStyle(color: Colors.indigo, fontFamily: 'Cairo',  fontSize: 18.sp),),
+          Text(" : $priceIn ",style: TextStyle(color: Colors.indigo, fontFamily: 'Cairo', fontWeight: FontWeight.bold, fontSize: 18.sp),),
           Text(" السعر ", style: TextStyle(color: Colors.indigo, fontFamily: 'Cairo', fontWeight: FontWeight.bold, fontSize: 18.sp),),
 
         ],
@@ -99,7 +81,7 @@ class _ListOfCategoryState extends State<ListOfCategory> {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           SizedBox(width: 10.w,),
-          Text("${widget.listOfCategoryStatus}",style: TextStyle(color: Colors.indigo, fontFamily: 'Cairo',  fontSize: 18.sp),),
+          Text("$listOfCategoryStatus",style: TextStyle(color: Colors.indigo, fontFamily: 'Cairo',  fontSize: 18.sp),),
           Text(" : الحاله  ", style: TextStyle(color: Colors.indigo, fontFamily: 'Cairo', fontWeight: FontWeight.bold, fontSize: 18.sp),),
 
         ],
@@ -110,7 +92,7 @@ class _ListOfCategoryState extends State<ListOfCategory> {
         mainAxisAlignment: MainAxisAlignment.end ,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          Text((widget.offer.trim() == '')? "لايوجد" : widget.offer,style: TextStyle(color: Colors.indigo, fontFamily: 'Cairo',  fontSize: 18.sp),),
+          Text((offer.trim() == '')? "لايوجد" : offer,style: TextStyle(color: Colors.indigo, fontFamily: 'Cairo',  fontSize: 18.sp),),
           Text(" : عرض  ", style: TextStyle(color: Colors.indigo, fontFamily: 'Cairo', fontWeight: FontWeight.bold, fontSize: 18.sp),),
         ],
       ),
@@ -120,19 +102,22 @@ class _ListOfCategoryState extends State<ListOfCategory> {
         mainAxisAlignment: MainAxisAlignment.center ,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          BlocConsumer<ItemsCubit, ItemsState>(
+          BlocConsumer<FreeTimesCubit, FreeTimesState>(
   listener: (context, state) {
-    // TODO: implement listener
+    if(state is ItemFreeTimesLoading){
+      calenderWidget = CircularProgressIndicator();
+    }else if(state is ItemFreeTimesLoaded){
+    }
   },
   builder: (context, state) {
-    var cubit = ItemsCubit.get(context);
+    var cubit = FreeTimesCubit.get(context);
     return IconButton(
         onPressed: (){
             showDialog(
               context: context,
               builder: (context) => Dialog(
                 child: Container(
-                  padding: EdgeInsets.all(16),
+                  padding:const EdgeInsets.all(16),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -146,36 +131,52 @@ class _ListOfCategoryState extends State<ListOfCategory> {
                           return isSameDay(_selectedDate, date);
                         },
                         onDaySelected: (date, events) {
-                            cubit.getItemFreeTimes(date.toString(), widget.itemId);
+                          print("on day selected ${date.toString()}");
+                          String formattedTime = DateFormat('yyy-MM-dd').format(date);
+                            cubit.getItemFreeTimes(formattedTime, itemId);
                             _selectedDate = date;
 
                           showDialog(context: context,   builder: (BuildContext context) {
                             return AlertDialog(
-                              content:SizedBox(
-                                height:
-                                480,
-                                width:
-                                200,
-                                child: ListView
-                                    .builder(
-                                  itemCount: cubit
-                                      .freeTimes!
-                                      .length,
-                                  itemBuilder:
-                                      (context, index) {
-                                    if (index <
-                                        cubit.freeTimes!.length) {
-                                      print(cubit.freeTimes![index].toString());
-                                      return ListTile(
-                                        title: Text(" متاح الساعه  :" + cubit.freeTimes![index].toString()),
-                                        // ... other code
-                                      );
-                                    } else {
-                                      // Handle the case when the index is out of bounds
-                                      return SizedBox.shrink(); // or another widget
-                                    }
-                                  },
-                                ),
+                              content:Column(
+                                children: [
+                                  Text("المواعيد المتاحه", style: TextStyle(fontWeight: FontWeight.bold),),
+                                  Container(width: 180, height: 3, color: Colors.grey,),
+                                  SizedBox(
+                                    width:
+                                    200,
+                                    height: 100,
+                                    child: ListView.builder(
+                                      shrinkWrap: false,
+                                      itemCount: cubit.freeTimes!.length,
+                                      itemBuilder:
+                                          (context, index) {
+                                        print("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<object>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+                                        print(cubit.freeTimes!);
+                                        print(cubit.freeTimes!.length);
+                                          if(state is ItemFreeTimesLoaded){
+                                            if (index < cubit.freeTimes!.length) {
+                                              return ListTile(
+                                                title: Text(" متاح من  :" + cubit.freeTimes![index].toString()),
+                                                // ... other code
+                                              );}else{
+                                              return ListTile(
+                                                title: Text("لا يوجد مواعيد متاحه"),
+                                                // ... other code
+                                              );
+                                            }
+                                          }else if (state is ItemFreeTimesLoading){
+                                            return CircularProgressIndicator();
+                                          }else{
+                                            return ListTile(
+                                              title: Text("لا يوجد مواعيد متاحه"),
+                                              // ... other code
+                                            );
+                                          }
+                                          }
+                                          ),
+                                  ),
+                                ],
                               ),
 
                             );});
@@ -201,12 +202,12 @@ class _ListOfCategoryState extends State<ListOfCategory> {
                 ),
               ),
             );
-            
-          }, icon: Icon(Icons.calendar_today_rounded));
+
+          }, icon: Icon(Icons.calendar_today_rounded ,color: Colors.black, ));
   },
 ),
           InkWell(
-            onTap: widget.forMoreDetails,
+            onTap: forMoreDetails,
             child: Text("لمزيد من التفاصيل", style: TextStyle(color: Colors.black,decoration: TextDecoration.underline, fontFamily: 'Cairo',
             ),),
           ),

@@ -1,10 +1,10 @@
-class ItemsModel {
+class ItemModel {
   bool? success;
   List<Data>? data;
 
-  ItemsModel({this.success, this.data});
+  ItemModel({this.success, this.data});
 
-  ItemsModel.fromJson(Map<String, dynamic> json) {
+  ItemModel.fromJson(Map<String, dynamic> json) {
     success = json['success'];
     if (json['data'] != null) {
       data = <Data>[];
@@ -35,8 +35,7 @@ class Data {
   String? type;
   String? description;
   String? address;
-  String? availableTimeFrom;
-  String? availableTimeTo;
+  String? availableTime;
   String? devices;
   String? status;
   String? offer;
@@ -53,8 +52,7 @@ class Data {
         this.type,
         this.description,
         this.address,
-        this.availableTimeFrom,
-        this.availableTimeTo,
+        this.availableTime,
         this.devices,
         this.status,
         this.offer,
@@ -71,8 +69,7 @@ class Data {
     type = json['type'];
     description = json['description'];
     address = json['address'];
-    availableTimeFrom = json['available_time_from'];
-    availableTimeTo = json['available_time_to'];
+    availableTime = json['available_time'];
     devices = json['devices'];
     status = json['status'];
     offer = json['offer'];
@@ -91,8 +88,7 @@ class Data {
     data['type'] = this.type;
     data['description'] = this.description;
     data['address'] = this.address;
-    data['available_time_from'] = this.availableTimeFrom;
-    data['available_time_to'] = this.availableTimeTo;
+    data['available_time'] = this.availableTime;
     data['devices'] = this.devices;
     data['status'] = this.status;
     data['offer'] = this.offer;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rservation_user/core/network/my_http.dart';
 import 'package:rservation_user/features/categories/business_layer/categories_cubit.dart';
-import 'package:rservation_user/features/login/business_layer/login_cubit.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:rservation_user/features/user_update_data/business_layer/user_update_data_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -17,7 +17,7 @@ Future<void> main() async {
 
   MyDio.init();
   SharedPreferences sharedPreferences;
-
+  EasyLoading.init();
   WidgetsFlutterBinding.ensureInitialized();
   await initializeDateFormatting();
   WidgetsFlutterBinding.ensureInitialized();
