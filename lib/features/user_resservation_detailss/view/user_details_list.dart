@@ -4,14 +4,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
-import 'package:rservation_user/common/button.dart';
-import 'package:rservation_user/core/cache_helper/cache_helper.dart';
-import 'package:rservation_user/features/home/business_layer/user_reservations_cubit.dart';
-import 'package:rservation_user/features/home/view/home_screen.dart';
-import 'package:rservation_user/features/list_of_category_details/item_package_business_layer/item_package_cubit.dart';
-import 'package:rservation_user/features/user_resservation_detailss/business_layer/add_reservation_cubit.dart';
+import 'package:Reservation/common/button.dart';
+import 'package:Reservation/core/cache_helper/cache_helper.dart';
+import 'package:Reservation/features/home/business_layer/user_reservations_cubit.dart';
+import 'package:Reservation/features/home/view/home_screen.dart';
+import 'package:Reservation/features/list_of_category_details/item_package_business_layer/item_package_cubit.dart';
+import 'package:Reservation/features/user_resservation_detailss/business_layer/add_reservation_cubit.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:rservation_user/functions/salary_function.dart';
+import 'package:Reservation/functions/salary_function.dart';
 import '../../../colors/app_colors.dart';
 import '../../list_of_category_details/additional_options+business_layer/additional_options_cubit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -112,13 +112,13 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: Icon(
+          icon:const Icon(
             Icons.arrow_back,
             color: Colors.white,
           ),
         ),
         backgroundColor: Colors.deepOrange,
-        title: Center(
+        title:const Center(
             child: Text(
           "استكمال بيانات الحجز",
           style: TextStyle(
@@ -230,14 +230,14 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                           labelText: '',
                           suffixIcon: Icon(Icons.calendar_today),
                           focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
+                            borderSide:const BorderSide(
                               width: 2,
                               color: Colors.indigo,
                             ),
                             borderRadius: BorderRadius.circular(15),
                           ),
                           enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
+                            borderSide:const BorderSide(
                                 color: AppColors.lightGrey, width: 1.5),
                             borderRadius: BorderRadius.circular(15),
                           ),
@@ -281,7 +281,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                           labelText: '',
                           suffixIcon: Icon(Icons.calendar_today),
                           focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
+                            borderSide:const BorderSide(
                               width: 2,
                               color: Colors.indigo,
                             ),
@@ -547,13 +547,21 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                                   builder: (BuildContext dialogContext) {
 
                                     return AlertDialog(
-                                      title: Text('السعر'),
-                                      content: StatefulBuilder(
-                                        builder: (BuildContext context, StateSetter setState) {
-                                          return Text(totalSalary.toString());
-                                        },
-                                      ),
+                                      title: Center(child: Column(
+                                        children: [
+                                          Text('السعر'),
+                                          Text(totalSalary.toString()),
+                                        ],
+                                      )),
+                                      // content: Text(totalSalary.toString()),
                                       actions: [
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: Text('غلق'),
+                                        ),
+                                        SizedBox(width: 20.w,),
                                         TextButton(
                                           onPressed: () {
                                             final cubit = AddReservationCubit.get(context);
@@ -573,13 +581,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                                               packageId:selectedPackage.toString(),
                                             );
                                           },
-                                          child: Text('تأكيد الحجز'),
-                                        ),
-                                        TextButton(
-                                          onPressed: () {
-                                            Navigator.pop(context);
-                                          },
-                                          child: Text('غلق'),
+                                          child:const Text('تأكيد الحجز'),
                                         ),
                                       ],
                                     );

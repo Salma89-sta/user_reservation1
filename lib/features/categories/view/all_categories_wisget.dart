@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:rservation_user/features/list_of_category/business_layer/items_cubit.dart';
-import 'package:rservation_user/features/list_of_category/business_layer_free_times/free_times_cubit.dart';
+import 'package:Reservation/features/list_of_category/business_layer/items_cubit.dart';
+import 'package:Reservation/features/list_of_category/business_layer_free_times/free_times_cubit.dart';
 import '../../drawer/drawe_widget.dart';
 import '../../list_of_category/view/list_of_category_screen.dart';
 import '../business_layer/categories_cubit.dart';

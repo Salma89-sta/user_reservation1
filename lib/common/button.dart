@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:rservation_user/colors/app_colors.dart';
+import 'package:Reservation/colors/app_colors.dart';
 
 class Button0 extends StatelessWidget {
   final Widget widget;

@@ -1,13 +1,13 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:rservation_user/features/drawer/drawe_widget.dart';
-import 'package:rservation_user/features/list_of_category/business_layer/items_cubit.dart';
+import 'package:Reservation/features/drawer/drawe_widget.dart';
+import 'package:Reservation/features/list_of_category/business_layer/items_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:rservation_user/features/list_of_category_details/additional_options+business_layer/additional_options_cubit.dart';
-import 'package:rservation_user/features/list_of_category_details/item_package_business_layer/item_package_cubit.dart';
-import 'package:rservation_user/features/list_of_category_details/view/slider_widget.dart';
+import 'package:Reservation/features/list_of_category_details/additional_options+business_layer/additional_options_cubit.dart';
+import 'package:Reservation/features/list_of_category_details/item_package_business_layer/item_package_cubit.dart';
+import 'package:Reservation/features/list_of_category_details/view/slider_widget.dart';
 import '../../list_of_category_details/view/List_of_category_details_screen.dart';
 import 'card_of_category_list.dart';
 import 'package:cached_network_image/cached_network_image.dart';

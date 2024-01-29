@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:rservation_user/core/network/api_url.dart';
+import 'package:Reservation/core/network/api_url.dart';
 import 'package:dio/dio.dart';
 
 class MyHttp {

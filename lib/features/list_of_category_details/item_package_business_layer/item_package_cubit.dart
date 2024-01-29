@@ -3,9 +3,9 @@ import 'dart:convert';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rservation_user/core/network/api_url.dart';
-import 'package:rservation_user/core/network/my_http.dart';
-import 'package:rservation_user/features/list_of_category_details/data_layer/item_package_model.dart';
+import 'package:Reservation/core/network/api_url.dart';
+import 'package:Reservation/core/network/my_http.dart';
+import 'package:Reservation/features/list_of_category_details/data_layer/item_package_model.dart';
 
 part 'item_package_state.dart';
 

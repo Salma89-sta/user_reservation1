@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rservation_user/core/network/my_http.dart';
-import 'package:rservation_user/features/list_of_category_details/data_layer/additional_options_model.dart';
+import 'package:Reservation/core/network/my_http.dart';
+import 'package:Reservation/features/list_of_category_details/data_layer/additional_options_model.dart';
 import '../../../core/network/api_url.dart';
 part 'additional_options_state.dart';
 

@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:rservation_user/features/list_of_category/business_layer_free_times/free_times_cubit.dart';
+import 'package:Reservation/features/list_of_category/business_layer_free_times/free_times_cubit.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class ListOfCategory extends StatelessWidget {
 
@@ -28,8 +29,75 @@ class ListOfCategory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var cubit = FreeTimesCubit.get(context);
+
     CalendarFormat _calendarFormat = CalendarFormat.month;
     DateTime _selectedDate = DateTime.now();
+    return BlocConsumer<FreeTimesCubit, FreeTimesState>(
+  listener: (context, state) {
+    if(state is ItemFreeTimesLoading){
+      EasyLoading.show();
+    }else if(state is ItemFreeTimesLoaded){
+      EasyLoading.dismiss();
+
+      // Future.delayed(const Duration(seconds: 2), () {
+        showDialog(context: context,   builder: (BuildContext context) {
+          return AlertDialog(
+            content:Container(
+
+              height: 60.h,
+              child: Column(
+                children: [
+                  Text("المواعيد المتاحه", style: TextStyle(fontWeight: FontWeight.bold),),
+                  Container(width: 180, height: 3, color: Colors.grey,),
+                  SizedBox(
+                    width:
+                    200,
+                    height: 50.h,
+                    child: ListView.builder(
+                        shrinkWrap: false,
+                        itemCount: cubit.freeTimes!.length,
+                        itemBuilder:
+                            (context, index) {
+                          print("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<object>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+                          print(cubit.freeTimes!);
+                          print(cubit.freeTimes!.length);
+                          if(state is ItemFreeTimesLoaded){
+                            if (index < cubit.freeTimes!.length) {
+                              return ListTile(
+                                title: Text(" متاح من  :" + cubit.freeTimes![index].toString()),
+                                // ... other code
+                              );}else{
+                              return ListTile(
+                                title: Text("لا يوجد مواعيد متاحه"),
+                                // ... other code
+                              );
+                            }
+                          }else if (state is ItemFreeTimesLoading){
+                            return CircularProgressIndicator();
+                          }else{
+                            return ListTile(
+                              title: Text("لا يوجد مواعيد متاحه"),
+                              // ... other code
+                            );
+                          }
+                        }
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+          // );}
+
+        );
+
+      });
+    }else{
+
+    }
+  },
+  builder: (context, state) {
     return Padding(
     padding: const EdgeInsets.only(top:20.0),
     child: Center(
@@ -102,16 +170,8 @@ class ListOfCategory extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center ,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          BlocConsumer<FreeTimesCubit, FreeTimesState>(
-  listener: (context, state) {
-    if(state is ItemFreeTimesLoading){
-      calenderWidget = CircularProgressIndicator();
-    }else if(state is ItemFreeTimesLoaded){
-    }
-  },
-  builder: (context, state) {
-    var cubit = FreeTimesCubit.get(context);
-    return IconButton(
+ 
+     IconButton(
         onPressed: (){
             showDialog(
               context: context,
@@ -136,51 +196,6 @@ class ListOfCategory extends StatelessWidget {
                             cubit.getItemFreeTimes(formattedTime, itemId);
                             _selectedDate = date;
 
-                          showDialog(context: context,   builder: (BuildContext context) {
-                            return AlertDialog(
-                              content:Column(
-                                children: [
-                                  Text("المواعيد المتاحه", style: TextStyle(fontWeight: FontWeight.bold),),
-                                  Container(width: 180, height: 3, color: Colors.grey,),
-                                  SizedBox(
-                                    width:
-                                    200,
-                                    height: 100,
-                                    child: ListView.builder(
-                                      shrinkWrap: false,
-                                      itemCount: cubit.freeTimes!.length,
-                                      itemBuilder:
-                                          (context, index) {
-                                        print("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<object>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-                                        print(cubit.freeTimes!);
-                                        print(cubit.freeTimes!.length);
-                                          if(state is ItemFreeTimesLoaded){
-                                            if (index < cubit.freeTimes!.length) {
-                                              return ListTile(
-                                                title: Text(" متاح من  :" + cubit.freeTimes![index].toString()),
-                                                // ... other code
-                                              );}else{
-                                              return ListTile(
-                                                title: Text("لا يوجد مواعيد متاحه"),
-                                                // ... other code
-                                              );
-                                            }
-                                          }else if (state is ItemFreeTimesLoading){
-                                            return CircularProgressIndicator();
-                                          }else{
-                                            return ListTile(
-                                              title: Text("لا يوجد مواعيد متاحه"),
-                                              // ... other code
-                                            );
-                                          }
-                                          }
-                                          ),
-                                  ),
-                                ],
-                              ),
-
-                            );});
-
                         },
                         calendarStyle:const CalendarStyle(
                           // weekendTextStyle: TextStyle(color: Colors.red),
@@ -203,9 +218,8 @@ class ListOfCategory extends StatelessWidget {
               ),
             );
 
-          }, icon: Icon(Icons.calendar_today_rounded ,color: Colors.black, ));
-  },
-),
+          }, icon: Icon(Icons.calendar_today_rounded ,color: Colors.black, )),
+          
           InkWell(
             onTap: forMoreDetails,
             child: Text("لمزيد من التفاصيل", style: TextStyle(color: Colors.black,decoration: TextDecoration.underline, fontFamily: 'Cairo',
@@ -220,5 +234,7 @@ class ListOfCategory extends StatelessWidget {
       ),
       ),
       );
+  },
+);
   }
 }

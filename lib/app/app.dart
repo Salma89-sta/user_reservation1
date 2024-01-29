@@ -1,11 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:rservation_user/features/categories/business_layer/categories_cubit.dart';
-import 'package:rservation_user/features/home/business_layer/user_reservations_cubit.dart';
-import 'package:rservation_user/features/login/business_layer/login_cubit.dart';
-import 'package:rservation_user/features/login/view/login.dart';
-
+import 'package:Reservation/features/login/view/login.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class MyApp extends StatelessWidget {
 
@@ -16,6 +13,7 @@ class MyApp extends StatelessWidget {
     return ResponsiveSizer(
       builder: (context, orientation, screenType) {
         return MaterialApp(
+          builder: EasyLoading.init(),
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
             iconTheme: IconThemeData(color: Colors.white),

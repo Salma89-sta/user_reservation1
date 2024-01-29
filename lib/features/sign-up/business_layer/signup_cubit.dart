@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rservation_user/core/network/my_http.dart';
-import 'package:rservation_user/features/sign-up/data_layer/signup_model.dart';
+import 'package:Reservation/core/network/my_http.dart';
+import 'package:Reservation/features/sign-up/data_layer/signup_model.dart';
 
 import '../../../core/network/api_url.dart';
 

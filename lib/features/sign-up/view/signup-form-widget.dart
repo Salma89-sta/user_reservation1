@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:rservation_user/features/home/view/home_screen.dart';
-import 'package:rservation_user/features/sign-up/business_layer/signup_cubit.dart';
+import 'package:Reservation/features/home/view/home_screen.dart';
+import 'package:Reservation/features/sign-up/business_layer/signup_cubit.dart';
 import '../../../colors/app_colors.dart';
 import '../../../common/button.dart';
 import '../../../common/snack_bar_widget.dart';

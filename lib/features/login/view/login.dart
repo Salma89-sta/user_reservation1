@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:rservation_user/colors/app_colors.dart';
-import 'package:rservation_user/common/button.dart';
+import 'package:Reservation/colors/app_colors.dart';
+import 'package:Reservation/common/button.dart';
 
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'login-form-widget.dart';

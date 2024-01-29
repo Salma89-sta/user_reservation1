@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:rservation_user/colors/app_colors.dart';
+import 'package:Reservation/colors/app_colors.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:rservation_user/core/cache_helper/cache_helper.dart';
-import 'package:rservation_user/features/home/business_layer/user_reservations_cubit.dart';
+import 'package:Reservation/core/cache_helper/cache_helper.dart';
+import 'package:Reservation/features/home/business_layer/user_reservations_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rservation_user/features/home/view/home_screen.dart';
+import 'package:Reservation/features/home/view/home_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:rservation_user/features/user_resservation_detailss/view/edit_reservation.dart';
+import 'package:Reservation/features/user_resservation_detailss/view/edit_reservation.dart';
 
 
 class ReservedCardToUser extends StatelessWidget {
