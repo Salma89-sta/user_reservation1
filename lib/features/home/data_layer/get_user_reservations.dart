@@ -29,6 +29,7 @@ class Data {
   String? userId;
   String? categoryName;
   String? itemId;
+  String? packageId;
   String? time;
   String? timeOfReservationFrom;
   String? timeOfReservationTo;
@@ -39,6 +40,8 @@ class Data {
   String? price;
   String? paid;
   String? maritalStatus;
+  String? comments;
+  String? offer;
   Item? item;
   User? user;
 
@@ -47,6 +50,7 @@ class Data {
         this.userId,
         this.categoryName,
         this.itemId,
+        this.packageId,
         this.time,
         this.timeOfReservationFrom,
         this.timeOfReservationTo,
@@ -57,6 +61,8 @@ class Data {
         this.price,
         this.paid,
         this.maritalStatus,
+        this.comments,
+        this.offer,
         this.item,
         this.user});
 
@@ -65,6 +71,7 @@ class Data {
     userId = json['user_id'];
     categoryName = json['category_name'];
     itemId = json['item_id'];
+    packageId = json['package_id'];
     time = json['time'];
     timeOfReservationFrom = json['time_of_reservation_from'];
     timeOfReservationTo = json['time_of_reservation_to'];
@@ -75,6 +82,8 @@ class Data {
     price = json['price'];
     paid = json['paid'];
     maritalStatus = json['marital_status'];
+    comments = json['comments'];
+    offer = json['offer'];
     item = json['item'] != null ? new Item.fromJson(json['item']) : null;
     user = json['user'] != null ? new User.fromJson(json['user']) : null;
   }
@@ -85,6 +94,7 @@ class Data {
     data['user_id'] = this.userId;
     data['category_name'] = this.categoryName;
     data['item_id'] = this.itemId;
+    data['package_id'] = this.packageId;
     data['time'] = this.time;
     data['time_of_reservation_from'] = this.timeOfReservationFrom;
     data['time_of_reservation_to'] = this.timeOfReservationTo;
@@ -95,6 +105,8 @@ class Data {
     data['price'] = this.price;
     data['paid'] = this.paid;
     data['marital_status'] = this.maritalStatus;
+    data['comments'] = this.comments;
+    data['offer'] = this.offer;
     if (this.item != null) {
       data['item'] = this.item!.toJson();
     }
@@ -116,8 +128,6 @@ class Item {
   String? type;
   String? description;
   String? address;
-  String? availableTimeFrom;
-  String? availableTimeTo;
   String? devices;
   String? status;
   String? offer;
@@ -134,8 +144,6 @@ class Item {
         this.type,
         this.description,
         this.address,
-        this.availableTimeFrom,
-        this.availableTimeTo,
         this.devices,
         this.status,
         this.offer,
@@ -152,8 +160,6 @@ class Item {
     type = json['type'];
     description = json['description'];
     address = json['address'];
-    availableTimeFrom = json['available_time_from'];
-    availableTimeTo = json['available_time_to'];
     devices = json['devices'];
     status = json['status'];
     offer = json['offer'];
@@ -172,8 +178,6 @@ class Item {
     data['type'] = this.type;
     data['description'] = this.description;
     data['address'] = this.address;
-    data['available_time_from'] = this.availableTimeFrom;
-    data['available_time_to'] = this.availableTimeTo;
     data['devices'] = this.devices;
     data['status'] = this.status;
     data['offer'] = this.offer;

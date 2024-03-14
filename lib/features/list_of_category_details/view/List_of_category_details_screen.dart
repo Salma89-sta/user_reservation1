@@ -1,12 +1,10 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:Reservation/common/button.dart';
 import 'package:Reservation/features/list_of_category_details/additional_options+business_layer/additional_options_cubit.dart';
 import 'package:Reservation/features/list_of_category_details/view/slider_widget.dart';
 import 'package:Reservation/features/user_resservation_detailss/business_layer/add_reservation_cubit.dart';
-import '../../../common/check_list_widget.dart';
 import '../../../common/list_of_data.dart';
 import '../../categories/data_layer/model/categories_model.dart';
 import '../../drawer/drawe_widget.dart';
@@ -114,7 +112,7 @@ class _ListOfCategoryDetailsScreenState
           appBar: AppBar(
             iconTheme: IconThemeData(color: Colors.white),
             backgroundColor: Colors.deepOrange,
-            title: Center(
+            title: const Center(
                 child: Text(
               "التفاصيل",
               style: TextStyle(

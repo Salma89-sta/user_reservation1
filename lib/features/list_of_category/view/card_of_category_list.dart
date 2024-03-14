@@ -94,9 +94,29 @@ class ListOfCategory extends StatelessWidget {
 
       });
     }else{
+      EasyLoading.dismiss();
+      showDialog(context: context,   builder: (BuildContext context) {
+        return AlertDialog(
+          content:Container(
+            height: 30.h,
+            child: Column(
+              children: [
+                Text("المواعيد المتاحه", style: TextStyle(fontWeight: FontWeight.bold),),
+                Container(width: 180, height: 3, color: Colors.grey,),
+                SizedBox(
+                  width:
+                  200,
+                  height: 20.h,
+                  child:Center(child: const Text("لايوجد مواعيد متاحه")),
+                ),
+              ],
+            ),
+          ),
 
-    }
-  },
+        );
+    });
+  }
+    },
   builder: (context, state) {
     return Padding(
     padding: const EdgeInsets.only(top:20.0),

@@ -66,7 +66,7 @@ class ViewCategoriesScreen extends StatelessWidget {
                                     child: const ListOfCategoryScreen())));
                               },
                               child: Container(
-                                height: 20.h,
+                                // height: 20.h,
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(20),

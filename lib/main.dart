@@ -7,37 +7,67 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'app/app.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+
+import 'core/cache_helper/cache_helper.dart';
+import 'features/notification/FirebaseApi.dart';
 
 late SharedPreferences sharedPreferences;
-late bool internetChecker;
-
 
 Future<void> main() async {
-  // Bloc.observer = MyBlocObserver();
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: FirebaseOptions(
+      apiKey: "AIzaSyDqG1cIa_1OHTaa8FVLTMhiqJb4h8pIVPU",
+      appId: "1:422940300781:android:5d15808aa8aba65bef83e4",
+      messagingSenderId: "422940300781",
+      projectId: "abumosa-8b962",
+    ),
+  );
+  await CacheHelper.init();
+
+
+  FirebaseMessaging messaging = FirebaseMessaging.instance;
+  NotificationSettings settings = await messaging.requestPermission(
+    alert: true,
+    announcement: false,
+    badge: true,
+    carPlay: false,
+    criticalAlert: false,
+    provisional: false,
+    sound: true,
+  );
+
+  String? token = await messaging.getToken();
+  final fcmToken = await FirebaseMessaging.instance.getToken();
+  CacheHelper.saveData(key: 'fcmToken', value: fcmToken);
+  // var response = await MyHttp.post(endPoint: API.notificaion, data: {
+  //   'id':CacheHelper.getData(key: 'id'),
+  //   "token":fcmToken,
+  // });
+  //
+  // print(".........notification response................");
+  // print(response);
+  //
+  // print('FCM Token: $fcmToken');
+
 
   MyDio.init();
-  SharedPreferences sharedPreferences;
   EasyLoading.init();
-  WidgetsFlutterBinding.ensureInitialized();
   await initializeDateFormatting();
-  WidgetsFlutterBinding.ensureInitialized();
-  sharedPreferences = await SharedPreferences.getInstance();
 
   runApp(
-      Directionality(
-
-          textDirection: TextDirection.rtl,
-          child: MultiBlocProvider(
-            providers: [
-              BlocProvider(create: (context) =>  CategoryCubit()..getCategories()),
-              BlocProvider(create: (context) =>  UserUpdateDataCubit()),
-
-            ],
-            child: MyApp(),
-          ))
+    Directionality(
+      textDirection: TextDirection.rtl,
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (context) => CategoryCubit()..getCategories()),
+          BlocProvider(create: (context) => UserUpdateDataCubit()),
+        ],
+        child: MyApp(),
+      ),
+    ),
   );
-}
-
-init() async {
-  sharedPreferences = await SharedPreferences.getInstance();
 }

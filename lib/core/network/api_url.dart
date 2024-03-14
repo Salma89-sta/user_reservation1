@@ -14,6 +14,7 @@ class API{
   static const updateReservation="/reservations/edit_reservation.php";
   static const calenderData="/user/calender.php";
   static const itemPackage ='/item/get_item_available_time.php';
+  static const notificaion = '/user/addNotifyToken.php';
 
   // static const validateEmail = "/user/validate_email.php";
   // static const update ="/user/updateName.php";

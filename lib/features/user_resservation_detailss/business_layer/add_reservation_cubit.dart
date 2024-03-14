@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:Reservation/features/user_resservation_detailss/data_layer/add_reservation_model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,7 +12,6 @@ part 'add_reservation_state.dart';
 
 class AddReservationCubit extends Cubit<AddReservationState> {
   AddReservationCubit() : super(AddReservationInitial());
-
   static AddReservationCubit get(context) => BlocProvider.of(context);
 
   addReservation (
@@ -34,6 +34,7 @@ class AddReservationCubit extends Cubit<AddReservationState> {
       })
   async {
     try{
+      emit(AddReservationLoading());
       var response = await MyHttp.post(endPoint: API.addReservation, data: {
         'user_id':userId,
         'category_name':categoryName,
@@ -57,15 +58,14 @@ class AddReservationCubit extends Cubit<AddReservationState> {
       if(response!.statusCode ==200){
 
         print("add reservation ${response.statusCode}");
+        print("add reservation ${response.body}");
 
-        var jsonResponse = AdditionalOptionsModel.fromJson(jsonDecode(response.body.toString()));
+        var jsonResponse = AddReservationModel.fromJson(jsonDecode(response.body.toString()));
         if(jsonResponse.success.toString() =='true'){
 
-          print("reservation added successfully");
           emit(AddReservationSuccessfully());
         }else{
-          print("..........................");
-
+          emit(AddReservationAlreadyReserved());
           print(jsonResponse.success);
 
         }
@@ -96,9 +96,12 @@ class AddReservationCubit extends Cubit<AddReservationState> {
         required String price,
         String? paid,
         String? additionalOp,
-        required String maritalStatus})
+        required String maritalStatus,
+      required String package_id,
+      })
   async {
     try{
+      emit(UpdateReservationLoading());
       var response = await MyHttp.post(endPoint: API.updateReservation, data: {
         'id':reservationId,
         'user_id':userId,
@@ -112,7 +115,9 @@ class AddReservationCubit extends Cubit<AddReservationState> {
         'price':price,
         'paid':paid,
         'additional_options':additionalOp,
-        'marital_status': maritalStatus
+        'marital_status': maritalStatus,
+        'package_id':package_id,
+
       }
       );
 
@@ -132,18 +137,23 @@ class AddReservationCubit extends Cubit<AddReservationState> {
 
           emit(UpdateReservationSuccessfully());
         }else{
+          print("reservation fail successfully");
 
-          print(jsonResponse.success);
+          print(response.body);
+          emit(UpdateReservationFailed());
 
         }
       }else{
+        print("reservation fail successfully");
 
-        print(response.statusCode);
+        print(response.body);
 
         emit(UpdateReservationFailed());
       }
 
     }catch (e){
+      emit(UpdateReservationFailed());
+
       print("catch error");
       print(e.toString());
     }

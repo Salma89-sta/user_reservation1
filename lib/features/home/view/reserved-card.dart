@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:Reservation/colors/app_colors.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+// import 'package:fluttertoast/fluttertoast.dart';
 import 'package:Reservation/core/cache_helper/cache_helper.dart';
 import 'package:Reservation/features/home/business_layer/user_reservations_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -89,13 +89,13 @@ class ReservedCardToUser extends StatelessWidget {
                   BlocConsumer<UserReservationsCubit, UserReservationsState>(
   listener: (context, state) {
     if(state is UserDeleteReservationSuccess){
-      Fluttertoast.showToast(msg: "تم الغاء الحجز", textColor: Colors.white, backgroundColor: Colors.deepOrange);
+      // Fluttertoast.showToast(msg: "تم الغاء الحجز", textColor: Colors.white, backgroundColor: Colors.deepOrange);
       Navigator.push(context, MaterialPageRoute(builder: (context)=> BlocProvider(
   create: (context) => UserReservationsCubit()..getUserReservations(CacheHelper.getData(key: 'id')),
   child: HomeScreen(),
 )));
     }else{
-      Fluttertoast.showToast(msg: "حدث خطا اثناء الالغاء", textColor: Colors.white, backgroundColor: Colors.deepOrange);
+      // Fluttertoast.showToast(msg: "حدث خطا اثناء الالغاء", textColor: Colors.white, backgroundColor: Colors.deepOrange);
 
     }
   },

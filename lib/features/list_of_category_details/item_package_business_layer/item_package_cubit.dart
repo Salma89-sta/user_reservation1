@@ -18,7 +18,7 @@ class ItemPackageCubit extends Cubit<ItemPackageState> {
     emit(ItemPackageLoading());
     try{
       var response = await MyHttp.post(endPoint: API.itemPackage, data: {
-        'item_id': '4'
+        'item_id': itemId,
       });
       print(itemId);
 

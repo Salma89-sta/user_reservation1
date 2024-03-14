@@ -364,6 +364,7 @@
 //
 
 import 'dart:io';
+import 'package:Reservation/features/user_update_data/business_layer/user_update_data_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
@@ -376,8 +377,8 @@ import 'package:Reservation/features/home/view/home_screen.dart';
 import 'package:Reservation/features/user_resservation_detailss/business_layer/add_reservation_cubit.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../colors/app_colors.dart';
-import '../../../common/check_list_widget.dart';
-import '../../list_of_category_details/additional_options+business_layer/additional_options_cubit.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+
 
 class EditReservationScreen extends StatefulWidget {
   String categoryName;
@@ -386,13 +387,19 @@ class EditReservationScreen extends StatefulWidget {
   String status;
   String from;
   String to;
-  List<String> additionals;
+  String additionals;
   String paid;
   String doc;
   String approv;
+  String package_id;
+  String time;
+  String salary;
 
   EditReservationScreen(
-      {required this.itemId,
+      {
+        required this.time,
+        required this.salary,
+        required this.itemId,
       required this.categoryName,
       required this.reservationId,
       required this.status,
@@ -401,7 +408,8 @@ class EditReservationScreen extends StatefulWidget {
       required this.additionals,
         required this.paid,
         required this.doc,
-        required this.approv
+        required this.approv,
+        required this.package_id,
       });
 
   @override
@@ -436,34 +444,34 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
     }
   }
 
-  Future<void> _selectDateTime(TextEditingController controller) async {
-    final selectedDate = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime.now(),
-      lastDate: DateTime.now().add(Duration(days: 365)),
-    );
-
-    if (selectedDate != null) {
-      final selectedTime = await showTimePicker(
-        context: context,
-        initialTime: TimeOfDay.now(),
-      );
-
-      if (selectedTime != null) {
-        final dateTime = DateTime(
-          selectedDate.year,
-          selectedDate.month,
-          selectedDate.day,
-          selectedTime.hour,
-          selectedTime.minute,
-        );
-        final formattedDateTime =
-            DateFormat('yyyy-MM-dd HH:mm').format(dateTime);
-        controller.text = formattedDateTime;
-      }
-    }
-  }
+  // Future<void> _selectDateTime(TextEditingController controller) async {
+  //   final selectedDate = await showDatePicker(
+  //     context: context,
+  //     initialDate: DateTime.now(),
+  //     firstDate: DateTime.now(),
+  //     lastDate: DateTime.now().add(Duration(days: 365)),
+  //   );
+  //
+  //   if (selectedDate != null) {
+  //     final selectedTime = await showTimePicker(
+  //       context: context,
+  //       initialTime: TimeOfDay.now(),
+  //     );
+  //
+  //     if (selectedTime != null) {
+  //       final dateTime = DateTime(
+  //         selectedDate.year,
+  //         selectedDate.month,
+  //         selectedDate.day,
+  //         selectedTime.hour,
+  //         selectedTime.minute,
+  //       );
+  //       final formattedDateTime =
+  //           DateFormat('yyyy-MM-dd HH:mm').format(dateTime);
+  //       controller.text = formattedDateTime;
+  //     }
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -494,6 +502,7 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
           child: BlocConsumer<AddReservationCubit, AddReservationState>(
             listener: (context, state) {
               if (state is UpdateReservationSuccessfully) {
+                EasyLoading.dismiss();
                 Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -503,7 +512,11 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
                                     CacheHelper.getData(key: 'id')),
                               child: HomeScreen(),
                             )));
-              } else {
+              } else if(state is UpdateReservationLoading){
+                EasyLoading.show();
+              }
+              else {
+                EasyLoading.dismiss();
                 print("errrrrroooorrrrrr");
               }
             },
@@ -700,7 +713,7 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
                           labelText: widget.paid,
                           suffixIcon: Icon(Icons.money),
                           focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
+                            borderSide:const BorderSide(
                               width: 2,
                               color: Colors.indigo,
                             ),
@@ -799,25 +812,26 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
                           if (_formKey.currentState!.validate()) {
                             final cubit = AddReservationCubit.get(context);
                             cubit.updateReservation(
+
                                 userId: CacheHelper.getData(key: 'id'),
                                 categoryName: widget.categoryName,
                                 itemId: widget.itemId,
-                                time: DateTime.now().toString(),
+                                time: widget.time,
                                 from: _fromDateTimeController.text.trim().isEmpty
                                     ? widget.from
                                     : _fromDateTimeController.text,
                                 to: _toDateTimeController.text.trim().isEmpty
                                     ? widget.to
                                     : _toDateTimeController.text,
-                                price: '',
+                                price: widget.salary,
                                 paid: _paiedController.text.trim().isEmpty? widget.paid: _paiedController.text,
-                                additionalOp: '',
+                                additionalOp: widget.additionals,
                                 approveOfPayment: _attachment.toString(),
                                 doc: widget.doc,
-                                maritalStatus: statusIndex.toString().isEmpty
-                                    ? widget.status
-                                    : statusIndex.toString(),
-                                reservationId: widget.reservationId.toString());
+                                maritalStatus:  widget.status,
+                                reservationId: widget.reservationId.toString(),
+                            package_id: widget.package_id,
+                            );
                           }
                         })
                   ],

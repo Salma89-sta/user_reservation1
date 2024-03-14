@@ -14,8 +14,8 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:Reservation/functions/salary_function.dart';
 import '../../../colors/app_colors.dart';
 import '../../list_of_category_details/additional_options+business_layer/additional_options_cubit.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-
+// import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import '../../list_of_category_details/data_layer/additional_options_model.dart';
 
 class AddReservationScreen extends StatefulWidget {
@@ -129,7 +129,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
       ),
       body: BlocConsumer<AdditionalOptionsCubit, AdditionalOptionsState>(
         listener: (context, state) {
-          // TODO: implement listener
+
         },
         builder: (context, state) {
           final addOp = AdditionalOptionsCubit.get(context);
@@ -173,8 +173,8 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                             ),
                           ),
                           isExpanded: true,
-                          hint: const Text(
-                            "الحالة الاجتماعية",
+                          hint:  Text(
+                            "الحالة الاجتماعية", textAlign: TextAlign.end,
                             style: TextStyle(color: AppColors.lightGrey),
                           ),
                           items: status.map((value) {
@@ -202,7 +202,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                     ),
 
                     const SizedBox(
-                      height: 15,
+                      height: 10,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(right: 50.0, bottom: 10),
@@ -301,13 +301,11 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                         },
                       ),
                     ),
-                    // const SizedBox(height: 15,),
+                    const SizedBox(height: 10,),
 
                     Padding(
-                      padding: const EdgeInsets.only(right: 50.0),
+                      padding: EdgeInsets.only(right: 50),
                       child: Container(
-                        width: 80.w,
-                        height: 20.h,
                         alignment: AlignmentDirectional.centerEnd,
                         child: const Text(
                           " اختيار المعاد ",
@@ -323,7 +321,6 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                     ),
                     BlocConsumer<ItemPackageCubit, ItemPackageState>(
                       listener: (context, state) {
-                        // TODO: implement listener
                       },
                       builder: (context, state) {
                         var cubit = ItemPackageCubit.get(context);
@@ -345,13 +342,19 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                                 final id = cubit.availabilityData[index].id;
 
                                 return RadioListTile(
-                                  title: Text(
-                                    'من: $from , الي: $to , السعر :$price',
-                                    style: TextStyle(
-                                      fontFamily: 'Cairo',
-                                      color: Colors.black,
-                                      fontSize: 18.sp,
-                                    ),
+                                  title: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'من: $from , الي: $to , السعر :$price',
+                                        style: TextStyle(
+                                          fontFamily: 'Cairo',
+                                          color: Colors.black,
+                                          fontSize: 18.sp,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                   value: id,
                                   groupValue: selectedPackage,
@@ -404,7 +407,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                             borderRadius: BorderRadius.circular(15),
                           ),
                           enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
+                            borderSide:const BorderSide(
                                 color: AppColors.lightGrey, width: 1.5),
                             borderRadius: BorderRadius.circular(15),
                           ),
@@ -440,30 +443,43 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                             final option = addOp.options[index];
                             final itemName = option.name.toString();
                             final itemPrice = option.price.toString();
+                            print("<<<<<<<<<<<<<object>>>>>>>>>>>>>");
+                            print(addOp.options.length);
+                            if(addOp.options.length ==0){
+                              return Center(child: Text("لا يوجد",  style: TextStyle(
+                                color: Colors.indigo,
+                                fontFamily: 'Cairo',
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20.sp,
+                              ),),);
 
-                            return CheckboxListTile(
-                              title: Text(
-                                'السعر : $itemPrice , $itemName ',
-                                style: TextStyle(
-                                  color: Colors.indigo,
-                                  fontFamily: 'Cairo',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20.sp,
+                            }else{
+                              return CheckboxListTile(
+                                title: Text(
+                                  'السعر : $itemPrice , $itemName ',
+                                  style: TextStyle(
+                                    color: Colors.indigo,
+                                    fontFamily: 'Cairo',
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20.sp,
+                                  ),
                                 ),
-                              ),
-                              value: selectedItems.contains(itemName),
-                              onChanged: (value) {
-                                setState(() {
-                                  if (value == true) {
-                                    selectedItems.add(itemName);
-                                    selectedItemsPrice.add(itemPrice);
-                                  } else {
-                                    selectedItems.remove(itemName);
-                                    selectedItemsPrice.add(itemPrice);
-                                  }
-                                });
-                              },
-                            );
+                                value: selectedItems.contains(itemName),
+                                onChanged: (value) {
+                                  setState(() {
+                                    if (value == true) {
+                                      selectedItems.add(itemName);
+                                      selectedItemsPrice.add(itemPrice);
+                                    } else {
+                                      selectedItems.remove(itemName);
+                                      selectedItemsPrice.add(itemPrice);
+                                    }
+                                  });
+                                },
+                              );
+                            }
+
+
                           },
                         ),
                       ),
@@ -510,10 +526,11 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                     BlocConsumer<AddReservationCubit, AddReservationState>(
                       listener: (context, state) {
                         if (state is AddReservationSuccessfully) {
-                          Fluttertoast.showToast(
-                              msg: "تم الحجز بنجاح",
-                              textColor: Colors.white,
-                              backgroundColor: Colors.deepOrange);
+                          EasyLoading.dismiss();
+                          // Fluttertoast.showToast(
+                          //     msg: "تم الحجز بنجاح",
+                          //     textColor: Colors.white,
+                          //     backgroundColor: Colors.deepOrange);
                           Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -526,10 +543,22 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                                         child: HomeScreen(),
                                       )));
                         } else if (state is AddReservationFailed) {
-                          Fluttertoast.showToast(
-                              msg: "حدث مشكله اثناء الحجز ",
-                              textColor: Colors.white,
-                              backgroundColor: Colors.deepOrange);
+                          EasyLoading.dismiss();
+                          //
+                          // Fluttertoast.showToast(
+                          //     msg: "حدث مشكله اثناء الحجز ",
+                          //     textColor: Colors.white,
+                          //     backgroundColor: Colors.deepOrange);
+                        }else if(state is AddReservationAlreadyReserved){
+                          EasyLoading.dismiss();
+
+                          // Fluttertoast.showToast(
+                          //     msg: "هذا التوقيت غير متاح",
+                          //     textColor: Colors.white,
+                          //     backgroundColor: Colors.deepOrange);
+                        }else{
+                          EasyLoading.show();
+
                         }
                       },
                       builder: (context, state) {
@@ -573,7 +602,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                                               time: DateTime.now().toString(),
                                               from: _fromDateTimeController.text,
                                               to: _toDateTimeController.text,
-                                              price: '',
+                                              price: salary.toString(),
                                               additionalOp: selectedItems.toString(),
                                               maritalStatus: statusIndex.toString(),
                                               offer: widget.offer,

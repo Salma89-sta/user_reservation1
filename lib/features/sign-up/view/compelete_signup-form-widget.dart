@@ -10,24 +10,23 @@ import '../../login/view/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-import 'compelete_signup-form-widget.dart';
 
-
-class SignupFormWidget extends StatefulWidget {
-  const SignupFormWidget({Key? key}) : super(key: key);
-
+class CompleteSignupFormWidget extends StatefulWidget {
+   CompleteSignupFormWidget(this.email, this.name);
+  String email;
+  String name;
   @override
-  State<SignupFormWidget> createState() => _SignupFormWidgetState();
+  State<CompleteSignupFormWidget> createState() => _SignupFormWidgetState();
 }
 
-class _SignupFormWidgetState extends State<SignupFormWidget> {
+class _SignupFormWidgetState extends State<CompleteSignupFormWidget> {
 
   bool passwordVisible = false;
   bool isSecure = true;
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _emailController =new TextEditingController();
+  // final TextEditingController _emailController =new TextEditingController();
   final TextEditingController _phoneController =new TextEditingController();
-  final TextEditingController _nameController =new TextEditingController();
+  // final TextEditingController _nameController =new TextEditingController();
   final TextEditingController _nationalIdController =new TextEditingController();
   final TextEditingController _passwordController =new TextEditingController();
   final TextEditingController _passwordConfirmController =new TextEditingController();
@@ -39,9 +38,9 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
   Widget buttonWidget= Text("تسجيل ", style: TextStyle(color: Colors.indigo, fontFamily: 'Cairo', fontSize: 20.sp, fontWeight: FontWeight.bold),);
 
   void clearControllers() {
-    _emailController.clear();
+    // _emailController.clear();
     _passwordController.clear();
-    _nameController.clear();
+    // _nameController.clear();
     _nationalIdController.clear();
     _phoneController.clear();
     _passwordConfirmController.clear();
@@ -84,67 +83,67 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
-                          Container(
-                            padding: EdgeInsets.only(right: 10.w),
-                            alignment: AlignmentDirectional.bottomEnd,
-                            child: const Text(
-                              " الاسم",
-                              textAlign: TextAlign.end,
-                              style: TextStyle(
-                                fontFamily: 'Cairo',
-                                color: Colors.indigo,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                          SizedBox(height: 10,),
-                          Container(
-                            child: TextFormFieldWidget(
-                              labelText: "",
-                              // prefix: null,
-                              suffix: const Icon(
-                                Icons.people_outline_rounded,
-                                color: AppColors.lightGrey,
-                              ),
-                              IsObsecure: false,
-                              textFieldController: _nameController,
-                              color: AppColors.lightGrey,
-                              fillcolor: Colors.white,
-                            ),
-                          ),
-                          SizedBox(height: 15,),
-
-
-                          Container(
-                            padding: EdgeInsets.only(right: 10.w),
-                            alignment: AlignmentDirectional.bottomEnd,
-                            child: const Text(
-                              "البريد الالكتروني",
-                              textAlign: TextAlign.end,
-                              style: TextStyle(
-                                fontFamily: 'Cairo',
-                                color: Colors.indigo,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                          SizedBox(height: 10,),
-                          Container(
-                            child: TextFormFieldWidget(
-                              labelText: "",
-                              // prefix: null,
-                              suffix: const Icon(
-                                Icons.email_outlined,
-                                color: AppColors.lightGrey,
-                              ),
-                              IsObsecure: false,
-                              textFieldController: _emailController,
-                              color: AppColors.lightGrey,
-                              fillcolor: Colors.white,
-                            ),
-                          ),
+                          // Container(
+                          //   padding: EdgeInsets.only(right: 10.w),
+                          //   alignment: AlignmentDirectional.bottomEnd,
+                          //   child: const Text(
+                          //     " الاسم",
+                          //     textAlign: TextAlign.end,
+                          //     style: TextStyle(
+                          //       fontFamily: 'Cairo',
+                          //       color: Colors.indigo,
+                          //       fontSize: 20,
+                          //       fontWeight: FontWeight.bold,
+                          //     ),
+                          //   ),
+                          // ),
+                          // SizedBox(height: 10,),
+                          // Container(
+                          //   child: TextFormFieldWidget(
+                          //     labelText: "",
+                          //     // prefix: null,
+                          //     suffix: const Icon(
+                          //       Icons.people_outline_rounded,
+                          //       color: AppColors.lightGrey,
+                          //     ),
+                          //     IsObsecure: false,
+                          //     textFieldController: _nameController,
+                          //     color: AppColors.lightGrey,
+                          //     fillcolor: Colors.white,
+                          //   ),
+                          // ),
+                          // SizedBox(height: 15,),
+                          //
+                          //
+                          // Container(
+                          //   padding: EdgeInsets.only(right: 10.w),
+                          //   alignment: AlignmentDirectional.bottomEnd,
+                          //   child: const Text(
+                          //     "البريد الالكتروني",
+                          //     textAlign: TextAlign.end,
+                          //     style: TextStyle(
+                          //       fontFamily: 'Cairo',
+                          //       color: Colors.indigo,
+                          //       fontSize: 20,
+                          //       fontWeight: FontWeight.bold,
+                          //     ),
+                          //   ),
+                          // ),
+                          // SizedBox(height: 10,),
+                          // Container(
+                          //   child: TextFormFieldWidget(
+                          //     labelText: "",
+                          //     // prefix: null,
+                          //     suffix: const Icon(
+                          //       Icons.email_outlined,
+                          //       color: AppColors.lightGrey,
+                          //     ),
+                          //     IsObsecure: false,
+                          //     textFieldController: _emailController,
+                          //     color: AppColors.lightGrey,
+                          //     fillcolor: Colors.white,
+                          //   ),
+                          // ),
                           SizedBox(height: 15,),
 
 
@@ -316,16 +315,16 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                           Button0(widget: Center(child:buttonWidget),
                               function: () {
 
-                            if(_emailController.text.trim().isNotEmpty  && _nationalIdController.text.trim().isNotEmpty
-                                && _passwordController.text.trim().isNotEmpty && _nameController.text.trim().isNotEmpty  )
+                            if( _nationalIdController.text.trim().isNotEmpty
+                                && _passwordController.text.trim().isNotEmpty  )
                               {
-                                print(_emailController.text);
+                                // print(_emailController.text);
                                 if (_passwordController.text.trim() ==
                                     _passwordConfirmController.text.trim()) {
                                   final signupCubit = SignupCubit.get(context);
                                   signupCubit.userSignup(
-                                      _nameController.text.trim(),
-                                      _emailController.text.trim(),
+                                      widget.name,
+                                      widget.email,
                                       _phoneController.text.trim(),
                                       _passwordController.text.trim(),
                                       _nationalIdController.text.trim()
@@ -340,25 +339,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
 
 
                               }),
-                          SizedBox(height: 5,),
 
-                          TextButton(onPressed: (){
-                            _signInWithGoogle(context);
-                          }, child: Image.asset('assets/images/google.png', width: 70, height: 70,)),
-
-
-                          SizedBox(height: 30,),
-                          Center(
-                            child: InkWell(
-                                onTap: () =>
-                                    Navigator.pushReplacement(context,
-                                        MaterialPageRoute(
-                                            builder: (_) => LogIn())),
-                                child: Text("هل لديك حساب بالفعل ؟",
-                                  style: TextStyle(fontFamily: 'Cairo',
-                                      decoration: TextDecoration.underline,
-                                      fontSize: 18.sp),)),
-                          ),
                           SizedBox(height: 10,),
                         ],
                       ),
@@ -369,40 +350,5 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
             })
     );
   }
-  Future<void> _signInWithGoogle(BuildContext context) async {
-    final FirebaseAuth _auth = FirebaseAuth.instance;
-    final GoogleSignIn googleSignIn = GoogleSignIn();
 
-    try {
-      final GoogleSignInAccount? googleSignInAccount =
-      await googleSignIn.signIn();
-
-      if (googleSignInAccount != null) {
-        final GoogleSignInAuthentication googleAuth =
-        await googleSignInAccount.authentication;
-
-        final AuthCredential credential = GoogleAuthProvider.credential(
-          accessToken: googleAuth.accessToken,
-          idToken: googleAuth.idToken,
-        );
-
-        final UserCredential userCredential =
-        await _auth.signInWithCredential(credential);
-
-        final User? user = userCredential.user;
-
-        if (user != null) {
-         String email= user.email.toString();
-         String name = user.displayName.toString();
-
-         Navigator.push(context, MaterialPageRoute(builder: (context)=>CompleteSignupFormWidget(email, name) ));
-
-          print('User signed in: ${user.displayName}');
-        }
-      }
-    } catch (error) {
-      print('Sign in with Google failed: $error');
-      // Handle sign-in error
-    }
-  }
 }

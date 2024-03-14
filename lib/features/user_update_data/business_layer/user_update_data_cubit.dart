@@ -24,7 +24,6 @@ class UserUpdateDataCubit extends Cubit<UserUpdateDataState> {
         required String password}) async {
 
 
-
     var response = await MyHttp.post(endPoint: API.userUpdateData, data: {
       'name': name,
       'id':id,

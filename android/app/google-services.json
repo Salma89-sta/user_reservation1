@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "837880744926",
+    "project_id": "abumusa-57a7e",
+    "storage_bucket": "abumusa-57a7e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:837880744926:android:5d6d1cbca160402feeeb4f",
+        "android_client_info": {
+          "package_name": "com.example.rservation_user"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhSg_byva15u1EiiGNgnFVPGewGp8fHXQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -8,7 +8,7 @@ import '../../drawer/drawe_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../business_layer/user_update_data_cubit.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+// import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class UserUpdateDataScreen extends StatelessWidget {
@@ -96,7 +96,7 @@ class UserUpdateDataScreen extends StatelessWidget {
       print("update success");
       EasyLoading.dismiss();
 
-      Fluttertoast.showToast(msg: "تم تعديل البيانات بنجاح",textColor: Colors.white, backgroundColor: Colors.deepOrange);
+      // Fluttertoast.showToast(msg: "تم تعديل البيانات بنجاح",textColor: Colors.white, backgroundColor: Colors.deepOrange);
       Navigator.push(context, MaterialPageRoute(builder: (_)=> BlocProvider(
         create: (context) => UserReservationsCubit()..getUserReservations(CacheHelper.getData(key: 'id')),
         child: HomeScreen(),

@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:fluttertoast/fluttertoast.dart';
+// import 'package:fluttertoast/fluttertoast.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -70,17 +70,17 @@ class AuthCubit extends Cubit<LoginState> {
               emit(LoginNotAcceptedYet());
             }
           } else {
-            Fluttertoast.showToast(msg: "المستخدم غير موجود",textColor: Colors.white, backgroundColor: Colors.deepOrange);
+            // Fluttertoast.showToast(msg: "المستخدم غير موجود",textColor: Colors.white, backgroundColor: Colors.deepOrange);
 
             emit(LoginError("المستخدم غير موجود"));
           }
         } else {
-          Fluttertoast.showToast(msg: "حدث خطا اثناء تسجيل البيانات",textColor: Colors.white, backgroundColor: Colors.deepOrange);
+          // Fluttertoast.showToast(msg: "حدث خطا اثناء تسجيل البيانات",textColor: Colors.white, backgroundColor: Colors.deepOrange);
 
           emit(LoginError("حدث خطا اثناء تسجيل البيانات "));
         }
       } else {
-        Fluttertoast.showToast(msg: "حدث خطا ",textColor: Colors.white, backgroundColor: Colors.deepOrange);
+        // Fluttertoast.showToast(msg: "حدث خطا ",textColor: Colors.white, backgroundColor: Colors.deepOrange);
 
         emit(LoginError("حدث خطأ"));
       }

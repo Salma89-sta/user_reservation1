@@ -20,8 +20,8 @@ class FreeTimesCubit extends Cubit<FreeTimesState> {
 
     try{
       var response = await MyHttp.post(endPoint: API.calenderData, data: {
-        'date': '2024-02-15',
-        'item_id' : '4',
+        'date': date,
+        'item_id' : itemId,
       });
       print(date);
       print(itemId);
