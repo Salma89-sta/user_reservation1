@@ -14,7 +14,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:Reservation/functions/salary_function.dart';
 import '../../../colors/app_colors.dart';
 import '../../list_of_category_details/additional_options+business_layer/additional_options_cubit.dart';
-// import 'package:fluttertoast/fluttertoast.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import '../../list_of_category_details/data_layer/additional_options_model.dart';
 
@@ -527,10 +527,10 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                       listener: (context, state) {
                         if (state is AddReservationSuccessfully) {
                           EasyLoading.dismiss();
-                          // Fluttertoast.showToast(
-                          //     msg: "تم الحجز بنجاح",
-                          //     textColor: Colors.white,
-                          //     backgroundColor: Colors.deepOrange);
+                          Fluttertoast.showToast(
+                              msg: "تم الحجز بنجاح",
+                              textColor: Colors.white,
+                              backgroundColor: Colors.deepOrange);
                           Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -545,17 +545,17 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                         } else if (state is AddReservationFailed) {
                           EasyLoading.dismiss();
                           //
-                          // Fluttertoast.showToast(
-                          //     msg: "حدث مشكله اثناء الحجز ",
-                          //     textColor: Colors.white,
-                          //     backgroundColor: Colors.deepOrange);
+                          Fluttertoast.showToast(
+                              msg: "حدث مشكله اثناء الحجز ",
+                              textColor: Colors.white,
+                              backgroundColor: Colors.deepOrange);
                         }else if(state is AddReservationAlreadyReserved){
                           EasyLoading.dismiss();
 
-                          // Fluttertoast.showToast(
-                          //     msg: "هذا التوقيت غير متاح",
-                          //     textColor: Colors.white,
-                          //     backgroundColor: Colors.deepOrange);
+                          Fluttertoast.showToast(
+                              msg: "هذا التوقيت غير متاح",
+                              textColor: Colors.white,
+                              backgroundColor: Colors.deepOrange);
                         }else{
                           EasyLoading.show();
 

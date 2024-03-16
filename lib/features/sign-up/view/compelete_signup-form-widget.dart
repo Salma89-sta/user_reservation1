@@ -9,7 +9,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../login/view/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-
+import 'package:fluttertoast/fluttertoast.dart';
 
 class CompleteSignupFormWidget extends StatefulWidget {
    CompleteSignupFormWidget(this.email, this.name);
@@ -55,17 +55,18 @@ class _SignupFormWidgetState extends State<CompleteSignupFormWidget> {
         child: BlocConsumer<SignupCubit, SignupState>(
             listener: (context, state) {
               if (state is SignupError) {
-                // Fluttertoast.showToast(msg: "حدث خطا اثناء تسجيل البيانات",textColor: Colors.white, backgroundColor: Colors.deepOrange);
+                Fluttertoast.showToast(msg: "حدث خطا اثناء تسجيل البيانات",textColor: Colors.white, backgroundColor: Colors.deepOrange);
                 buttonWidget= Text("تسجيل ", style: TextStyle(color: Colors.indigo, fontFamily: 'Cairo', fontSize: 20.sp, fontWeight: FontWeight.bold),);
                 print("Signup error");
 
               } else if (state is SignupDublicate) {
                 buttonWidget= Text("تسجيل ", style: TextStyle(color: Colors.indigo, fontFamily: 'Cairo', fontSize: 20.sp, fontWeight: FontWeight.bold),);
-                // Fluttertoast.showToast(msg: "البريد الالكتروني موجود بالفعل ",textColor: Colors.white, backgroundColor: Colors.deepOrange);
+
+  Fluttertoast.showToast(msg: "البريد الالكتروني موجود بالفعل ",textColor: Colors.white, backgroundColor: Colors.deepOrange);
 
 
               } else if (state is SignupSuccess) {
-                // Fluttertoast.showToast(msg: "تم ارسال طلبك برجاء انتظر الموافقه ",textColor: Colors.white, backgroundColor: Colors.deepOrange);
+                Fluttertoast.showToast(msg: "تم ارسال طلبك برجاء انتظر الموافقه ",textColor: Colors.white, backgroundColor: Colors.deepOrange);
                 Navigator.push(context, MaterialPageRoute(builder: (context)=> LogIn()));
 
               }else if(state is SignupLoading){
@@ -330,10 +331,10 @@ class _SignupFormWidgetState extends State<CompleteSignupFormWidget> {
                                       _nationalIdController.text.trim()
                                   );
                                 } else {
-                                  // Fluttertoast.showToast(msg: "كلمه السر ليست متطابقه",textColor: Colors.white, backgroundColor: Colors.deepOrange);
+                                  Fluttertoast.showToast(msg: "كلمه السر ليست متطابقه",textColor: Colors.white, backgroundColor: Colors.deepOrange);
                                 }
                               }else{
-                              // Fluttertoast.showToast(msg: "برجاء ملئ جميع البيانات",textColor: Colors.white, backgroundColor: Colors.deepOrange);
+                              Fluttertoast.showToast(msg: "برجاء ملئ جميع البيانات",textColor: Colors.white, backgroundColor: Colors.deepOrange);
 
                             }
 

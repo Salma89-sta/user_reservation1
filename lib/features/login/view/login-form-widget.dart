@@ -13,7 +13,7 @@ import '../../../core/network/my_http.dart';
 import '../../sign-up/view/signup.dart';
 import '../business_layer/login_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:fluttertoast/fluttertoast.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginFormWidget extends StatefulWidget {
@@ -64,7 +64,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
 
 
           clearControllers();
-          // Fluttertoast.showToast(msg: "اهلابك! تم تسجيل الدخول بنجاح", textColor: Colors.white, backgroundColor: Colors.deepOrange);
+          Fluttertoast.showToast(msg: "اهلابك! تم تسجيل الدخول بنجاح", textColor: Colors.white, backgroundColor: Colors.deepOrange);
          print(CacheHelper.getData(key: "id"));
           Navigator.push(
               context, MaterialPageRoute(builder: (_) => BlocProvider(
@@ -74,13 +74,13 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
           ));
           print("Login Success");
         } else if (state is LoginError) {
-          // Fluttertoast.showToast(msg: "برجاء التاكد من البيانات",textColor: Colors.white, backgroundColor: Colors.deepOrange);
+          Fluttertoast.showToast(msg: "برجاء التاكد من البيانات",textColor: Colors.white, backgroundColor: Colors.deepOrange);
           buttonWidget= Text("تسجيل الدخول", style: TextStyle(color: Colors.indigo, fontFamily: 'Cairo', fontSize: 20.sp, fontWeight: FontWeight.bold),);
           print("Login error");
         } else if (state is LoginNotAcceptedYet) {
           buttonWidget= Text("تسجيل الدخول", style: TextStyle(color: Colors.indigo, fontFamily: 'Cairo', fontSize: 20.sp, fontWeight: FontWeight.bold),);
 
-          // Fluttertoast.showToast(msg: "لم يتم قبول حسابك بعد برجاء الانتظار",textColor: Colors.white, backgroundColor: Colors.deepOrange);
+          Fluttertoast.showToast(msg: "لم يتم قبول حسابك بعد برجاء الانتظار",textColor: Colors.white, backgroundColor: Colors.deepOrange);
         }else if (state is LoginLoading) {
           this.buttonWidget= CircularProgressIndicator();}
       }, builder: (context, state) {
@@ -192,7 +192,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
                             loginCubit.userLogin(
                                 email: email, password: password);
                           }else{
-                            // Fluttertoast.showToast(msg: "برجاء ملئ جميع البيانات", textColor: Colors.white, backgroundColor: Colors.deepOrange);
+                            Fluttertoast.showToast(msg: "برجاء ملئ جميع البيانات", textColor: Colors.white, backgroundColor: Colors.deepOrange);
 
                           }
 

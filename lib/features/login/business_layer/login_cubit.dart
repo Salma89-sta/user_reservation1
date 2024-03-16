@@ -1,5 +1,4 @@
 import 'dart:convert';
-// import 'package:fluttertoast/fluttertoast.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,7 +7,7 @@ import 'package:Reservation/features/login/data_layer/model/login_model.dart';
 import 'package:equatable/equatable.dart';
 import '../../../core/cache_helper/cache_helper.dart';
 import '../../../core/network/my_http.dart';
-
+import 'package:fluttertoast/fluttertoast.dart';
 part 'login_state.dart';
 
 class AuthCubit extends Cubit<LoginState> {
@@ -70,7 +69,7 @@ class AuthCubit extends Cubit<LoginState> {
               emit(LoginNotAcceptedYet());
             }
           } else {
-            // Fluttertoast.showToast(msg: "المستخدم غير موجود",textColor: Colors.white, backgroundColor: Colors.deepOrange);
+            Fluttertoast.showToast(msg: "المستخدم غير موجود",textColor: Colors.white, backgroundColor: Colors.deepOrange);
 
             emit(LoginError("المستخدم غير موجود"));
           }
@@ -80,7 +79,7 @@ class AuthCubit extends Cubit<LoginState> {
           emit(LoginError("حدث خطا اثناء تسجيل البيانات "));
         }
       } else {
-        // Fluttertoast.showToast(msg: "حدث خطا ",textColor: Colors.white, backgroundColor: Colors.deepOrange);
+        Fluttertoast.showToast(msg: "حدث خطا ",textColor: Colors.white, backgroundColor: Colors.deepOrange);
 
         emit(LoginError("حدث خطأ"));
       }

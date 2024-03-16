@@ -1,76 +1,66 @@
-import 'dart:convert';
-
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-
-import '../../core/cache_helper/cache_helper.dart';
-
+import 'package:flutter/cupertino.dart';
 
 class FirebaseApi {
-  FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance ;
+  FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
 
-  // final android = const AndroidNotificationChannel(
-  //   "channel1",
-  //   "channel1" ,
-  //   description: "this channel is used for important notification" ,
-  //   importance: Importance.defaultImportance
-  // );
-  final localNotifications = FlutterLocalNotificationsPlugin();
-
-
-  Future<void> handleBackgroundMessage(RemoteMessage? message) async{}
-
-  Future<void> NotificationInitialization()async{
-    await firebaseMessaging.requestPermission();
-    final token = await firebaseMessaging.getToken();
-    print(token);
-    CacheHelper.saveData(key: 'fcmToken', value: token);
-    FirebaseMessaging.onBackgroundMessage(handleBackgroundMessage);
-  }
-
-  void handleMessage(RemoteMessage? message/*,context*/){
-    if (message == null)
-      return;
-    //
-    // navigationKey.currentState?.pushNamed(
-    //   TestPage.route ,
-    //   arguments: message
-    // );
-  }
-
-  Future initPushNotification(context) async {
-    await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
-      alert: true ,
-      badge: true ,
-      sound: true
+  Future<void> initialize() async {
+    NotificationSettings settings = await _firebaseMessaging.requestPermission(
+      alert: true,
+      badge: true,
+      sound: true,
     );
 
-    FirebaseMessaging.instance.getInitialMessage().then((message){
-      handleMessage(message/*, context*/);
-    });
-    FirebaseMessaging.onMessageOpenedApp.listen((message) {
-      handleMessage(message/*, context*/);
-      });
-    FirebaseMessaging.onBackgroundMessage(handleBackgroundMessage);
-    FirebaseMessaging.onMessage.listen((message){
-      final notification = message.notification ;
-      if(notification == null)
-        return;
+    print('=): User granted permission: ${settings.authorizationStatus}');
 
-      localNotifications.show(
-        notification.hashCode,
-        notification.title,
-        notification.body,
-        NotificationDetails(
-          // android: AndroidNotificationDetails(
-          //   // _androidChannel.id ,
-          //   // _androidChannel.name ,
-          //   // channelDescription: _androidChannel.description ,
-          //   // icon: "@drawable/ic launcher"
-          // )
-        ),
-        payload: jsonEncode(message.toMap())
-      );
+    _firebaseMessaging.getToken().then((token) {
+      print('=): FCM Token: $token');
     });
+
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
+      AwesomeNotifications().initialize(
+          "resource://drawable/res_launcher_icon",
+          [
+            NotificationChannel(
+                channelKey: "high_importance_channel",
+                channelName: "High_importance_channel",
+                importance: NotificationImportance.Max,
+                vibrationPattern: highVibrationPattern,
+                channelShowBadge: true,
+                channelDescription: "high_importance_channel"
+            ),
+          ]
+      );
+      AwesomeNotifications().isNotificationAllowed().then((value) {
+        if (!value) {
+          AwesomeNotifications().requestPermissionToSendNotifications();
+        }
+      });
+
+      await AwesomeNotifications().createNotification(
+          content: NotificationContent(
+              id: 0,
+              channelKey: "high_importance_channel",
+              title: message.notification?.title,
+              body: message.notification?.body
+          )
+      );
+      print('=): Received message: ${message.notification?.title}');
+    });
+
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      print(
+          '=): Message opened while app is in foreground: ${message.notification
+              ?.title}');
+    });
+
+    FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   }
+
+  Future<void> _firebaseMessagingBackgroundHandler(
+      RemoteMessage message) async {
+    print('=): Handling a background message: ${message.messageId}');
+  }
+
 }

@@ -28,8 +28,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
    initState() {
     // TODO: implement initState
-    _noti.initPushNotification(context);
-    _noti.NotificationInitialization();
+    _noti.initialize();
+    // _noti.NotificationInitialization();
   }
   @override
   Widget build(BuildContext context) {

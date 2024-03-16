@@ -28,8 +28,11 @@ Future<void> main() async {
   );
   await CacheHelper.init();
 
-
   FirebaseMessaging messaging = FirebaseMessaging.instance;
+  print(".......................................");
+
+  print(messaging);
+
   NotificationSettings settings = await messaging.requestPermission(
     alert: true,
     announcement: false,
@@ -40,20 +43,18 @@ Future<void> main() async {
     sound: true,
   );
 
-  String? token = await messaging.getToken();
   final fcmToken = await FirebaseMessaging.instance.getToken();
   CacheHelper.saveData(key: 'fcmToken', value: fcmToken);
-  // var response = await MyHttp.post(endPoint: API.notificaion, data: {
-  //   'id':CacheHelper.getData(key: 'id'),
-  //   "token":fcmToken,
-  // });
-  //
-  // print(".........notification response................");
-  // print(response);
-  //
-  // print('FCM Token: $fcmToken');
 
 
+  FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+    print('Got a message whilst in the foreground!');
+    print('Message data: ${message.data}');
+
+    if (message.notification != null) {
+      print('Message also contained a notification: ${message.notification}');
+    }
+  });
   MyDio.init();
   EasyLoading.init();
   await initializeDateFormatting();
