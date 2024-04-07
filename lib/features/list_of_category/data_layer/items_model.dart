@@ -35,11 +35,9 @@ class Data {
   String? type;
   String? description;
   String? address;
-  String? availableTime;
   String? devices;
   String? status;
   String? offer;
-  String? price;
 
   Data(
       {this.id,
@@ -52,11 +50,9 @@ class Data {
         this.type,
         this.description,
         this.address,
-        this.availableTime,
         this.devices,
         this.status,
-        this.offer,
-        this.price});
+        this.offer});
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -69,11 +65,9 @@ class Data {
     type = json['type'];
     description = json['description'];
     address = json['address'];
-    availableTime = json['available_time'];
     devices = json['devices'];
     status = json['status'];
     offer = json['offer'];
-    price = json['price'];
   }
 
   Map<String, dynamic> toJson() {
@@ -88,11 +82,9 @@ class Data {
     data['type'] = this.type;
     data['description'] = this.description;
     data['address'] = this.address;
-    data['available_time'] = this.availableTime;
     data['devices'] = this.devices;
     data['status'] = this.status;
     data['offer'] = this.offer;
-    data['price'] = this.price;
     return data;
   }
 }

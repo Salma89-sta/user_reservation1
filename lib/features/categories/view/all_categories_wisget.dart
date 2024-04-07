@@ -38,91 +38,86 @@ class ViewCategoriesScreen extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
               ),
           ),
+
           body: (state is GetCategoriesLoading)
               ? const Center(child: CircularProgressIndicator(),)
               :  (state is GetCategoriesSuccess)?Padding(
                 padding:const EdgeInsets.only( left: 20, right: 20, top: 20 ),
-
                 child: GridView.builder(
                   shrinkWrap:true,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   crossAxisSpacing: 2.w,
-                  mainAxisSpacing: 2.h,
+                  mainAxisSpacing: 5.h,
                 ),
                 itemCount: categoryCubit.categories.length,
                 itemBuilder: (context, index) {
-                  return InkWell(
-                              onTap: () {
-                                print(categoryCubit.categories[index].id!);
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => MultiBlocProvider(
-                                    providers: [
-                                      BlocProvider<ItemsCubit>(
-                                        create: (context) => ItemsCubit()..getCategoryItems(categoryCubit.categories[index].name!),                                      ),
-                                      BlocProvider<FreeTimesCubit>(
-                                        create: (context) => FreeTimesCubit(),
+                  return Column(
+                    children: [
+                      InkWell(
+                                  onTap: () {
+                                    print(categoryCubit.categories[index].id!);
+                                    Navigator.push(context, MaterialPageRoute(builder: (context) => MultiBlocProvider(
+                                        providers: [
+                                          BlocProvider<ItemsCubit>(
+                                            create: (context) => ItemsCubit()..getCategoryItems(categoryCubit.categories[index].name!),                                      ),
+                                          BlocProvider<FreeTimesCubit>(
+                                            create: (context) => FreeTimesCubit(),
+                                          ),
+                                        ],
+                                        child: const ListOfCategoryScreen())));
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(20),
+                                      border: Border.all(
+                                        color: Colors.deepOrangeAccent,
+                                        width: 3,
                                       ),
-                                    ],
-                                    child: const ListOfCategoryScreen())));
-                              },
-                              child: Container(
-                                // height: 20.h,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(20),
-                                  border: Border.all(
-                                    color: Colors.deepOrangeAccent,
-                                    width: 3,
-                                  ),
-                                  boxShadow:const [
-                                    BoxShadow(
-                                      color: Colors.grey,
-                                      spreadRadius: 0.5,
-                                      blurRadius: 0.5,
+                                      boxShadow:const [
+                                        BoxShadow(
+                                          color: Colors.grey,
+                                          spreadRadius: 0.5,
+                                          blurRadius: 0.5,
+                                        ),
+                                      ],
                                     ),
-                                  ],
-                                ),
-                                child: Center(
-                                  child: Column(
-                                    children: [
-                                      CachedNetworkImage(
-                                        imageUrl:
-                                        categoryCubit.categories[index].image!,
-                                        imageBuilder: (context, imageProvider) =>
-                                            Container(
-                                              width: 100.w,
-                                              height: 18.h,
+                                    child: CachedNetworkImage(
+                                      imageUrl:
+                                      categoryCubit.categories[index].image!,
+                                      imageBuilder: (context, imageProvider) =>
+                                          Container(
+                                            width: 100.w,
+                                            height: 18.h,
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(20.sp),
+                                              image: DecorationImage(
+                                                image: imageProvider,
+                                                fit: BoxFit.fill,
 
-                                              decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.circular(20.sp),
-                                                image: DecorationImage(
-
-                                                  image: imageProvider,
-                                                  fit: BoxFit.fill,
-
-                                                ),
                                               ),
                                             ),
-                                        placeholder: (context, url) =>
-                                        const CircularProgressIndicator(),
-                                        errorWidget: (context, url, error) =>
-                                        const Icon(Icons.error),
-                                      ),
-                                      SizedBox(height: 2.h),
-                                      Text(
-                                        categoryCubit.categories[index].name!,
-                                        style: TextStyle(
-                                          overflow: TextOverflow.ellipsis,
-                                          color: Colors.indigo,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 19.sp,
-                                        ),
-                                      ),
-                                    ],
+                                          ),
+                                      placeholder: (context, url) =>
+                                      const CircularProgressIndicator(),
+                                      errorWidget: (context, url, error) =>
+                                      const Icon(Icons.error),
+                                    ),
                                   ),
                                 ),
-                              ),
-                            );
+                      Text(
+                        categoryCubit.categories[index].name!,
+                        style: TextStyle(
+                          overflow: TextOverflow.ellipsis,
+                          color: Colors.indigo,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 19.sp,
+                        ),
+                      ),
+
+                    ],
+                  );
                           },
                         ),
                       ): Container(),          // Padding(

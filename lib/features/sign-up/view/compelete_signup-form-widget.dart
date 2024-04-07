@@ -75,278 +75,289 @@ class _SignupFormWidgetState extends State<CompleteSignupFormWidget> {
               }
             },
             builder: (context, state) {
-              return Container(
-                width: 100.w,
-                child: Form(
-                  key: _formKey,
-                  child: Padding(
-                    padding: EdgeInsets.only(top: 5.h),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          // Container(
-                          //   padding: EdgeInsets.only(right: 10.w),
-                          //   alignment: AlignmentDirectional.bottomEnd,
-                          //   child: const Text(
-                          //     " الاسم",
-                          //     textAlign: TextAlign.end,
-                          //     style: TextStyle(
-                          //       fontFamily: 'Cairo',
-                          //       color: Colors.indigo,
-                          //       fontSize: 20,
-                          //       fontWeight: FontWeight.bold,
-                          //     ),
-                          //   ),
-                          // ),
-                          // SizedBox(height: 10,),
-                          // Container(
-                          //   child: TextFormFieldWidget(
-                          //     labelText: "",
-                          //     // prefix: null,
-                          //     suffix: const Icon(
-                          //       Icons.people_outline_rounded,
-                          //       color: AppColors.lightGrey,
-                          //     ),
-                          //     IsObsecure: false,
-                          //     textFieldController: _nameController,
-                          //     color: AppColors.lightGrey,
-                          //     fillcolor: Colors.white,
-                          //   ),
-                          // ),
-                          // SizedBox(height: 15,),
-                          //
-                          //
-                          // Container(
-                          //   padding: EdgeInsets.only(right: 10.w),
-                          //   alignment: AlignmentDirectional.bottomEnd,
-                          //   child: const Text(
-                          //     "البريد الالكتروني",
-                          //     textAlign: TextAlign.end,
-                          //     style: TextStyle(
-                          //       fontFamily: 'Cairo',
-                          //       color: Colors.indigo,
-                          //       fontSize: 20,
-                          //       fontWeight: FontWeight.bold,
-                          //     ),
-                          //   ),
-                          // ),
-                          // SizedBox(height: 10,),
-                          // Container(
-                          //   child: TextFormFieldWidget(
-                          //     labelText: "",
-                          //     // prefix: null,
-                          //     suffix: const Icon(
-                          //       Icons.email_outlined,
-                          //       color: AppColors.lightGrey,
-                          //     ),
-                          //     IsObsecure: false,
-                          //     textFieldController: _emailController,
-                          //     color: AppColors.lightGrey,
-                          //     fillcolor: Colors.white,
-                          //   ),
-                          // ),
-                          SizedBox(height: 15,),
+              return Column(
+                children: [
+                  const SizedBox(height: 20,),
+                  const Center(
+                    child:  Text("أستكمال البيانات", style: TextStyle(fontFamily: 'Cairo',
+                      color: Colors.indigo,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,),),
+                  ),
+                  Container(
+                    width: 100.w,
+                    child: Form(
+                      key: _formKey,
+                      child: Padding(
+                        padding: EdgeInsets.only(top: 5.h),
+                        child: SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              // Container(
+                              //   padding: EdgeInsets.only(right: 10.w),
+                              //   alignment: AlignmentDirectional.bottomEnd,
+                              //   child: const Text(
+                              //     " الاسم",
+                              //     textAlign: TextAlign.end,
+                              //     style: TextStyle(
+                              //       fontFamily: 'Cairo',
+                              //       color: Colors.indigo,
+                              //       fontSize: 20,
+                              //       fontWeight: FontWeight.bold,
+                              //     ),
+                              //   ),
+                              // ),
+                              // SizedBox(height: 10,),
+                              // Container(
+                              //   child: TextFormFieldWidget(
+                              //     labelText: "",
+                              //     // prefix: null,
+                              //     suffix: const Icon(
+                              //       Icons.people_outline_rounded,
+                              //       color: AppColors.lightGrey,
+                              //     ),
+                              //     IsObsecure: false,
+                              //     textFieldController: _nameController,
+                              //     color: AppColors.lightGrey,
+                              //     fillcolor: Colors.white,
+                              //   ),
+                              // ),
+                              // SizedBox(height: 15,),
+                              //
+                              //
+                              // Container(
+                              //   padding: EdgeInsets.only(right: 10.w),
+                              //   alignment: AlignmentDirectional.bottomEnd,
+                              //   child: const Text(
+                              //     "البريد الالكتروني",
+                              //     textAlign: TextAlign.end,
+                              //     style: TextStyle(
+                              //       fontFamily: 'Cairo',
+                              //       color: Colors.indigo,
+                              //       fontSize: 20,
+                              //       fontWeight: FontWeight.bold,
+                              //     ),
+                              //   ),
+                              // ),
+                              // SizedBox(height: 10,),
+                              // Container(
+                              //   child: TextFormFieldWidget(
+                              //     labelText: "",
+                              //     // prefix: null,
+                              //     suffix: const Icon(
+                              //       Icons.email_outlined,
+                              //       color: AppColors.lightGrey,
+                              //     ),
+                              //     IsObsecure: false,
+                              //     textFieldController: _emailController,
+                              //     color: AppColors.lightGrey,
+                              //     fillcolor: Colors.white,
+                              //   ),
+                              // ),
+                              SizedBox(height: 15,),
 
 
-                          Container(
-                            padding: EdgeInsets.only(right: 10.w),
-                            alignment: AlignmentDirectional.bottomEnd,
-                            child: const Text(
-                              "رقم الهاتف",
-                              textAlign: TextAlign.end,
-                              style: TextStyle(
-                                fontFamily: 'Cairo',
-                                color: Colors.indigo,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
+                              Container(
+                                padding: EdgeInsets.only(right: 10.w),
+                                alignment: AlignmentDirectional.bottomEnd,
+                                child: const Text(
+                                  "رقم الهاتف",
+                                  textAlign: TextAlign.end,
+                                  style: TextStyle(
+                                    fontFamily: 'Cairo',
+                                    color: Colors.indigo,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
-                          SizedBox(height: 10,),
+                              SizedBox(height: 10,),
 
-                          Container(
-                            child: TextFormFieldWidget(
-                              labelText: "",
-                              // prefix: null,
-                              suffix: const Icon(
-                                Icons.phone,
-                                color: AppColors.lightGrey,
+                              Container(
+                                child: TextFormFieldWidget(
+                                  labelText: "",
+                                  // prefix: null,
+                                  suffix: const Icon(
+                                    Icons.phone,
+                                    color: AppColors.lightGrey,
+                                  ),
+                                  IsObsecure: false,
+                                  textFieldController: _phoneController,
+                                  color: AppColors.lightGrey,
+                                  fillcolor: Colors.white,
+                                ),
                               ),
-                              IsObsecure: false,
-                              textFieldController: _phoneController,
-                              color: AppColors.lightGrey,
-                              fillcolor: Colors.white,
-                            ),
-                          ),
 
 
-                          SizedBox(height: 15),
-                          Container(
-                            padding: EdgeInsets.only(right: 10.w),
-                            alignment: AlignmentDirectional.bottomEnd,
-                            child: const Text(
-                              "رقم الهويه",
-                              textAlign: TextAlign.end,
-                              style: TextStyle(
-                                fontFamily: 'Cairo',
-                                color: Colors.indigo,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
+                              SizedBox(height: 15),
+                              Container(
+                                padding: EdgeInsets.only(right: 10.w),
+                                alignment: AlignmentDirectional.bottomEnd,
+                                child: const Text(
+                                  "رقم الهويه",
+                                  textAlign: TextAlign.end,
+                                  style: TextStyle(
+                                    fontFamily: 'Cairo',
+                                    color: Colors.indigo,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
-                          SizedBox(height: 10,),
-                          Container(
-                            child: TextFormFieldWidget(
-                              labelText: "",
-                              suffix: const Icon(
-                                Icons.note,
-                                color: AppColors.lightGrey,
+                              SizedBox(height: 10,),
+                              Container(
+                                child: TextFormFieldWidget(
+                                  labelText: "",
+                                  suffix: const Icon(
+                                    Icons.note,
+                                    color: AppColors.lightGrey,
+                                  ),
+                                  IsObsecure: false,
+                                  textFieldController: _nationalIdController,
+                                  color: AppColors.lightGrey,
+                                  fillcolor: Colors.white,
+                                ),
                               ),
-                              IsObsecure: false,
-                              textFieldController: _nationalIdController,
-                              color: AppColors.lightGrey,
-                              fillcolor: Colors.white,
-                            ),
-                          ),
-                          SizedBox(height: 15,),
+                              SizedBox(height: 15,),
 
 
-                          Container(
-                            padding: EdgeInsets.only(right: 10.w),
-                            alignment: AlignmentDirectional.bottomEnd,
-                            child: const Text(
-                              "كلمة السر",
-                              textAlign: TextAlign.start,
-                              style: TextStyle(
-                                fontFamily: 'Cairo',
-                                color: Colors.indigo,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
+                              Container(
+                                padding: EdgeInsets.only(right: 10.w),
+                                alignment: AlignmentDirectional.bottomEnd,
+                                child: const Text(
+                                  "كلمة السر",
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                    fontFamily: 'Cairo',
+                                    color: Colors.indigo,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
-                          SizedBox(height: 10),
-                          TextFormFieldWidget(
-                            labelText: "",
-                            prefix: IconButton(
-                              icon: Icon(
-                                passwordVisible ? Icons.lock_open : Icons
-                                    .lock_outline,
-                                color: AppColors.lightGrey,
+                              SizedBox(height: 10),
+                              TextFormFieldWidget(
+                                labelText: "",
+                                prefix: IconButton(
+                                  icon: Icon(
+                                    passwordVisible ? Icons.lock_open : Icons
+                                        .lock_outline,
+                                    color: AppColors.lightGrey,
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      isSecure = !isSecure;
+                                      passwordVisible = !passwordVisible;
+                                    });
+                                  },
+                                ),
+                                suffix: IconButton(
+                                  icon: Icon(
+                                    passwordVisible ? Icons.visibility : Icons
+                                        .visibility_off,
+                                    color: AppColors.lightGrey,
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      isSecure = !isSecure;
+                                      passwordVisible = !passwordVisible;
+                                    });
+                                  },
+                                ),
+                                IsObsecure: isSecure,
+                                textFieldController: _passwordController,
+                                fillcolor: Colors.transparent,
+                                color: Colors.white,
                               ),
-                              onPressed: () {
-                                setState(() {
-                                  isSecure = !isSecure;
-                                  passwordVisible = !passwordVisible;
-                                });
-                              },
-                            ),
-                            suffix: IconButton(
-                              icon: Icon(
-                                passwordVisible ? Icons.visibility : Icons
-                                    .visibility_off,
-                                color: AppColors.lightGrey,
-                              ),
-                              onPressed: () {
-                                setState(() {
-                                  isSecure = !isSecure;
-                                  passwordVisible = !passwordVisible;
-                                });
-                              },
-                            ),
-                            IsObsecure: isSecure,
-                            textFieldController: _passwordController,
-                            fillcolor: Colors.transparent,
-                            color: Colors.white,
-                          ),
 
-                          SizedBox(height: 15),
-                          Container(
-                            padding: EdgeInsets.only(right: 10.w),
-                            alignment: AlignmentDirectional.bottomEnd,
-                            child: const Text(
-                              "تأكيد كلمه السر",
-                              textAlign: TextAlign.start,
-                              style: TextStyle(
-                                fontFamily: 'Cairo',
-                                color: Colors.indigo,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
+                              SizedBox(height: 15),
+                              Container(
+                                padding: EdgeInsets.only(right: 10.w),
+                                alignment: AlignmentDirectional.bottomEnd,
+                                child: const Text(
+                                  "تأكيد كلمه السر",
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                    fontFamily: 'Cairo',
+                                    color: Colors.indigo,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
-                          SizedBox(height: 10),
-                          TextFormFieldWidget(
+                              SizedBox(height: 10),
+                              TextFormFieldWidget(
 
-                            labelText: "",
-                            prefix: IconButton(
-                              icon: Icon(
-                                passwordVisible ? Icons.lock_open : Icons
-                                    .lock_outline,
-                                color: AppColors.lightGrey,
+                                labelText: "",
+                                prefix: IconButton(
+                                  icon: Icon(
+                                    passwordVisible ? Icons.lock_open : Icons
+                                        .lock_outline,
+                                    color: AppColors.lightGrey,
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      isSecure = !isSecure;
+                                      passwordVisible = !passwordVisible;
+                                    });
+                                  },
+                                ),
+                                suffix: IconButton(
+                                  icon: Icon(
+                                    passwordVisible ? Icons.visibility : Icons
+                                        .visibility_off,
+                                    color: AppColors.lightGrey,
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      isSecure = !isSecure;
+                                      passwordVisible = !passwordVisible;
+                                    });
+                                  },
+                                ),
+                                IsObsecure: isSecure,
+                                textFieldController: _passwordConfirmController,
+                                fillcolor: Colors.transparent,
+                                color: Colors.white,
                               ),
-                              onPressed: () {
-                                setState(() {
-                                  isSecure = !isSecure;
-                                  passwordVisible = !passwordVisible;
-                                });
-                              },
-                            ),
-                            suffix: IconButton(
-                              icon: Icon(
-                                passwordVisible ? Icons.visibility : Icons
-                                    .visibility_off,
-                                color: AppColors.lightGrey,
-                              ),
-                              onPressed: () {
-                                setState(() {
-                                  isSecure = !isSecure;
-                                  passwordVisible = !passwordVisible;
-                                });
-                              },
-                            ),
-                            IsObsecure: isSecure,
-                            textFieldController: _passwordConfirmController,
-                            fillcolor: Colors.transparent,
-                            color: Colors.white,
-                          ),
 
-                          SizedBox(height: 30,),
-                          Button0(widget: Center(child:buttonWidget),
-                              function: () {
+                              SizedBox(height: 30,),
+                              Button0(widget: Center(child:buttonWidget),
+                                  function: () {
 
-                            if( _nationalIdController.text.trim().isNotEmpty
-                                && _passwordController.text.trim().isNotEmpty  )
-                              {
-                                // print(_emailController.text);
-                                if (_passwordController.text.trim() ==
-                                    _passwordConfirmController.text.trim()) {
-                                  final signupCubit = SignupCubit.get(context);
-                                  signupCubit.userSignup(
-                                      widget.name,
-                                      widget.email,
-                                      _phoneController.text.trim(),
-                                      _passwordController.text.trim(),
-                                      _nationalIdController.text.trim()
-                                  );
-                                } else {
-                                  Fluttertoast.showToast(msg: "كلمه السر ليست متطابقه",textColor: Colors.white, backgroundColor: Colors.deepOrange);
+                                if( _nationalIdController.text.trim().isNotEmpty
+                                    && _passwordController.text.trim().isNotEmpty  )
+                                  {
+                                    // print(_emailController.text);
+                                    if (_passwordController.text.trim() ==
+                                        _passwordConfirmController.text.trim()) {
+                                      final signupCubit = SignupCubit.get(context);
+                                      signupCubit.userSignup(
+                                          widget.name,
+                                          widget.email,
+                                          _phoneController.text.trim(),
+                                          _passwordController.text.trim(),
+                                          _nationalIdController.text.trim()
+                                      );
+                                    } else {
+                                      Fluttertoast.showToast(msg: "كلمه السر ليست متطابقه",textColor: Colors.white, backgroundColor: Colors.deepOrange);
+                                    }
+                                  }else{
+                                  Fluttertoast.showToast(msg: "برجاء ملئ جميع البيانات",textColor: Colors.white, backgroundColor: Colors.deepOrange);
+
                                 }
-                              }else{
-                              Fluttertoast.showToast(msg: "برجاء ملئ جميع البيانات",textColor: Colors.white, backgroundColor: Colors.deepOrange);
-
-                            }
 
 
-                              }),
+                                  }),
 
-                          SizedBox(height: 10,),
-                        ],
+                              SizedBox(height: 10,),
+                            ],
+                          ),
+                        ),
                       ),
                     ),
                   ),
-                ),
+                ],
               );
             })
     );

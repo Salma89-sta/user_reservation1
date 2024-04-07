@@ -21,15 +21,15 @@ import '../../list_of_category_details/data_layer/additional_options_model.dart'
 class AddReservationScreen extends StatefulWidget {
   String categoryName;
   String itemId;
-  String pricePer;
-  String price;
+  // String pricePer;
+  // String price;
   String offer;
 
   AddReservationScreen(
       {required this.itemId,
       required this.categoryName,
-      required this.price,
-      required this.pricePer,
+      // required this.price,
+      // required this.pricePer,
       required this.offer});
 
   @override
@@ -593,6 +593,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                                         SizedBox(width: 20.w,),
                                         TextButton(
                                           onPressed: () {
+                                            print(_fromDateTimeController.text);
                                             final cubit = AddReservationCubit.get(context);
                                             cubit.addReservation(
                                               doc: _attachment.toString(),
@@ -600,8 +601,8 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                                               categoryName: widget.categoryName,
                                               itemId: widget.itemId,
                                               time: DateTime.now().toString(),
-                                              from: _fromDateTimeController.text,
-                                              to: _toDateTimeController.text,
+                                              from: "${_fromDateTimeController.text} 00:00:00",
+                                              to: '${_toDateTimeController.text} 00:00:00',
                                               price: salary.toString(),
                                               additionalOp: selectedItems.toString(),
                                               maritalStatus: statusIndex.toString(),

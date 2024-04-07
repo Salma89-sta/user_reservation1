@@ -11,7 +11,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 import 'core/cache_helper/cache_helper.dart';
-import 'features/notification/FirebaseApi.dart';
 
 late SharedPreferences sharedPreferences;
 
@@ -20,10 +19,10 @@ Future<void> main() async {
 
   await Firebase.initializeApp(
     options: FirebaseOptions(
-      apiKey: "AIzaSyDqG1cIa_1OHTaa8FVLTMhiqJb4h8pIVPU",
-      appId: "1:422940300781:android:5d15808aa8aba65bef83e4",
+      apiKey: "AIzaSyAhSg_byva15u1EiiGNgnFVPGewGp8fHXQ",
+      appId: "1:837880744926:android:5d6d1cbca160402feeeb4f",
       messagingSenderId: "422940300781",
-      projectId: "abumosa-8b962",
+      projectId: "abumusa-57a7e",
     ),
   );
   await CacheHelper.init();

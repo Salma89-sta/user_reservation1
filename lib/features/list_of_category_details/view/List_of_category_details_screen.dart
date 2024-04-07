@@ -19,8 +19,8 @@ class ListOfCategoryDetailsScreen extends StatefulWidget {
   final String description;
 
   final String address;
-  final String price;
-  final String priceIn;
+  // final String price;
+  // final String priceIn;
   String categoryName;
   String itemId;
   String? itemDevices;
@@ -33,8 +33,8 @@ class ListOfCategoryDetailsScreen extends StatefulWidget {
     required this.name,
     required this.description,
     required this.address,
-    required this.price,
-    required this.priceIn,
+    // required this.price,
+    // required this.priceIn,
     required this.categoryName,
     required this.itemId,
     required this.itemDevices,
@@ -389,8 +389,8 @@ class _ListOfCategoryDetailsScreenState
                                       child: AddReservationScreen(
                                         categoryName: widget.categoryName,
                                         itemId: widget.itemId,
-                                        price: widget.price,
-                                        pricePer: widget.priceIn,
+                                        // price: widget.price,
+                                        // pricePer: widget.priceIn,
                                         offer: widget.offer,
                                       ),
                                     ),

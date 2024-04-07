@@ -1,18 +1,32 @@
 {
   "project_info": {
     "project_number": "837880744926",
+    "firebase_url": "https://abumusa-57a7e-default-rtdb.firebaseio.com",
     "project_id": "abumusa-57a7e",
     "storage_bucket": "abumusa-57a7e.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:837880744926:android:5d6d1cbca160402feeeb4f",
+        "mobilesdk_app_id": "1:837880744926:android:5ce46c486fa1d0c3eeeb4f",
         "android_client_info": {
-          "package_name": "com.example.rservation_user"
+          "package_name": "com.example.kantine"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "837880744926-m4ks4ohvn90167i1kigtjjcuu6v2348a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kantine",
+            "certificate_hash": "0eb8e592cc623ab7af9648efc47d32842f1a8572"
+          }
+        },
+        {
+          "client_id": "837880744926-abs0d2cvf9ckkv967926juk9088jt3r1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAhSg_byva15u1EiiGNgnFVPGewGp8fHXQ"
@@ -20,7 +34,123 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "837880744926-abs0d2cvf9ckkv967926juk9088jt3r1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:837880744926:android:a62e34e81da82b25eeeb4f",
+        "android_client_info": {
+          "package_name": "com.example.notifi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "837880744926-h7avoa03616r2dpu5gsdfmkha7vuhubj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.notifi",
+            "certificate_hash": "0eb8e592cc623ab7af9648efc47d32842f1a8572"
+          }
+        },
+        {
+          "client_id": "837880744926-abs0d2cvf9ckkv967926juk9088jt3r1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhSg_byva15u1EiiGNgnFVPGewGp8fHXQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "837880744926-abs0d2cvf9ckkv967926juk9088jt3r1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:837880744926:android:fd9c434cbe571b68eeeb4f",
+        "android_client_info": {
+          "package_name": "com.example.notification"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "837880744926-via2tk96of1a5ksuup1c4c1of2oqshje.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.notification",
+            "certificate_hash": "0eb8e592cc623ab7af9648efc47d32842f1a8572"
+          }
+        },
+        {
+          "client_id": "837880744926-abs0d2cvf9ckkv967926juk9088jt3r1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhSg_byva15u1EiiGNgnFVPGewGp8fHXQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "837880744926-abs0d2cvf9ckkv967926juk9088jt3r1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:837880744926:android:5d6d1cbca160402feeeb4f",
+        "android_client_info": {
+          "package_name": "com.example.rservation_user"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "837880744926-g23ig4a63i6dq91hkme3j6r8326lch32.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rservation_user",
+            "certificate_hash": "b710b14e496f0d2af238ccef1fca3a50ee428c91"
+          }
+        },
+        {
+          "client_id": "837880744926-abs0d2cvf9ckkv967926juk9088jt3r1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhSg_byva15u1EiiGNgnFVPGewGp8fHXQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "837880744926-abs0d2cvf9ckkv967926juk9088jt3r1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

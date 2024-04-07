@@ -11,7 +11,7 @@ class ListOfCategory extends StatelessWidget {
 
   final Widget listOfCategoryImage;
   final String listOfCategoryName;
-  final String priceIn;
+  // final String priceIn;
   // final String calenderWidget;
   final String listOfCategoryDescription;
   final String listOfCategoryPricePerDay;
@@ -23,7 +23,7 @@ class ListOfCategory extends StatelessWidget {
   final String listOfCategoryStatus;
 
 
-   ListOfCategory({Key? key,required this.listOfCategoryImage, required this.listOfCategoryName, required this.listOfCategoryDescription, required this.listOfCategoryPricePerDay, required this.listOfCategoryStatus, required this.forMoreDetails, required this.priceIn, required this.offer, required this.itemId}) : super(key: key);
+   ListOfCategory({Key? key,required this.listOfCategoryImage, required this.listOfCategoryName, required this.listOfCategoryDescription, required this.listOfCategoryPricePerDay, required this.listOfCategoryStatus, required this.forMoreDetails, required this.offer, required this.itemId}) : super(key: key);
 
   Widget? calenderWidget;
 
@@ -158,8 +158,8 @@ class ListOfCategory extends StatelessWidget {
         children: [
           const SizedBox(width: 10,),
           Text("$listOfCategoryPricePerDay", style: TextStyle(color: Colors.indigo, fontFamily: 'Cairo',  fontSize: 18.sp),),
-          Text(" : $priceIn ",style: TextStyle(color: Colors.indigo, fontFamily: 'Cairo', fontWeight: FontWeight.bold, fontSize: 18.sp),),
-          Text(" السعر ", style: TextStyle(color: Colors.indigo, fontFamily: 'Cairo', fontWeight: FontWeight.bold, fontSize: 18.sp),),
+          // Text(" : $priceIn ",style: TextStyle(color: Colors.indigo, fontFamily: 'Cairo', fontWeight: FontWeight.bold, fontSize: 18.sp),),
+          // Text(" السعر ", style: TextStyle(color: Colors.indigo, fontFamily: 'Cairo', fontWeight: FontWeight.bold, fontSize: 18.sp),),
 
         ],
       ),

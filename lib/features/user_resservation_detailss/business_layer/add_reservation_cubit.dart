@@ -54,7 +54,11 @@ class AddReservationCubit extends Cubit<AddReservationState> {
       }
       );
 
+
       print(".................reservation..........");
+      print(from.toString());
+      print(to.toString());
+
       if(response!.statusCode ==200){
 
         print("add reservation ${response.statusCode}");

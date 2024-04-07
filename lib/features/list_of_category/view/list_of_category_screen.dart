@@ -75,7 +75,6 @@ class _ListOfCategoryScreenState extends State<ListOfCategoryScreen> {
                       ) ,
                       listOfCategoryName: categoryItems.categoryItems[index].name!,
                       listOfCategoryDescription: categoryItems.categoryItems[index].description!,
-                      listOfCategoryPricePerDay: categoryItems.categoryItems[index].price!,
                       listOfCategoryStatus: (categoryItems.categoryItems[index].status! == '0')?"في الصيانه ": "متاح",
                       forMoreDetails: () {
                       imagesFromAPI =[
@@ -96,8 +95,8 @@ providers: [
                                             name: categoryItems.categoryItems[index].name!,
                                             description: categoryItems.categoryItems[index].description!,
                                             address:  categoryItems.categoryItems[index].address!,
-                                            price:  categoryItems.categoryItems[index].price!,
-                                            priceIn:  categoryItems.categoryItems[index].type!,
+                                            // price:  categoryItems.categoryItems[index].price!,
+                                            // priceIn:  categoryItems.categoryItems[index].type!,
                                             categoryName: categoryItems.categoryItems[index].categoryName!,
                                             itemId: categoryItems.categoryItems[index].id!,
                                             itemDevices: categoryItems.categoryItems[index].devices!,
@@ -106,8 +105,10 @@ providers: [
 ) )
                       );
                       },
-                      priceIn: categoryItems.categoryItems[index].type!,
-                      offer:  categoryItems.categoryItems[index].offer!, itemId:  categoryItems.categoryItems[index].id!,);
+                      offer:  categoryItems.categoryItems[index].offer!,
+                      itemId:  categoryItems.categoryItems[index].id!,
+                      listOfCategoryPricePerDay: '',
+                    );
                   },
 
               ),
