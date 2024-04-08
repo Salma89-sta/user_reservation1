@@ -1,3 +1,4 @@
+import 'package:sign_in_button/sign_in_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:Reservation/colors/app_colors.dart';
@@ -61,8 +62,14 @@ class _LoginState extends State<LogIn> {
                     child: Column(
                       children: [
                        loginWithGoogle(),
-                        TextButton(
-                          onPressed: (){
+                        SignInButton(
+                          Buttons.googleDark,
+                          padding: EdgeInsets.all(10),
+                          shape: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10)
+                          ),
+                          text: "Sign in with Google",
+                          onPressed: () {
                             _signInWithGoogle(context).then((value){
                               dynamic email = value?.currentUser?.email ;
                               value?.signOut() ;
@@ -70,8 +77,13 @@ class _LoginState extends State<LogIn> {
                                 Navigator.push(context, MaterialPageRoute(builder: (context) => LoginWithGoogle(email),));
                             });
                           },
-                          child: Image.asset('assets/images/google.png', width: 70, height: 70,)
                         ),
+                        // TextButton(
+                        //   onPressed: (){
+                        //
+                        //   },
+                        //   child: Image.asset('assets/images/google.png', width: 70, height: 70,)
+                        // ),
                       ],
                     ),
                   ),
