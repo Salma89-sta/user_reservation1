@@ -54,15 +54,11 @@ class TextFormFieldWidget extends StatelessWidget {
   dynamic color;
   dynamic validator;
   late bool IsObsecure;
+  late bool? enable ;
   TextFormFieldWidget(
-      {required this.labelText,
-         this.prefix,
-          this.suffix,
-        this.validator,
-        required this.IsObsecure,
-        required this.textFieldController,
-          this.fillcolor,
-         this.color});
+      {required this.labelText, this.prefix, this.suffix, this.validator,
+        required this.IsObsecure, required this.textFieldController,
+          this.fillcolor, this.color , this.enable});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -70,7 +66,7 @@ class TextFormFieldWidget extends StatelessWidget {
       child: TextFormField(
           style: TextStyle(height:1.8, color: Colors.deepOrange, fontWeight: FontWeight.w900),
           validator: validator,
-
+          enabled: enable == null ? false : enable ,
           obscureText: IsObsecure,
           cursorColor: AppColors.lightGrey,
           controller: textFieldController,

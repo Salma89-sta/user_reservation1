@@ -342,10 +342,6 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                               }),
                           SizedBox(height: 5,),
 
-                          TextButton(onPressed: (){
-                            _signInWithGoogle(context);
-                          }, child: Image.asset('assets/images/google.png', width: 70, height: 70,)),
-
 
                           SizedBox(height: 30,),
                           Center(
@@ -368,41 +364,5 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
               );
             })
     );
-  }
-  Future<void> _signInWithGoogle(BuildContext context) async {
-    final FirebaseAuth _auth = FirebaseAuth.instance;
-    final GoogleSignIn googleSignIn = GoogleSignIn();
-
-    try {
-      final GoogleSignInAccount? googleSignInAccount =
-      await googleSignIn.signIn();
-
-      if (googleSignInAccount != null) {
-        final GoogleSignInAuthentication googleAuth =
-        await googleSignInAccount.authentication;
-
-        final AuthCredential credential = GoogleAuthProvider.credential(
-          accessToken: googleAuth.accessToken,
-          idToken: googleAuth.idToken,
-        );
-
-        final UserCredential userCredential =
-        await _auth.signInWithCredential(credential);
-
-        final User? user = userCredential.user;
-
-        if (user != null) {
-         String email= user.email.toString();
-         String name = user.displayName.toString();
-
-         Navigator.push(context, MaterialPageRoute(builder: (context)=>CompleteSignupFormWidget(email, name) ));
-
-          print('User signed in: ${user.displayName}');
-        }
-      }
-    } catch (error) {
-      print('Sign in with Google failed: $error');
-      // Handle sign-in error
-    }
   }
 }

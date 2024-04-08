@@ -16,16 +16,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class loginWithGoogle extends StatefulWidget {
+class LoginWithGoogle extends StatefulWidget {
+  String email ;
+  LoginWithGoogle(this.email);
 
   @override
-  State<loginWithGoogle> createState() => _loginWithGoogleState();
+  State<LoginWithGoogle> createState() => _LoginWithGoogleState(email);
 }
 
-class _loginWithGoogleState extends State<loginWithGoogle> {
-   Widget buttonWidget= Text("تسجيل الدخول", style: TextStyle(color: Colors.indigo, fontFamily: 'Cairo', fontSize: 20.sp, fontWeight: FontWeight.bold),);
-   final FirebaseAuth _auth = FirebaseAuth.instance;
+class _LoginWithGoogleState extends State<LoginWithGoogle> {
+  String email ;
+  _LoginWithGoogleState(this.email);
 
+  Widget buttonWidget= Text("تسجيل الدخول", style: TextStyle(color: Colors.indigo, fontFamily: 'Cairo', fontSize: 20.sp, fontWeight: FontWeight.bold),);
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   bool passwordVisible = false;
   bool isSecure = true;
   final _formKey = GlobalKey<FormState>();
@@ -43,6 +47,7 @@ class _loginWithGoogleState extends State<loginWithGoogle> {
   @override
   void initState() {
     super.initState();
+    _emailController = TextEditingController(text: email);
   }
 
   @override
@@ -59,10 +64,6 @@ class _loginWithGoogleState extends State<loginWithGoogle> {
       child: BlocConsumer<AuthCubit, LoginState>(
           listener: (context, state) async {
         if (state is LoginSuccess) {
-
-
-
-
           clearControllers();
           Fluttertoast.showToast(msg: "اهلابك! تم تسجيل الدخول بنجاح", textColor: Colors.white, backgroundColor: Colors.deepOrange);
          print(CacheHelper.getData(key: "id"));
@@ -96,7 +97,7 @@ class _loginWithGoogleState extends State<loginWithGoogle> {
                     Container(
                       padding: EdgeInsets.only(right: 10.w, bottom: 1.h),
                       alignment: AlignmentDirectional.bottomEnd,
-                      child:const Text(
+                      child: Text(
                         "البريد الالكتروني",
                         textAlign: TextAlign.end,
                         style: TextStyle(
@@ -114,8 +115,9 @@ class _loginWithGoogleState extends State<loginWithGoogle> {
                             return 'This Field is Required.';
                           }
                         },
-                        labelText: "",
-                        suffix:const Icon(
+                        labelText: "" ,
+                        enable: false ,
+                        suffix: const Icon(
                           Icons.email_outlined,
                           color: AppColors.lightGrey,
                         ),

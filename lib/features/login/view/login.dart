@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:Reservation/colors/app_colors.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'login-form-widget.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+
+
+import 'loginWithGoogle.dart';
 
 class LogIn extends StatefulWidget {
  
@@ -56,11 +60,21 @@ class _LoginState extends State<LogIn> {
                     width: 100.w,
                     child: Column(
                       children: [
-                         LoginFormWidget(),
+                       loginWithGoogle(),
+                        TextButton(
+                          onPressed: (){
+                            _signInWithGoogle(context).then((value){
+                              dynamic email = value?.currentUser?.email ;
+                              value?.signOut() ;
+                              if(email != null)
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => LoginWithGoogle(email),));
+                            });
+                          },
+                          child: Image.asset('assets/images/google.png', width: 70, height: 70,)
+                        ),
                       ],
                     ),
                   ),
-      
                 ],
               ),
             ),
@@ -70,10 +84,31 @@ class _LoginState extends State<LogIn> {
     );
   }
 
-
-
+  Future<FirebaseAuth?> _signInWithGoogle(BuildContext context) async {
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+    final GoogleSignIn googleSignIn = GoogleSignIn();
+    try {
+      final GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
+      if (googleSignInAccount != null) {
+        final GoogleSignInAuthentication googleAuth =
+        await googleSignInAccount.authentication;
+        final AuthCredential credential = GoogleAuthProvider.credential(
+          accessToken: googleAuth.accessToken,
+          idToken: googleAuth.idToken,
+        );
+        final UserCredential userCredential =
+        await _auth.signInWithCredential(credential);
+        final User? user = userCredential.user;
+        print("===================): ${user?.email}");
+        if (user != null) {
+          return _auth ;
+        }
+      }
+    } catch (error) {
+      print('Sign in with Google failed: $error');
+      return null ;
+    }
+    return null ;
+  }
 
 }
-
-
-
