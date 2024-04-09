@@ -8,43 +8,6 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:837880744926:android:5ce46c486fa1d0c3eeeb4f",
-        "android_client_info": {
-          "package_name": "com.example.kantine"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "837880744926-m4ks4ohvn90167i1kigtjjcuu6v2348a.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.kantine",
-            "certificate_hash": "0eb8e592cc623ab7af9648efc47d32842f1a8572"
-          }
-        },
-        {
-          "client_id": "837880744926-abs0d2cvf9ckkv967926juk9088jt3r1.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAhSg_byva15u1EiiGNgnFVPGewGp8fHXQ"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "837880744926-abs0d2cvf9ckkv967926juk9088jt3r1.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
         "mobilesdk_app_id": "1:837880744926:android:a62e34e81da82b25eeeb4f",
         "android_client_info": {
           "package_name": "com.example.notifi"

@@ -66,7 +66,7 @@ class TextFormFieldWidget extends StatelessWidget {
       child: TextFormField(
           style: TextStyle(height:1.8, color: Colors.deepOrange, fontWeight: FontWeight.w900),
           validator: validator,
-          enabled: enable == null ? false : enable ,
+          enabled: enable == null ? true : enable ,
           obscureText: IsObsecure,
           cursorColor: AppColors.lightGrey,
           controller: textFieldController,
@@ -82,15 +82,15 @@ class TextFormFieldWidget extends StatelessWidget {
                 width: 2,
                 color: Colors.deepOrange,
               ),
-              borderRadius: BorderRadius.circular(15),
+              borderRadius: BorderRadius.circular(10),
             ),
 
             enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(color:AppColors.lightGrey, width:1.5),
-              borderRadius: BorderRadius.circular(15)
+              borderRadius: BorderRadius.circular(10)
             ),
             labelText: labelText,
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(100),
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10),
               //borderSide: BorderSide(color: Colors.white, width: 3)
             ),
           )),

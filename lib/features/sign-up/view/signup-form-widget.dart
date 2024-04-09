@@ -341,7 +341,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
 
 
                               }),
-                          SizedBox(height: 5,),
+                          const SizedBox(height: 20,),
 
                           SignInButton(
                             Buttons.google ,
@@ -349,17 +349,15 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                             shape: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10)
                             ),
-                            onPressed: (){
-                              _signInWithGoogle(context);
+                            onPressed: () async {
+                              await GoogleSignIn().signOut().then((value) {
+                                _signInWithGoogle(context);
+                              });
                             },
                             text: "Sign up With Google",
                           ),
 
-                          TextButton(onPressed: (){
-
-                          }, child: Image.asset('assets/images/google.png', width: 70, height: 70,)),
-
-                          SizedBox(height: 30,),
+                          const SizedBox(height: 20,),
                           Center(
                             child: InkWell(
                                 onTap: () =>
