@@ -180,47 +180,22 @@ class _loginWithGoogleState extends State<loginWithGoogle> {
                       height: 30,
                     ),
                     Button0(
-                        widget:Center(child:this.buttonWidget,),
-                        function: () {
-                          print("object");
-                          if(_emailController.text.isNotEmpty && _passwordController.text.isNotEmpty){
-                            final loginCubit = AuthCubit.get(context);
-                            final email = _emailController.text.trim();
-                            final password = _passwordController.text.trim();
-                            print(email);
-                            print(password);
-                            loginCubit.userLogin(
-                                email: email, password: password);
-                          }else{
-                            Fluttertoast.showToast(msg: "برجاء ملئ جميع البيانات", textColor: Colors.white, backgroundColor: Colors.deepOrange);
-
-                          }
-
-
-                        }),
-                    // Button0(
-                    //     widget:Center(child:Text("تسجيل الدخول من مجهول"),),
-                    //     function: () async {
-                    //       WidgetsFlutterBinding.ensureInitialized();
-                    //       await Firebase.initializeApp();
-                    //       print(".............e.......................");
-                    //       print(_emailController.value.text);
-                    //       print(_passwordController.value.text);
-                    //
-                    //
-                    //       UserCredential credential = await _auth.createUserWithEmailAndPassword(
-                    //         email: _emailController.value.text,
-                    //         password: _passwordController.value.text,
-                    //       );
-                    //       // try {
-                    //       //   UserCredential userCredential = await _auth.createUserWithEmailAndPassword(email: email, password: password)signInAnonymously(
-                    //
-                    //         // );
-                    //       //   User? user = userCredential.user;
-                    //       // } catch (e) {
-                    //       //   print('Anonymous sign-in failed: $e');
-                    //       // }
-                    //     }),
+                      widget: Center(
+                        child: this.buttonWidget,
+                      ),
+                      function: () {
+                        if(_emailController.text.isNotEmpty && _passwordController.text.isNotEmpty){
+                          final loginCubit = AuthCubit.get(context);
+                          final email = _emailController.text.trim();
+                          final password = _passwordController.text.trim();
+                          loginCubit.userLogin(
+                            email: email,
+                            password: password
+                          );
+                        }else{
+                          Fluttertoast.showToast(msg: "برجاء ملئ جميع البيانات", textColor: Colors.white, backgroundColor: Colors.deepOrange);
+                        }
+                      }),
                     const SizedBox(
                       height: 10,
                     ),
@@ -249,13 +224,4 @@ class _loginWithGoogleState extends State<loginWithGoogle> {
       }),
     );
   }
-   Future<void> _signInAnonymously() async {
-    print(".................................");
-     try {
-       UserCredential userCredential = await _auth.signInAnonymously();
-       User? user = userCredential.user;
-     } catch (e) {
-       print('Anonymous sign-in failed: $e');
-     }
-   }
 }

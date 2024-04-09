@@ -61,14 +61,14 @@ class _LoginState extends State<LogIn> {
                     width: 100.w,
                     child: Column(
                       children: [
-                       loginWithGoogle(),
+                        loginWithGoogle(),
                         SignInButton(
-                          Buttons.googleDark,
+                          Buttons.google ,
                           padding: EdgeInsets.all(10),
                           shape: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10)
                           ),
-                          text: "Sign in with Google",
+                          text: "Sign in with Google" ,
                           onPressed: () {
                             _signInWithGoogle(context).then((value){
                               dynamic email = value?.currentUser?.email ;
@@ -78,12 +78,6 @@ class _LoginState extends State<LogIn> {
                             });
                           },
                         ),
-                        // TextButton(
-                        //   onPressed: (){
-                        //
-                        //   },
-                        //   child: Image.asset('assets/images/google.png', width: 70, height: 70,)
-                        // ),
                       ],
                     ),
                   ),
