@@ -13,6 +13,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 
 class ListOfCategoryScreen extends StatefulWidget {
   const ListOfCategoryScreen({Key? key}) : super(key: key);
+
   @override
   State<ListOfCategoryScreen> createState() => _ListOfCategoryScreenState();
 
@@ -25,12 +26,12 @@ class _ListOfCategoryScreenState extends State<ListOfCategoryScreen> {
     var categoryItems = ItemsCubit.get(context);
 
     return Scaffold(
-      drawer:const DrawerWidget(),
+      drawer: const DrawerWidget(),
       appBar: AppBar(
-        iconTheme:const IconThemeData(color: Colors.white),
+        iconTheme: const IconThemeData(color: Colors.white),
 
         backgroundColor: Colors.deepOrange,
-        title:const Center(child: Text("العناصر", style: TextStyle(
+        title: const Center(child: Text("العناصر", style: TextStyle(
             color: Colors.white,
             fontFamily: 'Cairo',
             fontWeight: FontWeight.bold),)),
@@ -40,83 +41,99 @@ class _ListOfCategoryScreenState extends State<ListOfCategoryScreen> {
           // TODO: implement listener
         },
         builder: (context, state) {
-          return (state is ItemsLoading)?const Center(child: CircularProgressIndicator()):
-          (state is ItemsLoaded)?(categoryItems.categoryItems.isNotEmpty)?
+          return (state is ItemsLoading) ? const Center(
+              child: CircularProgressIndicator()) :
+          (state is ItemsLoaded)
+              ? (categoryItems.categoryItems.isNotEmpty) ?
           Container(
             width: 100.w,
             height: 90.h,
             // color: Colors.red,
-              child: ListView.builder(
-                shrinkWrap: true,
-                 itemCount:categoryItems.categoryItems.length,
-                  itemBuilder: (context, index){
+            child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: categoryItems.categoryItems.length,
+              itemBuilder: (context, index) {
+                return ListOfCategory(
+                  listOfCategoryImage: CachedNetworkImage(
+                    imageUrl:
+                    categoryItems.categoryItems[index].logo!,
+                    imageBuilder: (context, imageProvider) =>
+                        Container(
+                          width: 100.w,
+                          height: 25.h,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20.sp),
+                            image: DecorationImage(
+                              image: imageProvider,
+                              fit: BoxFit.fill,
 
-                    return ListOfCategory(
-                      listOfCategoryImage:  CachedNetworkImage(
-                        imageUrl:
-                        categoryItems.categoryItems[index].logo!,
-                        imageBuilder: (context, imageProvider) =>
-                            Container(
-                              width: 100.w,
-                              height: 25.h,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20.sp),
-                                image: DecorationImage(
-                                  image: imageProvider,
-                                  fit: BoxFit.fill,
-
-                                ),
-                              ),
                             ),
-                        placeholder: (context, url) =>
-                        const CircularProgressIndicator(),
-                        errorWidget: (context, url, error) =>
-                        const Icon(Icons.error),
-                      ) ,
-                      listOfCategoryName: categoryItems.categoryItems[index].name!,
-                      listOfCategoryDescription: categoryItems.categoryItems[index].description!,
-                      listOfCategoryStatus: (categoryItems.categoryItems[index].status! == '0')?"في الصيانه ": "متاح",
-                      forMoreDetails: () {
-                      imagesFromAPI =[
-                        categoryItems.categoryItems[index].image1.toString(),
-                        categoryItems.categoryItems[index].image2.toString(),
-                        categoryItems.categoryItems[index].image3.toString(),
-                        ];
+                          ),
+                        ),
+                    placeholder: (context, url) =>
+                    const CircularProgressIndicator(),
+                    errorWidget: (context, url, error) =>
+                    const Icon(Icons.error),
+                  ),
+                  listOfCategoryName: categoryItems.categoryItems[index].name!,
+                  listOfCategoryDescription: categoryItems.categoryItems[index]
+                      .description!,
+                  listOfCategoryStatus: (categoryItems.categoryItems[index]
+                      .status! == '0') ? "في الصيانه " : "متاح",
+                  forMoreDetails: () {
+                    imagesFromAPI = [
+                      categoryItems.categoryItems[index].image1.toString(),
+                      categoryItems.categoryItems[index].image2.toString(),
+                      categoryItems.categoryItems[index].image3.toString(),
+                    ];
 
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=> MultiBlocProvider(
-providers: [
-  BlocProvider( create: (context) => ItemPackageCubit()..getIemPackage(categoryItems.categoryItems[index].id!), ),
+                    Navigator.push(context, MaterialPageRoute(builder: (
+                        context) =>
+                        MultiBlocProvider(
+                          providers: [
+                            BlocProvider(create: (context) =>
+                            ItemPackageCubit()
+                              ..getIemPackage(
+                                  categoryItems.categoryItems[index].id!),),
 
-  BlocProvider( create: (context) => ItemsCubit(), ),
-                        BlocProvider( create: (context) =>
-                        AdditionalOptionsCubit()..getAdditionalOptions(categoryItems.categoryItems[index].id!),
-)],
-  child: ListOfCategoryDetailsScreen(
-                                            name: categoryItems.categoryItems[index].name!,
-                                            description: categoryItems.categoryItems[index].description!,
-                                            address:  categoryItems.categoryItems[index].address!,
-                                            // price:  categoryItems.categoryItems[index].price!,
-                                            // priceIn:  categoryItems.categoryItems[index].type!,
-                                            categoryName: categoryItems.categoryItems[index].categoryName!,
-                                            itemId: categoryItems.categoryItems[index].id!,
-                                            itemDevices: categoryItems.categoryItems[index].devices!,
-                                            offer: categoryItems.categoryItems[index].offer!,
-                      ),
-) )
-                      );
-                      },
-                      offer:  categoryItems.categoryItems[index].offer!,
-                      itemId:  categoryItems.categoryItems[index].id!,
-                      listOfCategoryPricePerDay: '',
+                            BlocProvider(create: (context) => ItemsCubit(),),
+                            BlocProvider(create: (context) =>
+                            AdditionalOptionsCubit()
+                              ..getAdditionalOptions(
+                                  categoryItems.categoryItems[index].id!),
+                            )
+                          ],
+                          child: ListOfCategoryDetailsScreen(
+                            name: categoryItems.categoryItems[index].name!,
+                            description: categoryItems.categoryItems[index]
+                                .description!,
+                            address: categoryItems.categoryItems[index]
+                                .address!,
+                            // price:  categoryItems.categoryItems[index].price!,
+                            // priceIn:  categoryItems.categoryItems[index].type!,
+                            categoryName: categoryItems.categoryItems[index]
+                                .categoryName!,
+                            itemId: categoryItems.categoryItems[index].id!,
+                            itemDevices: categoryItems.categoryItems[index]
+                                .devices!,
+                            offer: categoryItems.categoryItems[index].offer!,
+                          ),
+                        ))
                     );
                   },
+                  offer: categoryItems.categoryItems[index].offer!,
+                  itemId: categoryItems.categoryItems[index].id!,
+                  listOfCategoryPricePerDay: '',
+                );
+              },
 
-              ),
-          ):Container(child: Center(child:Text("لا يوجد عناصر "),),):(state is NoItems)? Container(
+            ),
+          ) : Container(child: Center(child: Text("لا يوجد عناصر "),),)
+              : (state is NoItems) ? Container(
             child: Center(
               child: Text("لا يوجد عناصر"),
             ),
-          ):Container(
+          ) : Container(
             child: Text("لا يوجد اتصال بالانترنت "),
           );
         },

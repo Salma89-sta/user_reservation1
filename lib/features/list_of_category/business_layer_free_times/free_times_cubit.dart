@@ -1,3 +1,4 @@
+
 import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
@@ -7,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/network/api_url.dart';
 import '../../../core/network/my_http.dart';
 import '../data_layer/calender_model.dart';
+
 part 'free_times_state.dart';
 
 class FreeTimesCubit extends Cubit<FreeTimesState> {
@@ -14,13 +16,13 @@ class FreeTimesCubit extends Cubit<FreeTimesState> {
 
   static FreeTimesCubit get(context) => BlocProvider.of(context);
 
-  List<String> freeTimes=[];
+  List<dynamic> freeTimes = [];
   getItemFreeTimes(String date, String itemId) async{
     emit(ItemFreeTimesLoading());
 
     try{
       var response = await MyHttp.post(endPoint: API.calenderData, data: {
-        'date': date,
+        'day': date,
         'item_id' : itemId,
       });
       print(date);

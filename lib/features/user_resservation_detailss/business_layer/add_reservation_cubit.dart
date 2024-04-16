@@ -141,7 +141,7 @@ class AddReservationCubit extends Cubit<AddReservationState> {
 
           emit(UpdateReservationSuccessfully());
         }else{
-          print("reservation fail successfully");
+          print("reservation fail ");
 
           print(response.body);
           emit(UpdateReservationFailed());

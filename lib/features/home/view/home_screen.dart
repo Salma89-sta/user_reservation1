@@ -78,8 +78,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       reservedProductImage: cubit.userReservationsData[index].item!.image1.toString(),
                       reservedProductName: cubit.userReservationsData[index]
                           .categoryName.toString(),
-                      fromDate: cubit.userReservationsData[index].timeOfReservationFrom.toString(),
-                      toDate: cubit.userReservationsData[index].timeOfReservationTo.toString(),
+                      fromDate: cubit.userReservationsData[index].timeOfReservationFrom.toString().replaceAll('00:00:00', ''),
+                      toDate: cubit.userReservationsData[index].timeOfReservationTo.toString().replaceAll('00:00:00', ''),
                       status: cubit.userReservationsData[index].status
                           .toString(), ReservationId: cubit.userReservationsData[index].id!,
 

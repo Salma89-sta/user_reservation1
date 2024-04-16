@@ -71,7 +71,7 @@ class _LoginState extends State<LogIn> {
                           text: "Sign in with Google" ,
                           onPressed: () async {
 
-                            await GoogleSignIn().signOut();
+                            await GoogleSignIn().signOut().then((value) {
                             // await FirebaseAuth.instance.signOut().then((value) {
                                 _signInWithGoogle(context).then((value) {
                                   dynamic email = value?.currentUser?.email;
@@ -81,7 +81,7 @@ class _LoginState extends State<LogIn> {
                                       MaterialPageRoute(builder: (context) => LoginWithGoogle(email)),
                                     );
                                   }
-                            // });
+                            });
 
                              });
 

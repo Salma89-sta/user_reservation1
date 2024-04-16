@@ -191,81 +191,81 @@ class _ListOfCategoryDetailsScreenState
                         height: 8,
                       ),
 
-                      Container(
-                        alignment: AlignmentDirectional.centerEnd,
-                        child: Text(  " : المواعيد",
-                          style: TextStyle(
-                              color: Colors.indigo,
-                              fontFamily: 'Cairo',
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20.sp),),
-                      ),
-
-                      BlocConsumer<ItemPackageCubit, ItemPackageState>(
-                        listener: (context, state) {
-                          // TODO: implement listener
-                        },
-                        builder: (context, state) {
-                          var cubit = ItemPackageCubit.get(context);
-                          return Container(
-                            width: 90.w,
-                            // height: 30.h,
-                            child: ListView.builder(
-                                shrinkWrap: true,
-                                itemCount:
-                                    cubit.availabilityData.length,
-                                itemBuilder: (context, index) {
-                                  return Directionality(
-                                    textDirection: TextDirection.rtl,
-                                    child: Row(
-                                      children: [
-                                        Text(" من: ", style:  TextStyle(
-                                          color: Colors.indigo,
-                                          fontFamily: 'Cairo',
-                                          fontSize: 20.sp,
-                                        ),),
-                                        Text(cubit
-                                            .availabilityData[index]
-                                            .availableTimeFrom!, style:  TextStyle(
-                                          color: Colors.indigo,
-                                          fontFamily: 'Cairo',
-                                          fontSize: 18.sp,
-                                        ),),
-                                        Text(" الي: ", style:  TextStyle(
-                                          color: Colors.indigo,
-                                          fontFamily: 'Cairo',
-                                          fontSize: 20.sp,
-                                        ),),
-                                        Text(cubit
-                                            .availabilityData[index]
-                                            .availableTimeTo!, style:  TextStyle(
-                                          color: Colors.indigo,
-                                          fontFamily: 'Cairo',
-                                          fontSize: 18.sp,
-                                        ),),
-                                        Text(" السعر: ", style:  TextStyle(
-                                          color: Colors.indigo,
-                                          fontFamily: 'Cairo',
-                                          fontSize: 20.sp,
-                                        ),),
-                                        Text(cubit
-                                            .availabilityData[index]
-                                            .price!, style:  TextStyle(
-                                          color: Colors.indigo,
-                                          fontFamily: 'Cairo',
-                                          fontSize: 18.sp,
-                                        ),),
-                                      ],
-                                    ),
-                                  );
-                                }),
-                          );
-                        },
-                      ),
-
-                      SizedBox(
-                        height: 8,
-                      ),
+                      // Container(
+                      //   alignment: AlignmentDirectional.centerEnd,
+                      //   child: Text(  " : المواعيد",
+                      //     style: TextStyle(
+                      //         color: Colors.indigo,
+                      //         fontFamily: 'Cairo',
+                      //         fontWeight: FontWeight.bold,
+                      //         fontSize: 20.sp),),
+                      // ),
+                      //
+                      // BlocConsumer<ItemPackageCubit, ItemPackageState>(
+                      //   listener: (context, state) {
+                      //     // TODO: implement listener
+                      //   },
+                      //   builder: (context, state) {
+                      //     var cubit = ItemPackageCubit.get(context);
+                      //     return Container(
+                      //       width: 90.w,
+                      //       // height: 30.h,
+                      //       child: ListView.builder(
+                      //           shrinkWrap: true,
+                      //           itemCount:
+                      //               cubit.availabilityData.length,
+                      //           itemBuilder: (context, index) {
+                      //             return Directionality(
+                      //               textDirection: TextDirection.rtl,
+                      //               child: Row(
+                      //                 children: [
+                      //                   Text(" من: ", style:  TextStyle(
+                      //                     color: Colors.indigo,
+                      //                     fontFamily: 'Cairo',
+                      //                     fontSize: 20.sp,
+                      //                   ),),
+                      //                   Text(cubit
+                      //                       .availabilityData[index]
+                      //                       .availableTimeFrom!, style:  TextStyle(
+                      //                     color: Colors.indigo,
+                      //                     fontFamily: 'Cairo',
+                      //                     fontSize: 18.sp,
+                      //                   ),),
+                      //                   Text(" الي: ", style:  TextStyle(
+                      //                     color: Colors.indigo,
+                      //                     fontFamily: 'Cairo',
+                      //                     fontSize: 20.sp,
+                      //                   ),),
+                      //                   Text(cubit
+                      //                       .availabilityData[index]
+                      //                       .availableTimeTo!, style:  TextStyle(
+                      //                     color: Colors.indigo,
+                      //                     fontFamily: 'Cairo',
+                      //                     fontSize: 18.sp,
+                      //                   ),),
+                      //                   Text(" السعر: ", style:  TextStyle(
+                      //                     color: Colors.indigo,
+                      //                     fontFamily: 'Cairo',
+                      //                     fontSize: 20.sp,
+                      //                   ),),
+                      //                   Text(cubit
+                      //                       .availabilityData[index]
+                      //                       .price!, style:  TextStyle(
+                      //                     color: Colors.indigo,
+                      //                     fontFamily: 'Cairo',
+                      //                     fontSize: 18.sp,
+                      //                   ),),
+                      //                 ],
+                      //               ),
+                      //             );
+                      //           }),
+                      //     );
+                      //   },
+                      // ),
+                      //
+                      // SizedBox(
+                      //   height: 8,
+                      // ),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         mainAxisAlignment: MainAxisAlignment.end,

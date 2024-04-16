@@ -18,11 +18,13 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(
-    options: FirebaseOptions(
+    options: FirebaseOptions
+      (
       apiKey: "AIzaSyAhSg_byva15u1EiiGNgnFVPGewGp8fHXQ",
       appId: "1:837880744926:android:5d6d1cbca160402feeeb4f",
-      messagingSenderId: "422940300781",
+      messagingSenderId: "837880744926",
       projectId: "abumusa-57a7e",
+
     ),
   );
   await CacheHelper.init();
@@ -43,6 +45,7 @@ Future<void> main() async {
   );
 
   final fcmToken = await FirebaseMessaging.instance.getToken();
+  //
   CacheHelper.saveData(key: 'fcmToken', value: fcmToken);
 
 
@@ -54,6 +57,8 @@ Future<void> main() async {
       print('Message also contained a notification: ${message.notification}');
     }
   });
+
+
   MyDio.init();
   EasyLoading.init();
   await initializeDateFormatting();

@@ -481,7 +481,7 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: Icon(
+          icon:const Icon(
             Icons.arrow_back,
             color: Colors.white,
           ),
@@ -498,7 +498,7 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding:const EdgeInsets.all(16.0),
           child: BlocConsumer<AddReservationCubit, AddReservationState>(
             listener: (context, state) {
               if (state is UpdateReservationSuccessfully) {
@@ -812,7 +812,6 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
                           if (_formKey.currentState!.validate()) {
                             final cubit = AddReservationCubit.get(context);
                             cubit.updateReservation(
-
                                 userId: CacheHelper.getData(key: 'id'),
                                 categoryName: widget.categoryName,
                                 itemId: widget.itemId,
