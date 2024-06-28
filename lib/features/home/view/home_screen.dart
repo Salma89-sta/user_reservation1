@@ -4,6 +4,7 @@ import 'package:Reservation/features/categories/business_layer/categories_cubit.
 import 'package:Reservation/features/home/view/reserved-card.dart';
 import 'package:Reservation/features/user_resservation_detailss/business_layer/add_reservation_cubit.dart';
 import 'package:Reservation/features/user_resservation_detailss/view/edit_reservation.dart';
+import '../../../colors/app_colors.dart';
 import '../../../core/cache_helper/cache_helper.dart';
 import '../../../core/network/api_url.dart';
 import '../../../core/network/my_http.dart';
@@ -42,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.white),
-        backgroundColor: Colors.deepOrange,
+        backgroundColor: AppColors.litePurple,
         title:const Center(child: Text("حجوزاتي", style: TextStyle(
             color: Colors.white,
             fontFamily: 'Cairo',

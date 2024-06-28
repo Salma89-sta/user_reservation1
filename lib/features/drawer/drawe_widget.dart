@@ -11,6 +11,7 @@ import 'package:Reservation/features/home/view/home_screen.dart';
 import 'package:Reservation/features/login/view/login.dart';
 import 'package:Reservation/features/user_update_data/business_layer/user_update_data_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../colors/app_colors.dart';
 import '../home/business_layer/user_reservations_cubit.dart';
 import '../login/business_layer/login_cubit.dart';
 import '../user_update_data/view/user_update_data_screen.dart';
@@ -51,7 +52,7 @@ String  email =CacheHelper.getData(key: 'email');
               ),
             ),
             decoration: BoxDecoration(
-              color: Colors.deepOrange
+              color: AppColors.litePurple
             ),
 
           ),
@@ -125,7 +126,7 @@ String  email =CacheHelper.getData(key: 'email');
     return const Icon(
       Icons.person,
       size: 64,
-      color: Colors.deepOrange,
+      color:AppColors.litePurple,
     );
   }
 

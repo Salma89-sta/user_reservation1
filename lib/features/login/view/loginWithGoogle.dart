@@ -65,7 +65,7 @@ class _LoginWithGoogleState extends State<LoginWithGoogle> {
           listener: (context, state) async {
         if (state is LoginSuccess) {
           clearControllers();
-          Fluttertoast.showToast(msg: "اهلابك! تم تسجيل الدخول بنجاح", textColor: Colors.white, backgroundColor: Colors.deepOrange);
+          Fluttertoast.showToast(msg: "اهلابك! تم تسجيل الدخول بنجاح", textColor: Colors.white, backgroundColor: AppColors.litePurple);
          print(CacheHelper.getData(key: "id"));
           Navigator.push(
               context, MaterialPageRoute(builder: (_) => BlocProvider(
@@ -75,13 +75,13 @@ class _LoginWithGoogleState extends State<LoginWithGoogle> {
           ));
           print("Login Success");
         } else if (state is LoginError) {
-          Fluttertoast.showToast(msg: "برجاء التاكد من البيانات",textColor: Colors.white, backgroundColor: Colors.deepOrange);
+          Fluttertoast.showToast(msg: "برجاء التاكد من البيانات",textColor: Colors.white, backgroundColor:AppColors.litePurple);
           buttonWidget= Text("تسجيل الدخول", style: TextStyle(color: Colors.indigo, fontFamily: 'Cairo', fontSize: 20.sp, fontWeight: FontWeight.bold),);
           print("Login error");
         } else if (state is LoginNotAcceptedYet) {
           buttonWidget= Text("تسجيل الدخول", style: TextStyle(color: Colors.indigo, fontFamily: 'Cairo', fontSize: 20.sp, fontWeight: FontWeight.bold),);
 
-          Fluttertoast.showToast(msg: "لم يتم قبول حسابك بعد برجاء الانتظار",textColor: Colors.white, backgroundColor: Colors.deepOrange);
+          Fluttertoast.showToast(msg: "لم يتم قبول حسابك بعد برجاء الانتظار",textColor: Colors.white, backgroundColor: AppColors.litePurple);
         }else if (state is LoginLoading) {
           this.buttonWidget= CircularProgressIndicator();}
       }, builder: (context, state) {
@@ -194,7 +194,7 @@ class _LoginWithGoogleState extends State<LoginWithGoogle> {
                             loginCubit.userLogin(
                                 email: email, password: password);
                           }else{
-                            Fluttertoast.showToast(msg: "برجاء ملئ جميع البيانات", textColor: Colors.white, backgroundColor: Colors.deepOrange);
+                            Fluttertoast.showToast(msg: "برجاء ملئ جميع البيانات", textColor: Colors.white, backgroundColor: AppColors.litePurple);
 
                           }
 

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../colors/app_colors.dart';
+
 class AppBarWidget extends StatelessWidget {
   final String appText;
   final bool isHome;
@@ -17,7 +19,7 @@ class AppBarWidget extends StatelessWidget {
               onPressed: () {
               },
               icon: isHome?
-              Icon(Icons.home_outlined, size: 30, color: Colors.deepOrange,)
+              Icon(Icons.home_outlined, size: 30, color: AppColors.litePurple,)
                   :Icon(Icons.home_outlined, size: 25, color: Colors.white,),
             ),
             tooltip: 'Home',
@@ -28,7 +30,7 @@ class AppBarWidget extends StatelessWidget {
           IconButton(
               icon: isHome?
            Icon(Icons.category_outlined, size: 25, color: Colors.white,)
-          :Icon(Icons.category_outlined, size: 30, color: Colors.deepOrange,),
+          :Icon(Icons.category_outlined, size: 30, color:AppColors.litePurple,),
             tooltip: 'Categories',
             onPressed: () {
             }

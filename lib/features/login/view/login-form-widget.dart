@@ -23,7 +23,7 @@ class loginWithGoogle extends StatefulWidget {
 }
 
 class _loginWithGoogleState extends State<loginWithGoogle> {
-   Widget buttonWidget= Text("تسجيل الدخول", style: TextStyle(color: Colors.indigo, fontFamily: 'Cairo', fontSize: 20.sp, fontWeight: FontWeight.bold),);
+   Widget buttonWidget= Text("تسجيل الدخول", style: TextStyle(color: Colors.white, fontFamily: 'Cairo', fontSize: 20.sp, fontWeight: FontWeight.bold),);
    final FirebaseAuth _auth = FirebaseAuth.instance;
 
   bool passwordVisible = false;
@@ -64,7 +64,7 @@ class _loginWithGoogleState extends State<loginWithGoogle> {
 
 
           clearControllers();
-          Fluttertoast.showToast(msg: "اهلابك! تم تسجيل الدخول بنجاح", textColor: Colors.white, backgroundColor: Colors.deepOrange);
+          Fluttertoast.showToast(msg: "اهلابك! تم تسجيل الدخول بنجاح", textColor: Colors.white, backgroundColor: AppColors.litePurple);
          print(CacheHelper.getData(key: "id"));
           Navigator.push(
               context, MaterialPageRoute(builder: (_) => BlocProvider(
@@ -74,13 +74,13 @@ class _loginWithGoogleState extends State<loginWithGoogle> {
           ));
           print("Login Success");
         } else if (state is LoginError) {
-          Fluttertoast.showToast(msg: "برجاء التاكد من البيانات",textColor: Colors.white, backgroundColor: Colors.deepOrange);
-          buttonWidget= Text("تسجيل الدخول", style: TextStyle(color: Colors.indigo, fontFamily: 'Cairo', fontSize: 20.sp, fontWeight: FontWeight.bold),);
+          Fluttertoast.showToast(msg: "برجاء التاكد من البيانات",textColor: Colors.white, backgroundColor: AppColors.litePurple);
+          buttonWidget= Text("تسجيل الدخول", style: TextStyle(color: Colors.white, fontFamily: 'Cairo', fontSize: 20.sp, fontWeight: FontWeight.bold),);
           print("Login error");
         } else if (state is LoginNotAcceptedYet) {
-          buttonWidget= Text("تسجيل الدخول", style: TextStyle(color: Colors.indigo, fontFamily: 'Cairo', fontSize: 20.sp, fontWeight: FontWeight.bold),);
+          buttonWidget= Text("تسجيل الدخول", style: TextStyle(color: Colors.white, fontFamily: 'Cairo', fontSize: 20.sp, fontWeight: FontWeight.bold),);
 
-          Fluttertoast.showToast(msg: "لم يتم قبول حسابك بعد برجاء الانتظار",textColor: Colors.white, backgroundColor: Colors.deepOrange);
+          Fluttertoast.showToast(msg: "لم يتم قبول حسابك بعد برجاء الانتظار",textColor: Colors.white, backgroundColor:AppColors.litePurple);
         }else if (state is LoginLoading) {
           this.buttonWidget= CircularProgressIndicator();}
       }, builder: (context, state) {
@@ -94,7 +94,7 @@ class _loginWithGoogleState extends State<loginWithGoogle> {
                 child: Column(
                   children: [
                     Container(
-                      padding: EdgeInsets.only(right: 10.w, bottom: 1.h),
+                      padding: EdgeInsets.only(right: 10.w, bottom: 1.5.h),
                       alignment: AlignmentDirectional.bottomEnd,
                       child:const Text(
                         "البريد الالكتروني",
@@ -125,9 +125,9 @@ class _loginWithGoogleState extends State<loginWithGoogle> {
                         fillcolor: Colors.white,
                       ),
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 30),
                     Container(
-                      padding: EdgeInsets.only(right: 10.w, bottom:1.h),
+                      padding: EdgeInsets.only(right: 10.w, bottom:1.5.h),
                       alignment: AlignmentDirectional.bottomEnd,
                       child:const Text(
                         "كلمة السر",
@@ -140,7 +140,7 @@ class _loginWithGoogleState extends State<loginWithGoogle> {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 5),
+                     // SizedBox(height: 1.5.h),
                     TextFormFieldWidget(
                       labelText: "",
                       suffix: IconButton(
@@ -177,7 +177,7 @@ class _loginWithGoogleState extends State<loginWithGoogle> {
                       color: Colors.white,
                     ),
                     const SizedBox(
-                      height: 30,
+                      height: 50,
                     ),
                     Button0(
                       widget: Center(
@@ -193,11 +193,11 @@ class _loginWithGoogleState extends State<loginWithGoogle> {
                             password: password
                           );
                         }else{
-                          Fluttertoast.showToast(msg: "برجاء ملئ جميع البيانات", textColor: Colors.white, backgroundColor: Colors.deepOrange);
+                          Fluttertoast.showToast(msg: "برجاء ملئ جميع البيانات", textColor: Colors.white, backgroundColor:AppColors.litePurple);
                         }
                       }),
                     const SizedBox(
-                      height: 10,
+                      height: 20,
                     ),
                     Center(
                       child: InkWell(
@@ -209,12 +209,12 @@ class _loginWithGoogleState extends State<loginWithGoogle> {
                             "هل تريد انشاء حساب ؟",
                             style: TextStyle(
                                 fontFamily: 'Cairo',
-                                decoration: TextDecoration.underline,
+                                // decoration: TextDecoration.underline,
                                 fontSize: 18.sp),
                           )),
                     ),
                     const SizedBox(
-                      height: 10,
+                      height: 30,
                     ),
                   ],
                 ),

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:Reservation/features/list_of_category/business_layer/items_cubit.dart';
 import 'package:Reservation/features/list_of_category/business_layer_free_times/free_times_cubit.dart';
+import '../../../colors/app_colors.dart';
 import '../../drawer/drawe_widget.dart';
 import '../../list_of_category/view/list_of_category_screen.dart';
 import '../business_layer/categories_cubit.dart';
@@ -32,7 +33,7 @@ class ViewCategoriesScreen extends StatelessWidget {
           appBar: AppBar(
             iconTheme:const IconThemeData(color: Colors.white),
 
-            backgroundColor: Colors.deepOrange,
+            backgroundColor: AppColors.litePurple,
               title:const Center(
                 child: Text("المنشآت",
                     style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
@@ -72,7 +73,7 @@ class ViewCategoriesScreen extends StatelessWidget {
                                       color: Colors.white,
                                       borderRadius: BorderRadius.circular(20),
                                       border: Border.all(
-                                        color: Colors.deepOrangeAccent,
+                                        color: AppColors.litePurple,
                                         width: 3,
                                       ),
                                       boxShadow:const [

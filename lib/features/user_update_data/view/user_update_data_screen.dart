@@ -3,6 +3,7 @@ import 'package:Reservation/common/button.dart';
 import 'package:Reservation/common/text-form-field.dart';
 import 'package:Reservation/features/home/business_layer/user_reservations_cubit.dart';
 import 'package:Reservation/features/home/view/home_screen.dart';
+import '../../../colors/app_colors.dart';
 import '../../../core/cache_helper/cache_helper.dart';
 import '../../drawer/drawe_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -32,7 +33,7 @@ class UserUpdateDataScreen extends StatelessWidget {
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.white),
 
-        backgroundColor: Colors.deepOrange,
+        backgroundColor: AppColors.litePurple,
         title: Center(child: Text("تعديل البيانات الشخصيه", style: TextStyle(color: Colors.white, fontFamily: 'Cairo', fontWeight: FontWeight.bold),)),
       ),
       body: Directionality(

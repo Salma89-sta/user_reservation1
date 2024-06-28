@@ -486,7 +486,7 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
             color: Colors.white,
           ),
         ),
-        backgroundColor: Colors.deepOrange,
+        backgroundColor:AppColors.litePurple,
         title:const Center(
             child: Text(
           "تعديل بيانات الحجز",

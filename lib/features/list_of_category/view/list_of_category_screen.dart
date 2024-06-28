@@ -7,6 +7,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:Reservation/features/list_of_category_details/additional_options+business_layer/additional_options_cubit.dart';
 import 'package:Reservation/features/list_of_category_details/item_package_business_layer/item_package_cubit.dart';
 import 'package:Reservation/features/list_of_category_details/view/slider_widget.dart';
+import '../../../colors/app_colors.dart';
 import '../../list_of_category_details/view/List_of_category_details_screen.dart';
 import 'card_of_category_list.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -30,7 +31,7 @@ class _ListOfCategoryScreenState extends State<ListOfCategoryScreen> {
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
 
-        backgroundColor: Colors.deepOrange,
+        backgroundColor: AppColors.litePurple,
         title: const Center(child: Text("العناصر", style: TextStyle(
             color: Colors.white,
             fontFamily: 'Cairo',

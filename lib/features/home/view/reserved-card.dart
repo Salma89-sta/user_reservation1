@@ -33,7 +33,7 @@ class ReservedCardToUser extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             border:Border.all(
-          color: Colors.deepOrange,
+          color: AppColors.litePurple,
             width:2,
 
         ),
@@ -88,13 +88,13 @@ class ReservedCardToUser extends StatelessWidget {
                   BlocConsumer<UserReservationsCubit, UserReservationsState>(
   listener: (context, state) {
     if(state is UserDeleteReservationSuccess){
-      Fluttertoast.showToast(msg: "تم الغاء الحجز", textColor: Colors.white, backgroundColor: Colors.deepOrange);
+      Fluttertoast.showToast(msg: "تم الغاء الحجز", textColor: Colors.white, backgroundColor:AppColors.litePurple);
       Navigator.push(context, MaterialPageRoute(builder: (context)=> BlocProvider(
   create: (context) => UserReservationsCubit()..getUserReservations(CacheHelper.getData(key: 'id')),
   child: HomeScreen(),
 )));
     }else{
-      Fluttertoast.showToast(msg: "حدث خطا اثناء الالغاء", textColor: Colors.white, backgroundColor: Colors.deepOrange);
+      Fluttertoast.showToast(msg: "حدث خطا اثناء الالغاء", textColor: Colors.white, backgroundColor: AppColors.litePurple);
 
     }
   },

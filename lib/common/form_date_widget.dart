@@ -155,12 +155,12 @@ class _DateSelectionFieldState extends State<DateSelectionField> {
               ),
               filled: true,
               fillColor: widget.fillcolor,
-              floatingLabelStyle: TextStyle(color: Colors.deepOrange),
-              labelStyle: TextStyle(color: Colors.deepOrange),
+              floatingLabelStyle: TextStyle(color:AppColors.litePurple),
+              labelStyle: TextStyle(color:AppColors.litePurple),
               focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(
                   width: 2,
-                  color: Colors.deepOrange,
+                  color: AppColors.litePurple,
                 ),
                 borderRadius: BorderRadius.circular(15),
               ),

@@ -5,6 +5,7 @@ import 'package:Reservation/common/button.dart';
 import 'package:Reservation/features/list_of_category_details/additional_options+business_layer/additional_options_cubit.dart';
 import 'package:Reservation/features/list_of_category_details/view/slider_widget.dart';
 import 'package:Reservation/features/user_resservation_detailss/business_layer/add_reservation_cubit.dart';
+import '../../../colors/app_colors.dart';
 import '../../../common/list_of_data.dart';
 import '../../categories/data_layer/model/categories_model.dart';
 import '../../drawer/drawe_widget.dart';
@@ -111,7 +112,7 @@ class _ListOfCategoryDetailsScreenState
           drawer: DrawerWidget(),
           appBar: AppBar(
             iconTheme: IconThemeData(color: Colors.white),
-            backgroundColor: Colors.deepOrange,
+            backgroundColor: AppColors.litePurple,
             title: const Center(
                 child: Text(
               "التفاصيل",

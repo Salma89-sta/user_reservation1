@@ -72,7 +72,7 @@ dev_dependencies:
   conditional_builder_null_safety: ^0.0.6
   country_picker: ^2.0.22
   dio: ^5.3.3
-  easy_localization: ^3.0.3
+#  easy_localization: ^3.0.3
   equatable: ^2.0.5
   firebase_messaging: any
   flutter_bloc: ^8.1.3

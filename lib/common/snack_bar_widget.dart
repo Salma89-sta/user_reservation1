@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../colors/app_colors.dart';
+
 class FlutterToast extends StatefulWidget {
   final String message;
   final IconData iconData;
@@ -11,7 +13,7 @@ class FlutterToast extends StatefulWidget {
     Key? key,
     required this.message,
     this.iconData = Icons.info_outline,
-    this.backgroundColor = Colors.deepOrange,
+    this.backgroundColor = AppColors.litePurple,
     this.textColor = Colors.white,
     this.duration = const Duration(seconds: 2),
   }) : super(key: key);

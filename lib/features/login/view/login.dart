@@ -27,40 +27,62 @@ class _LoginState extends State<LogIn> {
   // }
   @override
   Widget build(BuildContext context) {
+
     size= MediaQuery.of(context).size;
     height= size.height;
     width= size.width;
     return SafeArea(
       child: Scaffold(
+        // backgroundColor: Color.fromRGBO(189, 23, 53, 1),
         body: SafeArea(
           child: SingleChildScrollView(
             child: Container(
               width: width,
               height: height,
+                decoration: BoxDecoration(
+                  gradient: AppColors.buttonGradient,
+                  // borderRadius: BorderRadius.only(bottomRight: Radius.circular(50) )
+                ),
               alignment: AlignmentDirectional.centerEnd,
               child: Column(
       
                 children: [
-      
+                  SizedBox(height: 10.h,),
+
+                  Text("أبوي موسي", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28.sp, fontFamily: 'Cairo', color: Colors.white),),
+
+                  SizedBox(height: 2.h,),
+
+                  // Container(
+                  //   width: 100.w,
+                  //   height: 35.h,
+                  //   decoration: BoxDecoration(
+                  //     gradient: AppColors.buttonGradient,
+                  //     borderRadius: BorderRadius.only(bottomRight: Radius.circular(50) )
+                  //   ),
+                  //   child: Column(
+                  //     children: [
+                  //       SizedBox(height: 10,),
+                  //       Text("تسجيل الدخول", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30, fontFamily: 'Cairo', color: Colors.white),),
+                  //       Image.asset("assets/images/login.png", width: 100.w, height: 180,),
+                  //     ],
+                  //   ),
+                  // ),
                   Container(
-                    width: 100.w,
-                    height: 35.h,
-                    decoration: BoxDecoration(
-                      gradient: AppColors.buttonGradient,
-                      borderRadius: BorderRadius.only(bottomRight: Radius.circular(50) )
+                    height: 75.h,
+                    margin: EdgeInsets.only(top:5.h ,),
+                    decoration:const BoxDecoration(
+                      color: Colors.white,
+                        // gradient: AppColors.buttonGradient,
+                        borderRadius: BorderRadius.only(topRight: Radius.circular(50),topLeft: Radius.circular(50) )
                     ),
+                    width: 100.w,
+
                     child: Column(
                       children: [
-                        SizedBox(height: 10,),
-                        Text("تسجيل الدخول", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30, fontFamily: 'Cairo', color: Colors.white),),
-                        Image.asset("assets/images/login.png", width: 100.w, height: 180,),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    width: 100.w,
-                    child: Column(
-                      children: [
+
+                         SizedBox(height: 3.h,),
+
                         loginWithGoogle(),
                         SignInButton(
                           Buttons.google ,
@@ -87,6 +109,8 @@ class _LoginState extends State<LogIn> {
 
                           },
                         ),
+                        SizedBox(height: 3.h,),
+
                       ],
                     ),
                   ),

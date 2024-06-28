@@ -7,6 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
+import '../../../colors/app_colors.dart';
+
 class ListOfCategory extends StatelessWidget {
 
   final Widget listOfCategoryImage;
@@ -126,7 +128,7 @@ class ListOfCategory extends StatelessWidget {
     decoration: BoxDecoration(
     borderRadius: BorderRadius.circular(20),
     border:Border.all(
-    color: Colors.deepOrange,
+    color: AppColors.litePurple,
     width:2,
 
     ),

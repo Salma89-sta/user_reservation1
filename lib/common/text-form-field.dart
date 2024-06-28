@@ -64,7 +64,7 @@ class TextFormFieldWidget extends StatelessWidget {
     return Container(
       width: 80.w,
       child: TextFormField(
-          style: TextStyle(height:1.8, color: Colors.deepOrange, fontWeight: FontWeight.w900),
+          style: TextStyle(height:1.8, color: AppColors.litePurple, fontWeight: FontWeight.w900),
           validator: validator,
           enabled: enable == null ? true : enable ,
           obscureText: IsObsecure,
@@ -75,12 +75,12 @@ class TextFormFieldWidget extends StatelessWidget {
             suffixIcon: suffix,
             filled: true,
             fillColor: fillcolor,
-            floatingLabelStyle:  TextStyle(color:Colors.deepOrange),
-            labelStyle: TextStyle(color: Colors.deepOrange),
+            floatingLabelStyle:  TextStyle(color:AppColors.litePurple),
+            labelStyle: TextStyle(color: AppColors.litePurple),
             focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(
                 width: 2,
-                color: Colors.deepOrange,
+                color: AppColors.litePurple,
               ),
               borderRadius: BorderRadius.circular(10),
             ),
