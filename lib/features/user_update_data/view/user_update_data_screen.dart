@@ -34,18 +34,22 @@ class UserUpdateDataScreen extends StatelessWidget {
         iconTheme: IconThemeData(color: Colors.white),
 
         backgroundColor: AppColors.litePurple,
-        title: Center(child: Text("تعديل البيانات الشخصيه", style: TextStyle(color: Colors.white, fontFamily: 'Cairo', fontWeight: FontWeight.bold),)),
+        title: Center(child: Text("تعديل البيانات الشخصيه",
+          style: TextStyle(color: Colors.white, fontFamily: 'Cairo', fontWeight: FontWeight.bold,
+          fontSize: 20.sp
+          ),)),
       ),
       body: Directionality(
             textDirection: TextDirection.rtl,
             child: SingleChildScrollView(
               child: Container(
                 padding: EdgeInsets.only(right: 20),
-                alignment: AlignmentDirectional.topStart,
+                alignment: AlignmentDirectional.center,
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     const SizedBox(height: 20,),
-                    Text("الاسم", style: TextStyle(color: Colors.indigo, fontFamily: 'Cairo', fontSize: 20.sp, fontWeight: FontWeight.bold),),
+                    Text("الاسم", style: TextStyle(color: AppColors.litePurple, fontFamily: 'Cairo', fontSize: 20.sp, fontWeight: FontWeight.bold),),
                     SizedBox(height: 5,),
                     TextFormFieldWidget(
                       prefix: Icon(Icons.people_outline),
@@ -56,7 +60,7 @@ class UserUpdateDataScreen extends StatelessWidget {
                     ),
       
                     const SizedBox(height: 15,),
-                    Text("البريد الالكتروني", style: TextStyle(color: Colors.indigo, fontFamily: 'Cairo', fontSize: 20.sp, fontWeight: FontWeight.bold),),
+                    Text("البريد الالكتروني", style: TextStyle(color: AppColors.litePurple, fontFamily: 'Cairo', fontSize: 20.sp, fontWeight: FontWeight.bold),),
                     SizedBox(height: 5,),
                     TextFormFieldWidget(
                         prefix: Icon(Icons.email_outlined),
@@ -67,7 +71,7 @@ class UserUpdateDataScreen extends StatelessWidget {
                     ),
       
                     const SizedBox(height: 15,),
-                    Text("رقم الهويه", style: TextStyle(color: Colors.indigo, fontFamily: 'Cairo', fontSize: 20.sp, fontWeight: FontWeight.bold),),
+                    Text("رقم الهويه", style: TextStyle(color:  AppColors.litePurple, fontFamily: 'Cairo', fontSize: 20.sp, fontWeight: FontWeight.bold),),
                     SizedBox(height: 5,),
                     TextFormFieldWidget(
                         prefix: Icon(Icons.camera_front_outlined),
@@ -78,7 +82,7 @@ class UserUpdateDataScreen extends StatelessWidget {
                     ),
       
                     const SizedBox(height: 15,),
-                    Text("الرقم السري", style: TextStyle(color: Colors.indigo, fontFamily: 'Cairo', fontSize: 20.sp, fontWeight: FontWeight.bold),),
+                    Text("الرقم السري", style: TextStyle(color:  AppColors.litePurple, fontFamily: 'Cairo', fontSize: 20.sp, fontWeight: FontWeight.bold),),
                     SizedBox(height: 5,),
       
                     TextFormFieldWidget(

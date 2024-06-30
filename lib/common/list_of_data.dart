@@ -1,4 +1,5 @@
 
+import 'package:Reservation/colors/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:Reservation/common/button.dart';
@@ -44,9 +45,9 @@ class _ListOfDataState extends State<ListOfData> {
 
         return Row(
           children: [
-            Text(count, style: TextStyle(color: Colors.indigo, fontFamily: 'Cairo', fontWeight: FontWeight.bold, fontSize: 20.sp),),
+            Text(count, style: TextStyle(color: AppColors.litePurple, fontFamily: 'Cairo',  fontSize: 20.sp),),
             SizedBox(width: 5.w,),
-            Text(item, style: TextStyle(color: Colors.indigo, fontFamily: 'Cairo', fontWeight: FontWeight.bold, fontSize: 20.sp),),
+            Text(item, style: TextStyle(color: AppColors.litePurple, fontFamily: 'Cairo', fontSize: 20.sp),),
 
           ],
         );

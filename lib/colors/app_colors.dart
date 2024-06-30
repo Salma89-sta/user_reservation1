@@ -4,6 +4,8 @@ class AppColors {
   static const Color lightGrey = Color(0xffcbccd0);
   static const Color darkPurple = Color.fromRGBO(189, 23, 53, 1);
   static const Color litePurple = Color.fromRGBO(44, 25, 55, 1);
+  static const Color darkPurpleWithOpacity0 = Color.fromRGBO(189, 23, 53, 0.1);
+  static const Color litePurpleWithOpacity0 = Color.fromRGBO(44, 25, 55, 0.1);
 
 
 

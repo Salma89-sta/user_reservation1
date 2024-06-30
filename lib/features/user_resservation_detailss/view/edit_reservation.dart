@@ -487,18 +487,20 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
           ),
         ),
         backgroundColor:AppColors.litePurple,
-        title:const Center(
+        title: Center(
             child: Text(
           "تعديل بيانات الحجز",
           style: TextStyle(
               color: Colors.white,
               fontFamily: 'Cairo',
-              fontWeight: FontWeight.bold),
+              fontWeight: FontWeight.bold,
+          fontSize: 20.sp
+          ),
         )),
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding:const EdgeInsets.all(16.0),
+          padding:const EdgeInsets.all(10.0),
           child: BlocConsumer<AddReservationCubit, AddReservationState>(
             listener: (context, state) {
               if (state is UpdateReservationSuccessfully) {
@@ -525,181 +527,18 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
                 key: _formKey,
                 child: Column(
                   children: [
-                    // Padding(
-                    //   padding: const EdgeInsets.only(right: 50.0, bottom: 10),
-                    //   child: Container(
-                    //     alignment: AlignmentDirectional.centerEnd,
-                    //     child: const Text(
-                    //       "الحاله الاجتماعيه",
-                    //       textAlign: TextAlign.end,
-                    //       style: TextStyle(
-                    //         fontFamily: 'Cairo',
-                    //         color: AppColors.lightGrey,
-                    //         fontSize: 20,
-                    //         fontWeight: FontWeight.bold,
-                    //       ),
-                    //     ),
-                    //   ),
-                    // ),
-                    // // DropDownListWidget(),
-                    // Padding(
-                    //   padding: const EdgeInsets.only(left: 20.0, right: 20),
-                    //   child: Container(
-                    //     alignment: AlignmentDirectional.topEnd,
-                    //     width: 80.w,
-                    //     height: 10.h,
-                    //     child: DropdownButtonFormField<int>(
-                    //       decoration: const InputDecoration(
-                    //         border: OutlineInputBorder(
-                    //           borderRadius:
-                    //               BorderRadius.all(Radius.circular(15.0)),
-                    //           borderSide: BorderSide(color: Colors.red),
-                    //         ),
-                    //       ),
-                    //       isExpanded: true,
-                    //       hint: Text(
-                    //         widget.status.toString() == '0' ? 'أعزب' : "متزوج",
-                    //         style: TextStyle(color: AppColors.lightGrey),
-                    //       ),
-                    //       items: status.map((value) {
-                    //         return DropdownMenuItem<int>(
-                    //           value: status.indexOf(value),
-                    //           child: Container(
-                    //             width: 80.w,
-                    //             child: Text(
-                    //               value,
-                    //               style: TextStyle(
-                    //                   color: AppColors.lightGrey,
-                    //                   fontFamily: 'Cairo',
-                    //                   fontSize: 19.sp),
-                    //             ),
-                    //           ),
-                    //         );
-                    //       }).toList(),
-                    //       onChanged: (int? value) {
-                    //         statusIndex = value.toString();
-                    //         print(".................................");
-                    //         print(value);
-                    //       },
-                    //     ),
-                    //   ),
-                    // ),
-                    //
-                    // const SizedBox(
-                    //   height: 15,
-                    // ),
-                    // Padding(
-                    //   padding: const EdgeInsets.only(right: 50.0, bottom: 10),
-                    //   child: Container(
-                    //     alignment: AlignmentDirectional.centerEnd,
-                    //     child: const Text(
-                    //       " من تاريخ /وقت ",
-                    //       textAlign: TextAlign.end,
-                    //       style: TextStyle(
-                    //         fontFamily: 'Cairo',
-                    //         color: AppColors.lightGrey,
-                    //         fontSize: 20,
-                    //         fontWeight: FontWeight.bold,
-                    //       ),
-                    //     ),
-                    //   ),
-                    // ),
-                    // Padding(
-                    //   padding: const EdgeInsets.only(left: 20.0, right: 20),
-                    //   child: TextFormField(
-                    //     controller: _fromDateTimeController,
-                    //     readOnly: true,
-                    //     onTap: () => _selectDateTime(_fromDateTimeController),
-                    //     decoration: InputDecoration(
-                    //       labelText: widget.from,
-                    //       suffixIcon: Icon(Icons.calendar_today),
-                    //       focusedBorder: OutlineInputBorder(
-                    //         borderSide: BorderSide(
-                    //           width: 2,
-                    //           color: Colors.indigo,
-                    //         ),
-                    //         borderRadius: BorderRadius.circular(15),
-                    //       ),
-                    //       enabledBorder: OutlineInputBorder(
-                    //         borderSide: BorderSide(
-                    //             color: AppColors.lightGrey, width: 1.5),
-                    //         borderRadius: BorderRadius.circular(15),
-                    //       ),
-                    //     ),
-                    //     // validator: (value) {
-                    //     //   if (value!.isEmpty) {
-                    //     //     return 'برجاء اختيار الوقت';
-                    //     //   }
-                    //     //   return null;
-                    //     // },
-                    //   ),
-                    // ),
-                    //
-                    // const SizedBox(
-                    //   height: 15,
-                    // ),
-                    //
-                    // Padding(
-                    //   padding: const EdgeInsets.only(right: 50.0, bottom: 10),
-                    //   child: Container(
-                    //     alignment: AlignmentDirectional.centerEnd,
-                    //     child: const Text(
-                    //       " الي تاريخ و وقت ",
-                    //       textAlign: TextAlign.end,
-                    //       style: TextStyle(
-                    //         fontFamily: 'Cairo',
-                    //         color: AppColors.lightGrey,
-                    //         fontSize: 20,
-                    //         fontWeight: FontWeight.bold,
-                    //       ),
-                    //     ),
-                    //   ),
-                    // ),
-                    // Padding(
-                    //   padding: const EdgeInsets.only(left: 20.0, right: 20),
-                    //   child: TextFormField(
-                    //     controller: _toDateTimeController,
-                    //     readOnly: true,
-                    //     onTap: () => _selectDateTime(_toDateTimeController),
-                    //     decoration: InputDecoration(
-                    //       labelText: widget.to,
-                    //       suffixIcon: Icon(Icons.calendar_today),
-                    //       focusedBorder: OutlineInputBorder(
-                    //         borderSide: BorderSide(
-                    //           width: 2,
-                    //           color: Colors.indigo,
-                    //         ),
-                    //         borderRadius: BorderRadius.circular(15),
-                    //       ),
-                    //       enabledBorder: OutlineInputBorder(
-                    //         borderSide: BorderSide(
-                    //             color: AppColors.lightGrey, width: 1.5),
-                    //         borderRadius: BorderRadius.circular(15),
-                    //       ),
-                    //     ),
-                    //     // validator: (value) {
-                    //     //   if (value!.isEmpty) {
-                    //     //     return 'برجاء اختيار الوقت';
-                    //     //   }
-                    //     //   return null;
-                    //     // },
-                    //   ),
-                    // ),
-                    // const SizedBox(
-                    //   height: 15,
-                    // ),
 
                     Padding(
-                      padding: const EdgeInsets.only(right: 50.0, bottom: 10),
+                      padding: const EdgeInsets.only(right: 20.0, bottom: 10),
                       child: Container(
                         alignment: AlignmentDirectional.centerEnd,
-                        child: const Text(
+                        child:  Text(
                           " ادخل القيمه التي تريد تسديدها ",
                           textAlign: TextAlign.end,
                           style: TextStyle(
                             fontFamily: 'Cairo',
-                            color: AppColors.lightGrey,
-                            fontSize: 20,
+                            color: AppColors.litePurple,
+                            fontSize: 20.sp,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -734,7 +573,7 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
                       ),
                     ),
                     const SizedBox(
-                      height: 15,
+                      height: 20,
                     ),
 
                     // Padding(
@@ -760,19 +599,19 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
 
 
                     const SizedBox(
-                      height: 15,
+                      height: 20,
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(right: 50.0, bottom: 10),
+                      padding: const EdgeInsets.only(right: 20.0, bottom: 20),
                       child: Container(
                         alignment: AlignmentDirectional.centerEnd,
-                        child: const Text(
-                          "أضافه  ايصال الدفع",
+                        child:  Text(
+                          "أضافه ايصال الدفع",
                           textAlign: TextAlign.end,
                           style: TextStyle(
                             fontFamily: 'Cairo',
-                            color: AppColors.lightGrey,
-                            fontSize: 20,
+                            color: AppColors.litePurple,
+                            fontSize: 20.sp,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -780,18 +619,28 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
                     ),
 
                     Container(
+                      padding:const EdgeInsets.all(10),
                       width: 80.w,
-                      height: 10.h,
+                      // height: 10.h,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         border: Border.all(color: AppColors.lightGrey),
                       ),
                       child: TextButton(
                         onPressed: _selectAttachment,
-                        child: Text('اختر مرفق'),
+                        child: Text('اختر مرفق',
+                          style: TextStyle(
+                            fontFamily: 'Cairo',
+                            color: AppColors.litePurple,
+                            fontSize: 20.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
                     ),
-                    if (_attachment != null) Image.file(_attachment!),
+                    if (_attachment != null) Container(
+                        margin:const EdgeInsets.all(30),
+                        child: Image.file(_attachment!)),
 
                     const SizedBox(
                       height: 15,
@@ -801,10 +650,12 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
                         widget: Center(
                             child: Text(
                           'تأكيد التعديل',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20.sp,
-                              fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                fontFamily: 'Cairo',
+                                color: Colors.white,
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
                         )),
                         function: () {
 

@@ -34,9 +34,9 @@ class ViewCategoriesScreen extends StatelessWidget {
             iconTheme:const IconThemeData(color: Colors.white),
 
             backgroundColor: AppColors.litePurple,
-              title:const Center(
+              title: Center(
                 child: Text("المنشآت",
-                    style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
+                    style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 20.sp)),
               ),
           ),
 
@@ -48,76 +48,81 @@ class ViewCategoriesScreen extends StatelessWidget {
                   shrinkWrap:true,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  crossAxisSpacing: 2.w,
+                  crossAxisSpacing: 3.w,
                   mainAxisSpacing: 5.h,
                 ),
                 itemCount: categoryCubit.categories.length,
                 itemBuilder: (context, index) {
-                  return Column(
-                    children: [
-                      InkWell(
-                                  onTap: () {
-                                    print(categoryCubit.categories[index].id!);
-                                    Navigator.push(context, MaterialPageRoute(builder: (context) => MultiBlocProvider(
-                                        providers: [
-                                          BlocProvider<ItemsCubit>(
-                                            create: (context) => ItemsCubit()..getCategoryItems(categoryCubit.categories[index].name!),                                      ),
-                                          BlocProvider<FreeTimesCubit>(
-                                            create: (context) => FreeTimesCubit(),
+                  return Container(
+                    height: 100.h,
+                    child: Column(
+                      children: [
+                        InkWell(
+                                    onTap: () {
+                                      print(categoryCubit.categories[index].id!);
+                                      Navigator.push(context, MaterialPageRoute(builder: (context) => MultiBlocProvider(
+                                          providers: [
+                                            BlocProvider<ItemsCubit>(
+                                              create: (context) => ItemsCubit()..getCategoryItems(categoryCubit.categories[index].name!),                                      ),
+                                            BlocProvider<FreeTimesCubit>(
+                                              create: (context) => FreeTimesCubit(),
+                                            ),
+                                          ],
+                                          child: const ListOfCategoryScreen())));
+                                    },
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        // color: Colors.white,
+                                        borderRadius: BorderRadius.circular(15.sp),
+                                        // border: Border.all(
+                                        //   color: AppColors.litePurple,
+                                        //   width: 3,
+                                        // ),
+                                        boxShadow:const [
+                                          BoxShadow(
+                                            color: Colors.grey,
+                                            spreadRadius: 0.2,
+                                            blurRadius: 0.5,
                                           ),
                                         ],
-                                        child: const ListOfCategoryScreen())));
-                                  },
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(20),
-                                      border: Border.all(
-                                        color: AppColors.litePurple,
-                                        width: 3,
                                       ),
-                                      boxShadow:const [
-                                        BoxShadow(
-                                          color: Colors.grey,
-                                          spreadRadius: 0.5,
-                                          blurRadius: 0.5,
-                                        ),
-                                      ],
-                                    ),
-                                    child: CachedNetworkImage(
-                                      imageUrl:
-                                      categoryCubit.categories[index].image!,
-                                      imageBuilder: (context, imageProvider) =>
-                                          Container(
-                                            width: 100.w,
-                                            height: 18.h,
-                                            decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(20.sp),
-                                              image: DecorationImage(
-                                                image: imageProvider,
-                                                fit: BoxFit.fill,
+                                      child: CachedNetworkImage(
+                                        imageUrl:
+                                        categoryCubit.categories[index].image!,
+                                        imageBuilder: (context, imageProvider) =>
+                                            Container(
+                                              width: 100.w,
+                                              height: 20.h,
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(10.sp),
+                                                image: DecorationImage(
+                                                  image: imageProvider,
+                                                  fit: BoxFit.fill,
 
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                      placeholder: (context, url) =>
-                                      const CircularProgressIndicator(),
-                                      errorWidget: (context, url, error) =>
-                                      const Icon(Icons.error),
+                                        placeholder: (context, url) =>
+                                        const CircularProgressIndicator(),
+                                        errorWidget: (context, url, error) =>
+                                        const Icon(Icons.error),
+                                      ),
                                     ),
                                   ),
-                                ),
-                      Text(
-                        categoryCubit.categories[index].name!,
-                        style: TextStyle(
-                          overflow: TextOverflow.ellipsis,
-                          color: Colors.indigo,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 19.sp,
+                        const SizedBox(height: 10,),
+                        Text(
+                          categoryCubit.categories[index].name!,
+                          style: TextStyle(
+                            overflow: TextOverflow.ellipsis,
+                            color: AppColors.litePurple,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 19.sp,
+                          ),
                         ),
-                      ),
+                        const SizedBox(height: 10,),
 
-                    ],
+                      ],
+                    ),
                   );
                           },
                         ),

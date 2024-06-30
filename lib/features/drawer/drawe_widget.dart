@@ -29,95 +29,104 @@ String  email =CacheHelper.getData(key: 'email');
  String name= CacheHelper.getData(key: 'name');
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-      child: ListView(
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Drawer(
+        child: ListView(
 
-        padding: EdgeInsets.zero,
-        children: <Widget>[
-          UserAccountsDrawerHeader(
-            accountName: Text(
-              "${name}",
-              style: TextStyle(fontSize: 20.sp, fontFamily: 'Cairo'),
-            ),
-            accountEmail: Text(
-              "${email}",
-              style: TextStyle(fontSize: 16.sp, fontFamily: 'Cairo'),
-            ),
-            currentAccountPicture: InkWell(
-              onTap:_pickImage ,
-              child: CircleAvatar(
-                child: ClipOval(
-                  child: image != null ? Image.file(image!) : _buildPlaceholderIcon(),
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            UserAccountsDrawerHeader(
+              accountName: Text(
+                "${name}",
+                style: TextStyle(fontSize: 20.sp, fontFamily: 'Cairo', fontWeight: FontWeight.bold),
+              ),
+              accountEmail: Text(
+                "${email}",
+                style: TextStyle(fontSize: 16.sp, fontFamily: 'Cairo',fontWeight: FontWeight.bold),
+              ),
+              currentAccountPicture: InkWell(
+                onTap:_pickImage ,
+                child: CircleAvatar(
+                  child: ClipOval(
+                    child: image != null ? Image.file(image!) : _buildPlaceholderIcon(),
+                  ),
                 ),
               ),
+              decoration:const BoxDecoration(
+                color: AppColors.litePurple
+              ),
+
             ),
-            decoration: BoxDecoration(
-              color: AppColors.litePurple
+            ListTile(
+
+              title:  Text('حجوزاتي', style: TextStyle(fontFamily: 'Cairo',fontWeight: FontWeight.bold, fontSize: 20.sp),),
+              onTap: () {
+                setState(() {});
+                Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => BlocProvider(
+        create: (context) => UserReservationsCubit()..getUserReservations(CacheHelper.getData(key: "id")),
+        child: HomeScreen(),
+      ),
+                          ),
+                        );
+              },
+              leading:  Icon(Icons.format_list_bulleted, size: 20.sp,),
+
+            ),
+           const Divider(),
+            ListTile(
+              title:  Text('المنشآت ',style: TextStyle(fontFamily: 'Cairo',fontWeight: FontWeight.bold, fontSize: 20.sp),),
+              onTap: () {
+                setState(() {});
+                Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+         BlocProvider(
+        create: (context) => CategoryCubit()..getCategories(),
+        child: ViewCategoriesScreen(),
+      ),
+
+                                ),
+                              );
+              },
+              leading:  Icon(Icons.home_outlined,size: 20.sp,),
+
+            ),
+            const Divider(),
+
+            ListTile(
+              title:  Text('الملف الشخصي',style: TextStyle(fontFamily: 'Cairo', fontWeight: FontWeight.bold,fontSize: 20.sp),),
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (_)=>BlocProvider(
+        create: (context) => UserUpdateDataCubit(),
+        child: UserUpdateDataScreen(),
+      )));
+              },
+              leading:  Icon(Icons.history_edu,size: 20.sp,),
+            ),
+            const Divider(),
+
+            ListTile(
+              title:  Text('تسجيل الخروج',style: TextStyle(fontFamily: 'Cairo', fontWeight: FontWeight.bold,fontSize: 20.sp),),
+              onTap: () async {
+
+                await CacheHelper.init();
+                CacheHelper.clearAllData();
+                Navigator.pushReplacement(context,MaterialPageRoute(builder: (_)=> LogIn()));
+                print(CacheHelper.getData(key: 'id'));
+
+              },
+              leading:  Icon(Icons.output_outlined,size: 20.sp,),
+
             ),
 
-          ),
-          ListTile(
-            title: const Text('حجوزاتي', style: TextStyle(fontFamily: 'Cairo',fontWeight: FontWeight.bold),),
-            onTap: () {
-              setState(() {});
-              Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => BlocProvider(
-  create: (context) => UserReservationsCubit()..getUserReservations(CacheHelper.getData(key: "id")),
-  child: HomeScreen(),
-),
-                        ),
-                      );
-            },
-            leading: const Icon(Icons.format_list_bulleted),
-
-          ),
-          ListTile(
-            title: const Text('المنشآت ',style: TextStyle(fontFamily: 'Cairo',fontWeight: FontWeight.bold),),
-            onTap: () {
-              setState(() {});
-              Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-       BlocProvider(
-  create: (context) => CategoryCubit()..getCategories(),
-  child: ViewCategoriesScreen(),
-),
-
-                              ),
-                            );
-            },
-            leading: const Icon(Icons.home_outlined),
-
-          ),
-
-          ListTile(
-            title: const Text('الملف الشخصي',style: TextStyle(fontFamily: 'Cairo', fontWeight: FontWeight.bold),),
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (_)=>BlocProvider(
-  create: (context) => UserUpdateDataCubit(),
-  child: UserUpdateDataScreen(),
-)));
-            },
-            leading: const Icon(Icons.history_edu),
-          ),
-
-          ListTile(
-            title: const Text('تسجيل الخروج',style: TextStyle(fontFamily: 'Cairo', fontWeight: FontWeight.bold),),
-            onTap: () async {
-
-              await CacheHelper.init();
-              CacheHelper.clearAllData();
-              Navigator.pushReplacement(context,MaterialPageRoute(builder: (_)=> LogIn()));
-              print(CacheHelper.getData(key: 'id'));
-
-            },
-            leading: const Icon(Icons.output_outlined),
-
-          ),
-        ],
+            const Divider(),
+          ],
+        ),
       ),
     );
   }

@@ -1,9 +1,10 @@
 import 'dart:io';
-import 'package:flutter/cupertino.dart';
+// import 'dart:ui';
+// import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:intl/intl.dart';
+import 'package:intl/intl.dart' as intlDateFormat;
 import 'package:Reservation/common/button.dart';
 import 'package:Reservation/core/cache_helper/cache_helper.dart';
 import 'package:Reservation/features/home/business_layer/user_reservations_cubit.dart';
@@ -87,7 +88,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
     );
 
     if (selectedDate != null) {
-      final formattedDate = DateFormat('yyyy-MM-dd').format(selectedDate);
+      final formattedDate = intlDateFormat.DateFormat('yyyy-MM-dd').format(selectedDate);
 
       controller.text = formattedDate;
     }
@@ -117,14 +118,17 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
             color: Colors.white,
           ),
         ),
-        backgroundColor: Colors.deepOrange,
-        title:const Center(
+        backgroundColor: AppColors.litePurple,
+        title: Center(
             child: Text(
           "استكمال بيانات الحجز",
           style: TextStyle(
+            fontSize: 20.sp,
               color: Colors.white,
               fontFamily: 'Cairo',
-              fontWeight: FontWeight.bold),
+              fontWeight: FontWeight.bold,
+
+          ),
         )),
       ),
       body: BlocConsumer<AdditionalOptionsCubit, AdditionalOptionsState>(
@@ -136,34 +140,38 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
 
           return SingleChildScrollView(
             child: Padding(
-              padding: EdgeInsets.all(16.0),
+              padding:const EdgeInsets.all(10.0),
               child: Form(
                 key: _formKey,
                 child: Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 50.0, bottom: 10),
-                      child: Container(
-                        alignment: AlignmentDirectional.centerEnd,
-                        child: const Text(
-                          "الحاله الاجتماعيه",
-                          textAlign: TextAlign.end,
-                          style: TextStyle(
-                            fontFamily: 'Cairo',
-                            color: AppColors.lightGrey,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
+                    const SizedBox(height: 10,),
+                  const  Padding(
+                      padding:  EdgeInsets.only(right: 20.0, bottom: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+
+                        children: [
+                           Text(
+                            "الحاله الاجتماعيه",
+                            // textAlign: TextAlign.start,
+                            style: TextStyle(
+                              fontFamily: 'Cairo',
+                              color: AppColors.litePurple,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
+                        ],
                       ),
                     ),
                     // DropDownListWidget(),
                     Padding(
                       padding: const EdgeInsets.only(left: 20.0, right: 20),
-                      child: Container(
-                        alignment: AlignmentDirectional.topEnd,
-                        width: 80.w,
-                        height: 10.h,
+                      child: Directionality(
+                        textDirection: TextDirection.rtl,
+
                         child: DropdownButtonFormField<int>(
                           decoration: const InputDecoration(
                             border: OutlineInputBorder(
@@ -173,9 +181,8 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                             ),
                           ),
                           isExpanded: true,
-                          hint:  Text(
+                          hint: const Text(
                             "الحالة الاجتماعية", textAlign: TextAlign.end,
-                            style: TextStyle(color: AppColors.lightGrey),
                           ),
                           items: status.map((value) {
                             return DropdownMenuItem<int>(
@@ -185,9 +192,11 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                                 child: Text(
                                   value,
                                   style: TextStyle(
-                                      color: AppColors.lightGrey,
+                                      // color: AppColors.lightGrey,
                                       fontFamily: 'Cairo',
-                                      fontSize: 19.sp),
+                                      fontSize: 17.sp,
+                                    fontWeight: FontWeight.bold
+                                  ),
                                 ),
                               ),
                             );
@@ -205,7 +214,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                       height: 10,
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(right: 50.0, bottom: 10),
+                      padding: const EdgeInsets.only(right: 20.0, bottom: 10),
                       child: Container(
                         alignment: AlignmentDirectional.centerEnd,
                         child: const Text(
@@ -213,7 +222,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                           textAlign: TextAlign.end,
                           style: TextStyle(
                             fontFamily: 'Cairo',
-                            color: AppColors.lightGrey,
+                            color: AppColors.litePurple,
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
@@ -228,7 +237,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                         onTap: () => _selectDate(_fromDateTimeController),
                         decoration: InputDecoration(
                           labelText: '',
-                          suffixIcon: Icon(Icons.calendar_today),
+                          suffixIcon:const Icon(Icons.calendar_today),
                           focusedBorder: OutlineInputBorder(
                             borderSide:const BorderSide(
                               width: 2,
@@ -256,7 +265,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                     ),
 
                     Padding(
-                      padding: const EdgeInsets.only(right: 50.0, bottom: 10),
+                      padding: const EdgeInsets.only(right: 20.0, bottom: 10),
                       child: Container(
                         alignment: AlignmentDirectional.centerEnd,
                         child: const Text(
@@ -264,7 +273,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                           textAlign: TextAlign.end,
                           style: TextStyle(
                             fontFamily: 'Cairo',
-                            color: AppColors.lightGrey,
+                            color: AppColors.litePurple,
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
@@ -301,10 +310,10 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                         },
                       ),
                     ),
-                    const SizedBox(height: 10,),
+                    const SizedBox(height: 20,),
 
                     Padding(
-                      padding: EdgeInsets.only(right: 50),
+                      padding: EdgeInsets.only(right: 20),
                       child: Container(
                         alignment: AlignmentDirectional.centerEnd,
                         child: const Text(
@@ -312,7 +321,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                           textAlign: TextAlign.end,
                           style: TextStyle(
                             fontFamily: 'Cairo',
-                            color: AppColors.lightGrey,
+                            color: AppColors.litePurple,
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
@@ -347,13 +356,16 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Text(
+                                        textAlign: TextAlign.end,
                                         'من: $from , الي: $to , السعر :$price',
                                         style: TextStyle(
+
                                           fontFamily: 'Cairo',
                                           color: Colors.black,
                                           fontSize: 18.sp,
                                         ),
                                       ),
+                                      const SizedBox(height: 10,)
                                     ],
                                   ),
                                   value: id,
@@ -375,7 +387,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                       height: 15,
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(right: 50.0, bottom: 10),
+                      padding: const EdgeInsets.only(right: 20.0, bottom: 10),
                       child: Container(
                         alignment: AlignmentDirectional.centerEnd,
                         child: const Text(
@@ -383,7 +395,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                           textAlign: TextAlign.end,
                           style: TextStyle(
                             fontFamily: 'Cairo',
-                            color: AppColors.lightGrey,
+                            color: AppColors.litePurple,
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
@@ -416,7 +428,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                     ),
 
                     Padding(
-                      padding: const EdgeInsets.only(right: 50.0, bottom: 10),
+                      padding: const EdgeInsets.only(right: 20.0, bottom: 20, top: 20),
                       child: Container(
                         alignment: AlignmentDirectional.centerEnd,
                         child: const Text(
@@ -424,7 +436,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                           textAlign: TextAlign.end,
                           style: TextStyle(
                             fontFamily: 'Cairo',
-                            color: AppColors.lightGrey,
+                            color: AppColors.litePurple,
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
@@ -443,8 +455,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                             final option = addOp.options[index];
                             final itemName = option.name.toString();
                             final itemPrice = option.price.toString();
-                            print("<<<<<<<<<<<<<object>>>>>>>>>>>>>");
-                            print(addOp.options.length);
+
                             if(addOp.options.length ==0){
                               return Center(child: Text("لا يوجد",  style: TextStyle(
                                 color: Colors.indigo,
@@ -454,28 +465,32 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                               ),),);
 
                             }else{
-                              return CheckboxListTile(
-                                title: Text(
-                                  'السعر : $itemPrice , $itemName ',
-                                  style: TextStyle(
-                                    color: Colors.indigo,
-                                    fontFamily: 'Cairo',
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20.sp,
+                              return Directionality(
+
+                                textDirection: TextDirection.rtl,
+                                child: CheckboxListTile(
+                                  title: Text(
+                                    ' $itemName ,السعر : $itemPrice ',
+                                    style: TextStyle(
+                                      // color: Colors.indigo,
+                                      fontFamily: 'Cairo',
+                                      // fontWeight: FontWeight.bold,
+                                      fontSize: 18.sp,
+                                    ),
                                   ),
+                                  value: selectedItems.contains(itemName),
+                                  onChanged: (value) {
+                                    setState(() {
+                                      if (value == true) {
+                                        selectedItems.add(itemName);
+                                        selectedItemsPrice.add(itemPrice);
+                                      } else {
+                                        selectedItems.remove(itemName);
+                                        selectedItemsPrice.add(itemPrice);
+                                      }
+                                    });
+                                  },
                                 ),
-                                value: selectedItems.contains(itemName),
-                                onChanged: (value) {
-                                  setState(() {
-                                    if (value == true) {
-                                      selectedItems.add(itemName);
-                                      selectedItemsPrice.add(itemPrice);
-                                    } else {
-                                      selectedItems.remove(itemName);
-                                      selectedItemsPrice.add(itemPrice);
-                                    }
-                                  });
-                                },
                               );
                             }
 
@@ -489,7 +504,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                       height: 15,
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(right: 50.0, bottom: 10),
+                      padding: const EdgeInsets.only(right: 20.0, bottom: 10),
                       child: Container(
                         alignment: AlignmentDirectional.centerEnd,
                         child: const Text(
@@ -497,7 +512,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                           textAlign: TextAlign.end,
                           style: TextStyle(
                             fontFamily: 'Cairo',
-                            color: AppColors.lightGrey,
+                            color: AppColors.litePurple,
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
@@ -507,17 +522,20 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
 
                     Container(
                       width: 80.w,
-                      height: 10.h,
+                      // height: 10.h,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(10.sp),
                         border: Border.all(color: AppColors.lightGrey),
                       ),
                       child: TextButton(
                         onPressed: _selectAttachment,
-                        child:const Text('اختر مرفق'),
+                        child: Text('اختر مرفق', style: TextStyle(fontWeight: FontWeight.bold, color: AppColors.litePurple, fontSize: 20.sp),),
                       ),
                     ),
-                    if (_attachment != null) Image.file(_attachment!),
+                    if (_attachment != null) Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Image.file(_attachment!),
+                    ),
 
                     const SizedBox(
                       height: 15,
@@ -530,7 +548,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                           Fluttertoast.showToast(
                               msg: "تم الحجز بنجاح",
                               textColor: Colors.white,
-                              backgroundColor: Colors.deepOrange);
+                              backgroundColor:  AppColors.litePurple);
                           Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -548,14 +566,14 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                           Fluttertoast.showToast(
                               msg: "حدث مشكله اثناء الحجز ",
                               textColor: Colors.white,
-                              backgroundColor: Colors.deepOrange);
+                              backgroundColor: AppColors.litePurple);
                         }else if(state is AddReservationAlreadyReserved){
                           EasyLoading.dismiss();
 
                           Fluttertoast.showToast(
                               msg: "هذا التوقيت غير متاح",
                               textColor: Colors.white,
-                              backgroundColor: Colors.deepOrange);
+                              backgroundColor:  AppColors.litePurple);
                         }else{
                           EasyLoading.show();
 

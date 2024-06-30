@@ -30,7 +30,7 @@ class _FlutterToastState extends State<FlutterToast> with SingleTickerProviderSt
   void initState() {
     super.initState();
 
-    _animationController = AnimationController(vsync: this, duration: Duration(milliseconds: 300));
+    _animationController = AnimationController(vsync: this, duration: const Duration(milliseconds: 300));
     _animation = CurvedAnimation(parent: _animationController, curve: Curves.easeIn);
     _animation.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
@@ -96,7 +96,7 @@ class ToastWidget extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Icon(iconData, color: textColor),
-              SizedBox(width: 8),
+              const SizedBox(width: 8),
               Text(
                 message,
                 style: TextStyle(color: textColor),

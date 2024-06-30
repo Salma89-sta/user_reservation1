@@ -89,7 +89,7 @@ dev_dependencies:
   robusta_firebase_core: ^0.1.1
   toast: ^0.3.0
   flutter_easyloading: ^3.0.0
-  intl: ^0.18.1
+  intl: any
   firebase_core: ^2.25.5
   firebase_auth: ^4.17.6
   firebase_database: ^10.4.7

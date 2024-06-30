@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'dart:async';
 
 // Slider Cubit
 class SliderCubit extends Cubit<int> {
@@ -9,31 +10,69 @@ class SliderCubit extends Cubit<int> {
   void nextPage() {
     if (state < images.length - 1) {
       emit(state + 1);
+    } else {
+      emit(0);
     }
   }
 
   void previousPage() {
     if (state > 0) {
       emit(state - 1);
+    } else {
+      emit(images.length - 1);
     }
   }
 }
 
 // Slider Widget
-class SliderWidget extends StatelessWidget {
+class SliderWidget extends StatefulWidget {
+  @override
+  _SliderWidgetState createState() => _SliderWidgetState();
+}
+
+class _SliderWidgetState extends State<SliderWidget> {
+  final SliderCubit sliderCubit = SliderCubit();
+  Timer? _timer;
+  int _currentPage = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _startAutoSlide();
+  }
+
+  @override
+  void dispose() {
+    _stopAutoSlide();
+    super.dispose();
+  }
+
+  void _startAutoSlide() {
+    _timer = Timer.periodic(Duration(seconds:2), (_) {
+      _currentPage = (_currentPage + 1) % images.length;
+      sliderCubit.emit(_currentPage);
+    });
+  }
+
+  void _stopAutoSlide() {
+    _timer?.cancel();
+    _timer = null;
+  }
+
   @override
   Widget build(BuildContext context) {
-    final SliderCubit sliderCubit = context.read<SliderCubit>();
-
     return BlocBuilder<SliderCubit, int>(
+      bloc: sliderCubit,
       builder: (context, state) {
         return GestureDetector(
           onHorizontalDragEnd: (details) {
+            _stopAutoSlide();
             if (details.primaryVelocity! > 0) {
               sliderCubit.previousPage();
             } else if (details.primaryVelocity! < 0) {
               sliderCubit.nextPage();
             }
+            _startAutoSlide();
           },
           child: Stack(
             children: [

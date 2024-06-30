@@ -109,22 +109,34 @@ class _ListOfCategoryDetailsScreenState
       },
       builder: (context, state) {
         return Scaffold(
-          drawer: DrawerWidget(),
+          drawer:const DrawerWidget(),
           appBar: AppBar(
-            iconTheme: IconThemeData(color: Colors.white),
+            iconTheme:const IconThemeData(color: Colors.white),
             backgroundColor: AppColors.litePurple,
-            title: const Center(
-                child: Text(
-              "التفاصيل",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontFamily: 'Cairo',
-                  fontWeight: FontWeight.bold),
-            )),
+
           ),
           body: SingleChildScrollView(
             child: Column(
               children: [
+
+                 SizedBox(height: 5.h,),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "${widget.name}",
+                      style: TextStyle(
+                          color: AppColors.litePurple,
+                          fontFamily: 'Cairo',
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20.sp
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 5,),
+
                 //slider
                 Container(
                   width: 100.w,
@@ -134,147 +146,92 @@ class _ListOfCategoryDetailsScreenState
                     child: SliderWidget(),
                   ),
                 ),
-                SizedBox(
-                  height: 10,
-                ),
 
+                Row(
+
+                  children: [
+
+                    Text(
+                      " عرض : ",
+                      style: TextStyle(
+                          color: AppColors.litePurple,
+                          fontFamily: 'Cairo',
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18.sp),
+                    ),
+                    Text(
+                      (widget.offer.trim() == '') ? "لايوجد" : widget.offer,
+                      style: TextStyle(
+                          color: AppColors.litePurple,
+                          fontFamily: 'Cairo',
+                          fontSize: 18.sp),
+                    ),
+                  ],
+                ),
                 Container(
+                  margin:const EdgeInsets.all(20),
                   child: Column(
                     children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Text(
-                            "${widget.name}",
-                            style: TextStyle(
-                                color: Colors.indigo,
-                                fontFamily: 'Cairo',
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20.sp),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
+
+                     const SizedBox(
                         height: 8,
                       ),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Container(
-                            // height: 20.h,
-                            child: Text(
-                              "${widget.description}",
-                              style: TextStyle(
-                                color: Colors.indigo,
-                                fontFamily: 'Cairo',
-                                fontSize: 20.sp,
+                          Column(
+
+                            children: [
+
+                              Text(
+                                " : الوصف",
+                                style: TextStyle(
+                                    color: AppColors.litePurple,
+                                    fontFamily: 'Cairo',
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20.sp),
                               ),
-                              textDirection: TextDirection.rtl,
-                              maxLines: 5,
-                              overflow: TextOverflow.ellipsis,
-                              textAlign: TextAlign.justify,
-                            ),
-                          ),
-                          Text(
-                            " : الوصف",
-                            style: TextStyle(
-                                color: Colors.indigo,
-                                fontFamily: 'Cairo',
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20.sp),
+                              Padding(
+                                padding: const EdgeInsets.only(right: 10.0),
+                                child: Container(
+
+                                  padding:const EdgeInsets.all(10),
+                                  decoration: BoxDecoration(
+                                    color: AppColors.darkPurpleWithOpacity0,
+                                    borderRadius: BorderRadius.all(Radius.circular(10.sp)),
+                                  ),
+                                  child: Text(
+                                    "${widget.description}",
+                                    style: TextStyle(
+                                      color: AppColors.litePurple,
+                                      fontFamily: 'Cairo',
+                                      fontSize: 20.sp,
+                                    ),
+                                    // textDirection: TextDirection.rtl,
+                                    maxLines: 5,
+                                    overflow: TextOverflow.ellipsis,
+                                    textAlign: TextAlign.justify,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
 
-                      SizedBox(
+                      const SizedBox(
                         height: 8,
                       ),
 
-                      // Container(
-                      //   alignment: AlignmentDirectional.centerEnd,
-                      //   child: Text(  " : المواعيد",
-                      //     style: TextStyle(
-                      //         color: Colors.indigo,
-                      //         fontFamily: 'Cairo',
-                      //         fontWeight: FontWeight.bold,
-                      //         fontSize: 20.sp),),
-                      // ),
-                      //
-                      // BlocConsumer<ItemPackageCubit, ItemPackageState>(
-                      //   listener: (context, state) {
-                      //     // TODO: implement listener
-                      //   },
-                      //   builder: (context, state) {
-                      //     var cubit = ItemPackageCubit.get(context);
-                      //     return Container(
-                      //       width: 90.w,
-                      //       // height: 30.h,
-                      //       child: ListView.builder(
-                      //           shrinkWrap: true,
-                      //           itemCount:
-                      //               cubit.availabilityData.length,
-                      //           itemBuilder: (context, index) {
-                      //             return Directionality(
-                      //               textDirection: TextDirection.rtl,
-                      //               child: Row(
-                      //                 children: [
-                      //                   Text(" من: ", style:  TextStyle(
-                      //                     color: Colors.indigo,
-                      //                     fontFamily: 'Cairo',
-                      //                     fontSize: 20.sp,
-                      //                   ),),
-                      //                   Text(cubit
-                      //                       .availabilityData[index]
-                      //                       .availableTimeFrom!, style:  TextStyle(
-                      //                     color: Colors.indigo,
-                      //                     fontFamily: 'Cairo',
-                      //                     fontSize: 18.sp,
-                      //                   ),),
-                      //                   Text(" الي: ", style:  TextStyle(
-                      //                     color: Colors.indigo,
-                      //                     fontFamily: 'Cairo',
-                      //                     fontSize: 20.sp,
-                      //                   ),),
-                      //                   Text(cubit
-                      //                       .availabilityData[index]
-                      //                       .availableTimeTo!, style:  TextStyle(
-                      //                     color: Colors.indigo,
-                      //                     fontFamily: 'Cairo',
-                      //                     fontSize: 18.sp,
-                      //                   ),),
-                      //                   Text(" السعر: ", style:  TextStyle(
-                      //                     color: Colors.indigo,
-                      //                     fontFamily: 'Cairo',
-                      //                     fontSize: 20.sp,
-                      //                   ),),
-                      //                   Text(cubit
-                      //                       .availabilityData[index]
-                      //                       .price!, style:  TextStyle(
-                      //                     color: Colors.indigo,
-                      //                     fontFamily: 'Cairo',
-                      //                     fontSize: 18.sp,
-                      //                   ),),
-                      //                 ],
-                      //               ),
-                      //             );
-                      //           }),
-                      //     );
-                      //   },
-                      // ),
-                      //
-                      // SizedBox(
-                      //   height: 8,
-                      // ),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Text(
-                            ": المقتنيات  ",
+                            ": المقتنيات",
                             style: TextStyle(
-                                color: Colors.indigo,
+                                color:AppColors.litePurple,
                                 fontFamily: 'Cairo',
                                 fontWeight: FontWeight.bold,
                                 fontSize: 20.sp),
@@ -282,11 +239,15 @@ class _ListOfCategoryDetailsScreenState
                         ],
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(right: 20.0),
+                        padding: const EdgeInsets.only(right: 10.0),
                         child: Directionality(
                           textDirection: TextDirection.rtl,
                           child: Container(
-                            // height: 15.h,
+                            padding:const EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              color: AppColors.darkPurpleWithOpacity0,
+                              borderRadius: BorderRadius.all(Radius.circular(10.sp)),
+                            ),
                             child: ListOfData(
                               checklistItems: _items,
                               checklistcount: _quantity,
@@ -295,42 +256,46 @@ class _ListOfCategoryDetailsScreenState
                         ),
                       ),
 
-                      SizedBox(
-                        height: 5,
+                      const SizedBox(
+                        height: 8,
                       ),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Text(
-                            ": الاضافات ",
+                            ": الاضافات",
                             style: TextStyle(
-                                color: Colors.indigo,
+                                color: AppColors.litePurple,
                                 fontFamily: 'Cairo',
                                 fontWeight: FontWeight.bold,
                                 fontSize: 20.sp),
                           ),
                         ],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 20.0),
-                        child: Directionality(
-                          textDirection: TextDirection.rtl,
-                          child: ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: addOp.options.length,
-                            itemBuilder: (context, index) {
-                              final option = addOp.options[index];
-                              final itemName = option.name.toString();
-                              final itemPrice = option.price.toString();
+                      ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: addOp.options.length,
+                        itemBuilder: (context, index) {
+                          final option = addOp.options[index];
+                          final itemName = option.name.toString();
+                          final itemPrice = option.price.toString();
 
-                              return CheckboxListTile(
+                          return Directionality(
+                            textDirection: TextDirection.rtl,
+                            child: Container(
+                              padding:const EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                color: AppColors.darkPurpleWithOpacity0,
+                                borderRadius: BorderRadius.all(Radius.circular(10.sp)),
+                              ),
+                              child: CheckboxListTile(
                                 title: Text(
-                                  '$itemName , السعر  : $itemPrice ',
+                                  '  $itemName, السعر :$itemPrice ',
                                   style: TextStyle(
-                                    color: Colors.indigo,
+                                    color:AppColors.litePurple,
                                     fontFamily: 'Cairo',
-                                    fontWeight: FontWeight.bold,
+                                    // fontWeight: FontWeight.bold,
                                     fontSize: 20.sp,
                                   ),
                                 ),
@@ -344,16 +309,16 @@ class _ListOfCategoryDetailsScreenState
                                     }
                                   });
                                 },
-                              );
-                            },
-                          ),
-                        ),
+                              ),
+                            ),
+                          );
+                        },
                       ),
                     ],
                   ),
                 ),
 
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 Button0(
@@ -361,7 +326,7 @@ class _ListOfCategoryDetailsScreenState
                         child: Text(
                       "للحجز",
                       style: TextStyle(
-                          color: Colors.indigo,
+                          color: Colors.white,
                           fontFamily: 'Cairo',
                           fontSize: 20.sp,
                           fontWeight: FontWeight.bold),
@@ -397,7 +362,7 @@ class _ListOfCategoryDetailsScreenState
                                     ),
                                   )));
                     }),
-                SizedBox(
+              const  SizedBox(
                   height: 15,
                 ),
               ],
