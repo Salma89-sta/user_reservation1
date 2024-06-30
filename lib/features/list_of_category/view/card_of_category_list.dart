@@ -15,7 +15,7 @@ class ListOfCategory extends StatelessWidget {
 
   // final String priceIn;
   // final String calenderWidget;
-  final String listOfCategoryDescription;
+  // final String listOfCategoryDescription;
   final String listOfCategoryPricePerDay;
   final VoidCallback forMoreDetails;
   final String offer;
@@ -27,7 +27,7 @@ class ListOfCategory extends StatelessWidget {
       {Key? key,
       required this.listOfCategoryImage,
       required this.listOfCategoryName,
-      required this.listOfCategoryDescription,
+      // required this.listOfCategoryDescription,
       required this.listOfCategoryPricePerDay,
       required this.listOfCategoryStatus,
       required this.forMoreDetails,

@@ -56,86 +56,86 @@ class _ListOfCategoryScreenState extends State<ListOfCategoryScreen> {
               child:
               GridView.builder(
                 shrinkWrap:true,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 1.w,
-                  mainAxisSpacing: 5.h,
+                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                  maxCrossAxisExtent: 50.w, // Maximum width of each child
+                  mainAxisSpacing: 10.0, // Vertical spacing between children
+                  crossAxisSpacing: 10.0, // Horizontal spacing between children
+                  childAspectRatio: 0.65,
                 ),
                 itemCount: categoryItems.categoryItems.length,
                 itemBuilder: (context, index) {
-                  return  Flexible(
-                    child: ListOfCategory(
-                      listOfCategoryImage: CachedNetworkImage(
-                        imageUrl:
-                        categoryItems.categoryItems[index].logo!,
-                        imageBuilder: (context, imageProvider) =>
-                            Container(
-                              width: 100.w,
-                              height: 20.h,
-                              decoration: BoxDecoration(
-                                // borderRadius: BorderRadius.circular(20.sp),
-                                image: DecorationImage(
-                                  image: imageProvider,
-                                  fit: BoxFit.fill,
-                                ),
+                  return  ListOfCategory(
+                    listOfCategoryImage: CachedNetworkImage(
+                      imageUrl:
+                      categoryItems.categoryItems[index].logo!,
+                      imageBuilder: (context, imageProvider) =>
+                          Container(
+                            width: 100.w,
+                            height: 20.h,
+                            decoration: BoxDecoration(
+                              // borderRadius: BorderRadius.circular(20.sp),
+                              image: DecorationImage(
+                                image: imageProvider,
+                                fit: BoxFit.fill,
                               ),
                             ),
-                        placeholder: (context, url) =>
-                        const CircularProgressIndicator(),
-                        errorWidget: (context, url, error) =>
-                        const Icon(Icons.error),
-                      ),
-                      listOfCategoryName: categoryItems.categoryItems[index].name!,
-                      listOfCategoryDescription: categoryItems.categoryItems[index]
-                          .description!,
-                      listOfCategoryStatus: (categoryItems.categoryItems[index]
-                          .status! == '0') ? "في الصيانه " : "متاح",
-                      forMoreDetails: () {
-                        print("nrnivnrigrirkgfnkinrt..................................");
-                        imagesFromAPI = [
-                          categoryItems.categoryItems[index].image1.toString(),
-                          categoryItems.categoryItems[index].image2.toString(),
-                          categoryItems.categoryItems[index].image3.toString(),
-                        ];
-                    
-                        Navigator.push(context, MaterialPageRoute(builder: (
-                            context) =>
-                            MultiBlocProvider(
-                              providers: [
-                                BlocProvider(create: (context) =>
-                                ItemPackageCubit()
-                                  ..getIemPackage(
-                                      categoryItems.categoryItems[index].id!),),
-                    
-                                BlocProvider(create: (context) => ItemsCubit(),),
-                                BlocProvider(create: (context) =>
-                                AdditionalOptionsCubit()
-                                  ..getAdditionalOptions(
-                                      categoryItems.categoryItems[index].id!),
-                                )
-                              ],
-                              child: ListOfCategoryDetailsScreen(
-                                name: categoryItems.categoryItems[index].name!,
-                                description: categoryItems.categoryItems[index]
-                                    .description!,
-                                address: categoryItems.categoryItems[index]
-                                    .address!,
-                                // price:  categoryItems.categoryItems[index].price!,
-                                // priceIn:  categoryItems.categoryItems[index].type!,
-                                categoryName: categoryItems.categoryItems[index]
-                                    .categoryName!,
-                                itemId: categoryItems.categoryItems[index].id!,
-                                itemDevices: categoryItems.categoryItems[index]
-                                    .devices!,
-                                offer: categoryItems.categoryItems[index].offer!,
-                              ),
-                            ))
-                        );
-                      },
-                      offer: categoryItems.categoryItems[index].offer!,
-                      itemId: categoryItems.categoryItems[index].id!,
-                      listOfCategoryPricePerDay: '',
+                          ),
+                      placeholder: (context, url) =>
+                      const CircularProgressIndicator(),
+                      errorWidget: (context, url, error) =>
+                      const Icon(Icons.error),
                     ),
+                    listOfCategoryName: categoryItems.categoryItems[index].name!,
+                    // listOfCategoryDescription: categoryItems.categoryItems[index]
+                    //     .description!,
+                    listOfCategoryStatus: (categoryItems.categoryItems[index]
+                        .status! == '0') ? "في الصيانه " : "متاح",
+                    forMoreDetails: () {
+
+                      print("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<object>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+
+                      imagesFromAPI = [
+                        categoryItems.categoryItems[index].image1.toString(),
+                        categoryItems.categoryItems[index].image2.toString(),
+                        categoryItems.categoryItems[index].image3.toString(),
+                      ];
+
+                      Navigator.push(context, MaterialPageRoute(builder: (
+                          context) =>
+                          MultiBlocProvider(
+                            providers: [
+                              BlocProvider(create: (context) =>
+                              ItemPackageCubit()
+                                ..getIemPackage(
+                                    categoryItems.categoryItems[index].id!),),
+
+                              BlocProvider(create: (context) => ItemsCubit(),),
+                              BlocProvider(create: (context) =>
+                              AdditionalOptionsCubit()
+                                ..getAdditionalOptions(
+                                    categoryItems.categoryItems[index].id!),
+                              )
+                            ],
+                            child: ListOfCategoryDetailsScreen(
+                              name: categoryItems.categoryItems[index].name!,
+                              description: categoryItems.categoryItems[index]
+                                  .description!,
+                              address: categoryItems.categoryItems[index]
+                                  .address!,
+
+                              categoryName: categoryItems.categoryItems[index]
+                                  .categoryName!,
+                              itemId: categoryItems.categoryItems[index].id!,
+                              itemDevices: categoryItems.categoryItems[index]
+                                  .devices!,
+                              offer: categoryItems.categoryItems[index].offer!,
+                            ),
+                          ))
+                      );
+                    },
+                    offer: categoryItems.categoryItems[index].offer!,
+                    itemId: categoryItems.categoryItems[index].id!,
+                    listOfCategoryPricePerDay: '',
                   );
                 },
               ),

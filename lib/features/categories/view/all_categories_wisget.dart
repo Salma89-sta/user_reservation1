@@ -46,10 +46,11 @@ class ViewCategoriesScreen extends StatelessWidget {
                 padding:const EdgeInsets.only( left: 20, right: 20, top: 20 ),
                 child: GridView.builder(
                   shrinkWrap:true,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 3.w,
-                  mainAxisSpacing: 5.h,
+                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                  maxCrossAxisExtent: 50.w, // Maximum width of each child
+                  mainAxisSpacing: 10.0, // Vertical spacing between children
+                  crossAxisSpacing: 10.0, // Horizontal spacing between children
+                  childAspectRatio: 0.75,
                 ),
                 itemCount: categoryCubit.categories.length,
                 itemBuilder: (context, index) {

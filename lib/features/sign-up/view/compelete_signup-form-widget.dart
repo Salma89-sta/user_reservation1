@@ -35,7 +35,7 @@ class _SignupFormWidgetState extends State<CompleteSignupFormWidget> {
   final passwordFocusNode = FocusNode();
   bool userFound = false;
 
-  Widget buttonWidget= Text("تسجيل ", style: TextStyle(color: Colors.indigo, fontFamily: 'Cairo', fontSize: 20.sp, fontWeight: FontWeight.bold),);
+  Widget buttonWidget= Text("تسجيل ", style: TextStyle(color: AppColors.litePurple, fontFamily: 'Cairo', fontSize: 20.sp, fontWeight: FontWeight.bold),);
 
   void clearControllers() {
     // _emailController.clear();
@@ -56,11 +56,11 @@ class _SignupFormWidgetState extends State<CompleteSignupFormWidget> {
             listener: (context, state) {
               if (state is SignupError) {
                 Fluttertoast.showToast(msg: "حدث خطا اثناء تسجيل البيانات",textColor: Colors.white, backgroundColor: AppColors.litePurple);
-                buttonWidget= Text("تسجيل ", style: TextStyle(color: Colors.indigo, fontFamily: 'Cairo', fontSize: 20.sp, fontWeight: FontWeight.bold),);
+                buttonWidget= Text("تسجيل ", style: TextStyle(color:AppColors.litePurple, fontFamily: 'Cairo', fontSize: 20.sp, fontWeight: FontWeight.bold),);
                 print("Signup error");
 
               } else if (state is SignupDublicate) {
-                buttonWidget= Text("تسجيل ", style: TextStyle(color: Colors.indigo, fontFamily: 'Cairo', fontSize: 20.sp, fontWeight: FontWeight.bold),);
+                buttonWidget= Text("تسجيل ", style: TextStyle(color:AppColors.litePurple, fontFamily: 'Cairo', fontSize: 20.sp, fontWeight: FontWeight.bold),);
 
   Fluttertoast.showToast(msg: "البريد الالكتروني موجود بالفعل ",textColor: Colors.white, backgroundColor:AppColors.litePurple);
 
@@ -78,10 +78,10 @@ class _SignupFormWidgetState extends State<CompleteSignupFormWidget> {
               return Column(
                 children: [
                   const SizedBox(height: 20,),
-                  const Center(
+                   Center(
                     child:  Text("أستكمال البيانات", style: TextStyle(fontFamily: 'Cairo',
                       color: Colors.indigo,
-                      fontSize: 20,
+                      fontSize: 20.sp,
                       fontWeight: FontWeight.bold,),),
                   ),
                   Container(
@@ -198,7 +198,7 @@ class _SignupFormWidgetState extends State<CompleteSignupFormWidget> {
                                   textAlign: TextAlign.end,
                                   style: TextStyle(
                                     fontFamily: 'Cairo',
-                                    color: Colors.indigo,
+                                    color: AppColors.litePurple,
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -229,7 +229,7 @@ class _SignupFormWidgetState extends State<CompleteSignupFormWidget> {
                                   textAlign: TextAlign.start,
                                   style: TextStyle(
                                     fontFamily: 'Cairo',
-                                    color: Colors.indigo,
+                                    color:AppColors.litePurple,
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -279,7 +279,7 @@ class _SignupFormWidgetState extends State<CompleteSignupFormWidget> {
                                   textAlign: TextAlign.start,
                                   style: TextStyle(
                                     fontFamily: 'Cairo',
-                                    color: Colors.indigo,
+                                    color: AppColors.litePurple,
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold,
                                   ),

@@ -147,29 +147,45 @@ class _ListOfCategoryDetailsScreenState
                   ),
                 ),
 
-                Row(
+                Padding(
+                  padding: const EdgeInsets.only(right: 20.0),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                          Text(
+                            ": عرض",
+                            style: TextStyle(
+                                color: AppColors.litePurple,
+                                fontFamily: 'Cairo',
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20.sp),
+                          ),
 
-                  children: [
-
-                    Text(
-                      " عرض : ",
-                      style: TextStyle(
-                          color: AppColors.litePurple,
-                          fontFamily: 'Cairo',
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18.sp),
-                    ),
-                    Text(
-                      (widget.offer.trim() == '') ? "لايوجد" : widget.offer,
-                      style: TextStyle(
-                          color: AppColors.litePurple,
-                          fontFamily: 'Cairo',
-                          fontSize: 18.sp),
-                    ),
-                  ],
+                        ],
+                  ),
                 ),
+
                 Container(
-                  margin:const EdgeInsets.all(20),
+                  margin:const EdgeInsets.only(right: 20, left: 10,),
+                  alignment: AlignmentDirectional.topEnd,
+                  padding:const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: AppColors.darkPurpleWithOpacity0,
+                    borderRadius: BorderRadius.all(Radius.circular(10.sp)),
+                  ),
+                  child: Text(
+                    (widget.offer.trim() == '') ? "لايوجد" : widget.offer,
+                    style: TextStyle(
+                      color: AppColors.litePurple,
+                      fontFamily: 'Cairo',
+                      fontSize: 20.sp,
+                    ),
+                  ),
+                ),
+
+                Container(
+                  margin:const EdgeInsets.only(left: 20, right: 20),
                   child: Column(
                     children: [
 

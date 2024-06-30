@@ -68,104 +68,102 @@ class _HomeScreenState extends State<HomeScreen> {
             return (state is UserReservationsLoading)
                 ? Center(child: CircularProgressIndicator())
                 :
-            (state is UserReservationsLoaded) ? Container(
-              width: double.infinity,
-              height: 100.h,
-              child:
-              GridView.builder(
-                shrinkWrap:true,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 3.w,
-                  mainAxisSpacing: 5.h,
-                ),
-                itemCount:  cubit.userReservationsData.length,
-                itemBuilder: (context, index) {
-                  return  ReservedCardToUser(
-                    reservedProductImage: cubit.userReservationsData[index].item!.image1.toString(),
-                    reservedProductName: cubit.userReservationsData[index]
-                        .categoryName.toString(),
-                    fromDate: cubit.userReservationsData[index].timeOfReservationFrom.toString().replaceAll('00:00:00', ''),
-                    toDate: cubit.userReservationsData[index].timeOfReservationTo.toString().replaceAll('00:00:00', ''),
-                    status: cubit.userReservationsData[index].status
-                        .toString(), ReservationId: cubit.userReservationsData[index].id!,
+            (state is UserReservationsLoaded) ? Directionality(
+              textDirection: TextDirection.rtl,
+              child: Container(
+                width: double.infinity,
+                height: 100.h,
+                child:
+                ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: cubit.userReservationsData.length,
+                          itemBuilder: (context, index) {
+                    return  ReservedCardToUser(
+                      reservedProductImage: cubit.userReservationsData[index].item!.image1.toString(),
+                      reservedProductName: cubit.userReservationsData[index]
+                          .categoryName.toString(),
+                      fromDate: cubit.userReservationsData[index].timeOfReservationFrom.toString().replaceAll('00:00:00', ''),
+                      toDate: cubit.userReservationsData[index].timeOfReservationTo.toString().replaceAll('00:00:00', ''),
+                      status: cubit.userReservationsData[index].status
+                          .toString(), ReservationId: cubit.userReservationsData[index].id!,
 
-                    delete: () {
-                      if( cubit.userReservationsData[index].status.toString() == '0'){
-                        final cubit = UserReservationsCubit.get(context);
-                        cubit.userDeleteReservation(cubit.userReservationsData[index].id!);
-                        // Navigator.push(context, MaterialPageRoute(builder: (context)=));
+                      delete: () {
+                        if( cubit.userReservationsData[index].status.toString() == '0'){
+                          final cubit = UserReservationsCubit.get(context);
+                          cubit.userDeleteReservation(cubit.userReservationsData[index].id!);
+                          // Navigator.push(context, MaterialPageRoute(builder: (context)=));
 
-                      }else{
-                        // Fluttertoast.showToast(msg: "هذا الحجز تمت الموافقه عليه لا يمكن مسحه", textColor: Colors.white, backgroundColor: Colors.deepOrange);
+                        }else{
+                          // Fluttertoast.showToast(msg: "هذا الحجز تمت الموافقه عليه لا يمكن مسحه", textColor: Colors.white, backgroundColor: Colors.deepOrange);
 
-                      }
-                    }, edit: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> BlocProvider(
-                      create: (context) => AddReservationCubit(),
-                      child: EditReservationScreen(
-                        itemId: cubit.userReservationsData[index].itemId!,
-                        categoryName: cubit.userReservationsData[index].categoryName!,
-                        reservationId:cubit.userReservationsData[index].id!,
-                        status: cubit.userReservationsData[index].status!,
-                        to: cubit.userReservationsData[index].timeOfReservationTo!,
-                        from:cubit.userReservationsData[index].timeOfReservationFrom!,
-                        additionals:cubit.userReservationsData[index].additionalOptions!,
-                        paid: cubit.userReservationsData[index].paid!,
-                        doc: cubit.userReservationsData[index].document!,
-                        approv: cubit.userReservationsData[index].approveOfPayment!,
-                        package_id: cubit.userReservationsData[index].packageId!,
-                        time: cubit.userReservationsData[index].time!, salary: cubit.userReservationsData[index].price!,),
-                    )));
+                        }
+                      }, edit: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> BlocProvider(
+                        create: (context) => AddReservationCubit(),
+                        child: EditReservationScreen(
+                          itemId: cubit.userReservationsData[index].itemId!,
+                          categoryName: cubit.userReservationsData[index].categoryName!,
+                          reservationId:cubit.userReservationsData[index].id!,
+                          status: cubit.userReservationsData[index].status!,
+                          to: cubit.userReservationsData[index].timeOfReservationTo!,
+                          from:cubit.userReservationsData[index].timeOfReservationFrom!,
+                          additionals:cubit.userReservationsData[index].additionalOptions!,
+                          paid: cubit.userReservationsData[index].paid!,
+                          doc: cubit.userReservationsData[index].document!,
+                          approv: cubit.userReservationsData[index].approveOfPayment!,
+                          package_id: cubit.userReservationsData[index].packageId!,
+                          time: cubit.userReservationsData[index].time!, salary: cubit.userReservationsData[index].price!,),
+                      )));
+                    },
+                    );
                   },
-                  );
-                },
-              ),
+                ),
 
-        //       ListView.builder(
-        //           shrinkWrap: true,
-        //           itemCount: cubit.userReservationsData.length,
-        //           itemBuilder: (context, index) {
-        //             return ReservedCardToUser(
-        //               reservedProductImage: cubit.userReservationsData[index].item!.image1.toString(),
-        //               reservedProductName: cubit.userReservationsData[index]
-        //                   .categoryName.toString(),
-        //               fromDate: cubit.userReservationsData[index].timeOfReservationFrom.toString().replaceAll('00:00:00', ''),
-        //               toDate: cubit.userReservationsData[index].timeOfReservationTo.toString().replaceAll('00:00:00', ''),
-        //               status: cubit.userReservationsData[index].status
-        //                   .toString(), ReservationId: cubit.userReservationsData[index].id!,
-        //
-        //               delete: () {
-        //               if( cubit.userReservationsData[index].status.toString() == '0'){
-        //                 final cubit = UserReservationsCubit.get(context);
-        //                 cubit.userDeleteReservation(cubit.userReservationsData[index].id!);
-        //                 // Navigator.push(context, MaterialPageRoute(builder: (context)=));
-        //
-        //               }else{
-        //                 // Fluttertoast.showToast(msg: "هذا الحجز تمت الموافقه عليه لا يمكن مسحه", textColor: Colors.white, backgroundColor: Colors.deepOrange);
-        //
-        //               }
-        //             }, edit: () {
-        //                 Navigator.push(context, MaterialPageRoute(builder: (context)=> BlocProvider(
-        //   create: (context) => AddReservationCubit(),
-        //   child: EditReservationScreen(
-        //                     itemId: cubit.userReservationsData[index].itemId!,
-        //                     categoryName: cubit.userReservationsData[index].categoryName!,
-        //                     reservationId:cubit.userReservationsData[index].id!,
-        //                     status: cubit.userReservationsData[index].status!,
-        //                     to: cubit.userReservationsData[index].timeOfReservationTo!,
-        //     from:cubit.userReservationsData[index].timeOfReservationFrom!,
-        //     additionals:cubit.userReservationsData[index].additionalOptions!,
-        //     paid: cubit.userReservationsData[index].paid!,
-        //     doc: cubit.userReservationsData[index].document!,
-        //     approv: cubit.userReservationsData[index].approveOfPayment!,
-        //     package_id: cubit.userReservationsData[index].packageId!,
-        //     time: cubit.userReservationsData[index].time!, salary: cubit.userReservationsData[index].price!,),
-        // )));
-        //             },
-        //             );
-        //           }
-        //       ),
+                      //       ListView.builder(
+                      //           shrinkWrap: true,
+                      //           itemCount: cubit.userReservationsData.length,
+                      //           itemBuilder: (context, index) {
+                      //             return ReservedCardToUser(
+                      //               reservedProductImage: cubit.userReservationsData[index].item!.image1.toString(),
+                      //               reservedProductName: cubit.userReservationsData[index]
+                      //                   .categoryName.toString(),
+                      //               fromDate: cubit.userReservationsData[index].timeOfReservationFrom.toString().replaceAll('00:00:00', ''),
+                      //               toDate: cubit.userReservationsData[index].timeOfReservationTo.toString().replaceAll('00:00:00', ''),
+                      //               status: cubit.userReservationsData[index].status
+                      //                   .toString(), ReservationId: cubit.userReservationsData[index].id!,
+                      //
+                      //               delete: () {
+                      //               if( cubit.userReservationsData[index].status.toString() == '0'){
+                      //                 final cubit = UserReservationsCubit.get(context);
+                      //                 cubit.userDeleteReservation(cubit.userReservationsData[index].id!);
+                      //                 // Navigator.push(context, MaterialPageRoute(builder: (context)=));
+                      //
+                      //               }else{
+                      //                 // Fluttertoast.showToast(msg: "هذا الحجز تمت الموافقه عليه لا يمكن مسحه", textColor: Colors.white, backgroundColor: Colors.deepOrange);
+                      //
+                      //               }
+                      //             }, edit: () {
+                      //                 Navigator.push(context, MaterialPageRoute(builder: (context)=> BlocProvider(
+                      //   create: (context) => AddReservationCubit(),
+                      //   child: EditReservationScreen(
+                      //                     itemId: cubit.userReservationsData[index].itemId!,
+                      //                     categoryName: cubit.userReservationsData[index].categoryName!,
+                      //                     reservationId:cubit.userReservationsData[index].id!,
+                      //                     status: cubit.userReservationsData[index].status!,
+                      //                     to: cubit.userReservationsData[index].timeOfReservationTo!,
+                      //     from:cubit.userReservationsData[index].timeOfReservationFrom!,
+                      //     additionals:cubit.userReservationsData[index].additionalOptions!,
+                      //     paid: cubit.userReservationsData[index].paid!,
+                      //     doc: cubit.userReservationsData[index].document!,
+                      //     approv: cubit.userReservationsData[index].approveOfPayment!,
+                      //     package_id: cubit.userReservationsData[index].packageId!,
+                      //     time: cubit.userReservationsData[index].time!, salary: cubit.userReservationsData[index].price!,),
+                      // )));
+                      //             },
+                      //             );
+                      //           }
+                      //       ),
+              ),
             ) : Container(
               child: Center(
                 child: Text("ليس لديك حجوزات", style:  TextStyle(fontWeight: FontWeight.bold,fontFamily: 'Cairo',fontSize: 20.sp),),

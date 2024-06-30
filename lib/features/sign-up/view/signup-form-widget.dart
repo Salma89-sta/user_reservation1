@@ -352,7 +352,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                             onPressed: () async {
                               await GoogleSignIn().signOut().then((value) {
                                 _signInWithGoogle(context);
-                              });
+                                                      });
                             },
                             text: "Sign up With Google",
                           ),
@@ -402,6 +402,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
         final User? user = userCredential.user;
 
         if (user != null) {
+          print("..........................................................");
           String email= user.email.toString();
           String name = user.displayName.toString();
           Navigator.push(context, MaterialPageRoute(builder: (context)=> CompleteSignupFormWidget(email, name) ));

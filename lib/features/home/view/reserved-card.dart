@@ -31,7 +31,7 @@ class ReservedCardToUser extends StatelessWidget {
         child: Container(
           width: 75.w,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(15),
             border:Border.all(
           color: AppColors.litePurple,
             width:2,
@@ -54,55 +54,35 @@ class ReservedCardToUser extends StatelessWidget {
                   fit: BoxFit.fill,// Error widget
                 ),
               ),
-              Text("${reservedProductName}", style: TextStyle(color: Colors.indigo, fontFamily: 'Cairo', fontWeight: FontWeight.bold, fontSize: 20.sp),),
-              SizedBox(height: 5,),
+              Text("${reservedProductName}", style: TextStyle(color: AppColors.litePurple,
+                  fontFamily: 'Cairo', fontWeight: FontWeight.bold, fontSize: 20.sp),),
+             const SizedBox(height: 5,),
 
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  Text(" من : ", style: TextStyle(color: AppColors.litePurple, fontFamily: 'Cairo',fontSize: 20.sp),),
 
-                  Text("${fromDate}", style: TextStyle(color: AppColors.lightGrey, fontFamily: 'Cairo',fontSize: 18.sp),),
-                  Text(" : من ", style: TextStyle(color: Colors.indigo, fontFamily: 'Cairo',fontSize: 20.sp),),
+                  Text("${fromDate}", style: TextStyle(color: Colors.black, fontFamily: 'Cairo',fontSize: 18.sp),),
                 ],
               ),
-              SizedBox(height: 5,),
+              const SizedBox(height: 5,),
 
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
+
                 children: [
-                  Text("${toDate}", style: TextStyle(color: AppColors.lightGrey, fontFamily: 'Cairo',fontSize: 18.sp),),
-                  Text(" : الي ", style: TextStyle(color: Colors.indigo, fontFamily: 'Cairo',fontSize: 20.sp),),
+                  Text(" الي : ", style: TextStyle(color:AppColors.litePurple, fontFamily: 'Cairo',fontSize: 20.sp),),
+
+                  Text("${toDate}", style: TextStyle(color: Colors.black, fontFamily: 'Cairo',fontSize: 18.sp),),
 
                 ],
               ),
-              SizedBox(height: 10,),
+             const  SizedBox(height: 10,),
 
               Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                // crossAxisAlignment: CrossAxisAlignment.,
                 children: [
-                  IconButton(onPressed:edit, icon: Icon(Icons.edit, color: AppColors.lightGrey,)),
-                  Divider(),
-                  BlocConsumer<UserReservationsCubit, UserReservationsState>(
-  listener: (context, state) {
-    if(state is UserDeleteReservationSuccess){
-      Fluttertoast.showToast(msg: "تم الغاء الحجز", textColor: Colors.white, backgroundColor:AppColors.litePurple);
-      Navigator.push(context, MaterialPageRoute(builder: (context)=> BlocProvider(
-  create: (context) => UserReservationsCubit()..getUserReservations(CacheHelper.getData(key: 'id')),
-  child: HomeScreen(),
-)));
-    }else{
-      Fluttertoast.showToast(msg: "حدث خطا اثناء الالغاء", textColor: Colors.white, backgroundColor: AppColors.litePurple);
 
-    }
-  },
-  builder: (context, state) {
-    return IconButton(onPressed: delete, icon: Icon(Icons.delete, color: AppColors.lightGrey,));
-  },
-),
-                  Divider(),
                   InkWell(
                     onTap: (){
                       showDialog<void>(
@@ -133,9 +113,30 @@ class ReservedCardToUser extends StatelessWidget {
                       );
 
                     },
-                    child: Text(" متابعه حاله الحجز ", style: TextStyle(color: Colors.black, fontFamily: 'Cairo',fontSize: 18.sp,decoration: TextDecoration.underline,
+                    child: Text(" متابعه حاله الحجز ",
+                      style: TextStyle(color: Colors.black,
+                        fontFamily: 'Cairo',fontSize: 18.sp,decoration: TextDecoration.underline,
                     ), ),
                   ),
+
+                  IconButton(onPressed:edit, icon:const  Icon(Icons.edit, color: AppColors.lightGrey,)),
+                  BlocConsumer<UserReservationsCubit, UserReservationsState>(
+  listener: (context, state) {
+    if(state is UserDeleteReservationSuccess){
+      Fluttertoast.showToast(msg: "تم الغاء الحجز", textColor: Colors.white, backgroundColor:AppColors.litePurple);
+      Navigator.push(context, MaterialPageRoute(builder: (context)=> BlocProvider(
+  create: (context) => UserReservationsCubit()..getUserReservations(CacheHelper.getData(key: 'id')),
+  child: HomeScreen(),
+)));
+    }else{
+      Fluttertoast.showToast(msg: "حدث خطا اثناء الالغاء", textColor: Colors.white, backgroundColor: AppColors.litePurple);
+
+    }
+  },
+  builder: (context, state) {
+    return IconButton(onPressed: delete, icon: Icon(Icons.delete, color: AppColors.lightGrey,));
+  },
+),
 
                 ],
               ),
