@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:Reservation/features/login/view/login.dart';
@@ -9,7 +8,7 @@ import '../features/home/business_layer/user_reservations_cubit.dart';
 import '../features/home/view/home_screen.dart';
 
 class MyApp extends StatelessWidget {
-  MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
 
   @override
@@ -20,17 +19,17 @@ class MyApp extends StatelessWidget {
           builder: EasyLoading.init(),
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
-            iconTheme: IconThemeData(color: Colors.white),
+            iconTheme: const IconThemeData(color: Colors.white),
             visualDensity: VisualDensity.adaptivePlatformDensity,
           ),
           // home: LogIn(),
           home: CacheHelper.getData(key: "id") == null
               ?
-          LogIn()
+          const LogIn()
               :
           BlocProvider(
             create: (context) => UserReservationsCubit()..getUserReservations(CacheHelper.getData(key: "id")),
-            child:HomeScreen(),
+            child:const HomeScreen(),
           ),
         );
       },

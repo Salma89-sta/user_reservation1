@@ -18,7 +18,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(
-    options: FirebaseOptions
+    options: const FirebaseOptions
       (
       apiKey: "AIzaSyAhSg_byva15u1EiiGNgnFVPGewGp8fHXQ",
       appId: "1:837880744926:android:5d6d1cbca160402feeeb4f",
@@ -66,7 +66,7 @@ Future<void> main() async {
           BlocProvider(create: (context) => CategoryCubit()..getCategories()),
           BlocProvider(create: (context) => UserUpdateDataCubit()),
         ],
-        child: MyApp(),
+        child: const MyApp(),
       ),
     ),
   );

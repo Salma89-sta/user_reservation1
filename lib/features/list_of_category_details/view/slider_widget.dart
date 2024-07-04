@@ -26,6 +26,8 @@ class SliderCubit extends Cubit<int> {
 
 // Slider Widget
 class SliderWidget extends StatefulWidget {
+  const SliderWidget({super.key});
+
   @override
   _SliderWidgetState createState() => _SliderWidgetState();
 }
@@ -48,7 +50,7 @@ class _SliderWidgetState extends State<SliderWidget> {
   }
 
   void _startAutoSlide() {
-    _timer = Timer.periodic(Duration(seconds:2), (_) {
+    _timer = Timer.periodic(const Duration(seconds:2), (_) {
       _currentPage = (_currentPage + 1) % images.length;
       sliderCubit.emit(_currentPage);
     });
@@ -90,14 +92,14 @@ class _SliderWidgetState extends State<SliderWidget> {
                     child: Transform.scale(
                       scale: scale,
                       child: Container(
-                        margin: EdgeInsets.all(10),
+                        margin: const EdgeInsets.all(10),
                         child: CachedNetworkImage(
                           imageUrl: images[pagePosition],
                           fit: BoxFit.fill,
-                          placeholder: (context, url) => Center(
+                          placeholder: (context, url) => const Center(
                             child: CircularProgressIndicator(),
                           ),
-                          errorWidget: (context, url, error) => Icon(Icons.error),
+                          errorWidget: (context, url, error) => const Icon(Icons.error),
                         ),
                       ),
                     ),
@@ -112,7 +114,7 @@ class _SliderWidgetState extends State<SliderWidget> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: List.generate(images.length, (index) {
                     return Container(
-                      margin: EdgeInsets.symmetric(horizontal: 5),
+                      margin: const EdgeInsets.symmetric(horizontal: 5),
                       width: 10,
                       height: 10,
                       decoration: BoxDecoration(

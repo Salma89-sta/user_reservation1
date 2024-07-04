@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:Reservation/colors/app_colors.dart';
@@ -7,7 +6,7 @@ class Button0 extends StatelessWidget {
   final Widget widget;
   final function;
 
-   Button0({Key? key, required this.widget, required this.function}) : super(key: key);
+   const Button0({Key? key, required this.widget, required this.function}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

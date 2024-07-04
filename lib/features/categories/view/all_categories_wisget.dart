@@ -54,7 +54,7 @@ class ViewCategoriesScreen extends StatelessWidget {
                 ),
                 itemCount: categoryCubit.categories.length,
                 itemBuilder: (context, index) {
-                  return Container(
+                  return SizedBox(
                     height: 100.h,
                     child: Column(
                       children: [

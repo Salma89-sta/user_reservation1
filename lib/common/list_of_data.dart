@@ -2,13 +2,12 @@
 import 'package:Reservation/colors/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:Reservation/common/button.dart';
 
 class ListOfData extends StatefulWidget {
   List<String> checklistItems ;// List to store the checklist items
   List<String> checklistcount ;// List to store the checklist items
 
-  ListOfData({required this.checklistItems, required this.checklistcount});
+  ListOfData({super.key, required this.checklistItems, required this.checklistcount});
 
   @override
   _ListOfDataState createState() => _ListOfDataState();

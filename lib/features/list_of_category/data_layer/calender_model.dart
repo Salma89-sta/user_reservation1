@@ -10,20 +10,20 @@ class CalenderModel {
     if (json['available_time'] != null) {
       availableTime = <AvailableTime>[];
       json['available_time'].forEach((v) {
-        availableTime!.add(new AvailableTime.fromJson(v));
+        availableTime!.add(AvailableTime.fromJson(v));
       });
     }
     percent = json['percent'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['success'] = this.success;
-    if (this.availableTime != null) {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['success'] = success;
+    if (availableTime != null) {
       data['available_time'] =
-          this.availableTime!.map((v) => v.toJson()).toList();
+          availableTime!.map((v) => v.toJson()).toList();
     }
-    data['percent'] = this.percent;
+    data['percent'] = percent;
     return data;
   }
 }
@@ -57,14 +57,14 @@ class AvailableTime {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['item_id'] = this.itemId;
-    data['available_time_from'] = this.availableTimeFrom;
-    data['available_time_to'] = this.availableTimeTo;
-    data['day'] = this.day;
-    data['status'] = this.status;
-    data['price'] = this.price;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['item_id'] = itemId;
+    data['available_time_from'] = availableTimeFrom;
+    data['available_time_to'] = availableTimeTo;
+    data['day'] = day;
+    data['status'] = status;
+    data['price'] = price;
     return data;
   }
 }

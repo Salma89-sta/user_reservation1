@@ -1,5 +1,4 @@
 import 'package:sign_in_button/sign_in_button.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:Reservation/colors/app_colors.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -11,6 +10,8 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'loginWithGoogle.dart';
 
 class LogIn extends StatefulWidget {
+  const LogIn({super.key});
+
  
   @override
   State<LogIn> createState() => _LoginState();
@@ -88,10 +89,10 @@ class _LoginState extends State<LogIn> {
 
                            SizedBox(height: 3.h,),
 
-                          loginWithGoogle(),
+                          const loginWithGoogle(),
                           SignInButton(
                             Buttons.google ,
-                            padding: EdgeInsets.all(10),
+                            padding: const EdgeInsets.all(10),
                             shape: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10)
                             ),
@@ -130,7 +131,7 @@ class _LoginState extends State<LogIn> {
   }
 
   Future<FirebaseAuth?> _signInWithGoogle(BuildContext context) async {
-    final FirebaseAuth _auth = FirebaseAuth.instance;
+    final FirebaseAuth auth = FirebaseAuth.instance;
     final GoogleSignIn googleSignIn = GoogleSignIn();
     try {
       final GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
@@ -142,11 +143,11 @@ class _LoginState extends State<LogIn> {
           idToken: googleAuth.idToken,
         );
         final UserCredential userCredential =
-        await _auth.signInWithCredential(credential);
+        await auth.signInWithCredential(credential);
         final User? user = userCredential.user;
         print("===================): ${user?.email}");
         if (user != null) {
-          return _auth ;
+          return auth ;
         }
       }
     } catch (error) {

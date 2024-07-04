@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:Reservation/core/network/my_http.dart';
@@ -32,7 +31,7 @@ class SignupCubit extends Cubit<SignupState>{
       var response = await MyHttp.post(endPoint: API.signup, data: modelData);
 
 
-      if(response!.statusCode ==200 ){
+      if(response.statusCode ==200 ){
         var jsonResponse = SignupModel.fromJson(jsonDecode(response.body));
 
         print("...........${jsonResponse.success}.................");

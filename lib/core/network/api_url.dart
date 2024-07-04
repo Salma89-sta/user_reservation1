@@ -1,4 +1,3 @@
-import 'package:Reservation/features/list_of_category_details/data_layer/item_package_model.dart';
 
 class API{
   static  const baseURL = "https://quizzy.site/reservation_app";

@@ -1,5 +1,3 @@
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:Reservation/core/cache_helper/cache_helper.dart';
 import 'package:Reservation/features/home/business_layer/user_reservations_cubit.dart';
@@ -8,8 +6,6 @@ import '../../../colors/app_colors.dart';
 import '../../../common/button.dart';
 import '../../../common/text-form-field.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../core/network/api_url.dart';
-import '../../../core/network/my_http.dart';
 import '../../sign-up/view/signup.dart';
 import '../business_layer/login_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,6 +13,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class loginWithGoogle extends StatefulWidget {
+  const loginWithGoogle({super.key});
+
 
   @override
   State<loginWithGoogle> createState() => _loginWithGoogleState();
@@ -29,8 +27,8 @@ class _loginWithGoogleState extends State<loginWithGoogle> {
   bool passwordVisible = false;
   bool isSecure = true;
   final _formKey = GlobalKey<FormState>();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   final passwordFocusNode = FocusNode();
   bool userFound = false;
@@ -69,7 +67,7 @@ class _loginWithGoogleState extends State<loginWithGoogle> {
           Navigator.push(
               context, MaterialPageRoute(builder: (_) => BlocProvider(
   create: (context) => UserReservationsCubit()..getUserReservations(CacheHelper.getData(key: "id")),
-  child:HomeScreen(),
+  child:const HomeScreen(),
 )
           ));
           print("Login Success");
@@ -82,7 +80,7 @@ class _loginWithGoogleState extends State<loginWithGoogle> {
 
           Fluttertoast.showToast(msg: "لم يتم قبول حسابك بعد برجاء الانتظار",textColor: Colors.white, backgroundColor:AppColors.litePurple);
         }else if (state is LoginLoading) {
-          this.buttonWidget= CircularProgressIndicator();}
+          buttonWidget= const CircularProgressIndicator();}
       }, builder: (context, state) {
           return Container(
             alignment: AlignmentDirectional.centerEnd,
@@ -181,7 +179,7 @@ class _loginWithGoogleState extends State<loginWithGoogle> {
                     ),
                     Button0(
                       widget: Center(
-                        child: this.buttonWidget,
+                        child: buttonWidget,
                       ),
                       function: () {
                         if(_emailController.text.isNotEmpty && _passwordController.text.isNotEmpty){
@@ -204,7 +202,7 @@ class _loginWithGoogleState extends State<loginWithGoogle> {
                           onTap: () => Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (_) => SignupScreen())),
+                                  builder: (_) => const SignupScreen())),
                           child: Text(
                             "هل تريد انشاء حساب ؟",
                             style: TextStyle(

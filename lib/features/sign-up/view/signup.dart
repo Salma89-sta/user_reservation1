@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:Reservation/colors/app_colors.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -6,6 +5,8 @@ import 'package:Reservation/features/sign-up/view/signup-form-widget.dart';
 
 
 class SignupScreen extends StatefulWidget {
+  const SignupScreen({super.key});
+
 
   @override
   State<SignupScreen> createState() => _SignupScreenState();
@@ -67,7 +68,7 @@ class _SignupScreenState extends State<SignupScreen> {
                               // gradient: AppColors.buttonGradient,
                               borderRadius: BorderRadius.only(topRight: Radius.circular(50),topLeft: Radius.circular(50) )
                           ),
-                          child: Center(child: SignupFormWidget())),
+                          child: const Center(child: SignupFormWidget())),
                     ],
                   ),
                 ),

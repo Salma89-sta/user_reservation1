@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:Reservation/colors/app_colors.dart';
@@ -44,17 +43,17 @@ class ReservedCardToUser extends StatelessWidget {
           child: Column(
             children: [
               ClipRRect(
-                borderRadius: BorderRadius.only(topRight: Radius.circular(20), topLeft: Radius.circular(20)),
+                borderRadius: const BorderRadius.only(topRight: Radius.circular(20), topLeft: Radius.circular(20)),
                 child: CachedNetworkImage(
                   imageUrl: reservedProductImage,
                   width: 100.w,
                   height: 20.h,
-                  placeholder: (context, url) => CircularProgressIndicator(), // Placeholder widget
-                  errorWidget: (context, url, error) => Icon(Icons.error),
+                  placeholder: (context, url) => const CircularProgressIndicator(), // Placeholder widget
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
                   fit: BoxFit.fill,// Error widget
                 ),
               ),
-              Text("${reservedProductName}", style: TextStyle(color: AppColors.litePurple,
+              Text(reservedProductName, style: TextStyle(color: AppColors.litePurple,
                   fontFamily: 'Cairo', fontWeight: FontWeight.bold, fontSize: 20.sp),),
              const SizedBox(height: 5,),
 
@@ -62,7 +61,7 @@ class ReservedCardToUser extends StatelessWidget {
                 children: [
                   Text(" من : ", style: TextStyle(color: AppColors.litePurple, fontFamily: 'Cairo',fontSize: 20.sp),),
 
-                  Text("${fromDate}", style: TextStyle(color: Colors.black, fontFamily: 'Cairo',fontSize: 18.sp),),
+                  Text(fromDate, style: TextStyle(color: Colors.black, fontFamily: 'Cairo',fontSize: 18.sp),),
                 ],
               ),
               const SizedBox(height: 5,),
@@ -72,7 +71,7 @@ class ReservedCardToUser extends StatelessWidget {
                 children: [
                   Text(" الي : ", style: TextStyle(color:AppColors.litePurple, fontFamily: 'Cairo',fontSize: 20.sp),),
 
-                  Text("${toDate}", style: TextStyle(color: Colors.black, fontFamily: 'Cairo',fontSize: 18.sp),),
+                  Text(toDate, style: TextStyle(color: Colors.black, fontFamily: 'Cairo',fontSize: 18.sp),),
 
                 ],
               ),
@@ -126,7 +125,7 @@ class ReservedCardToUser extends StatelessWidget {
       Fluttertoast.showToast(msg: "تم الغاء الحجز", textColor: Colors.white, backgroundColor:AppColors.litePurple);
       Navigator.push(context, MaterialPageRoute(builder: (context)=> BlocProvider(
   create: (context) => UserReservationsCubit()..getUserReservations(CacheHelper.getData(key: 'id')),
-  child: HomeScreen(),
+  child: const HomeScreen(),
 )));
     }else{
       Fluttertoast.showToast(msg: "حدث خطا اثناء الالغاء", textColor: Colors.white, backgroundColor: AppColors.litePurple);
@@ -134,7 +133,7 @@ class ReservedCardToUser extends StatelessWidget {
     }
   },
   builder: (context, state) {
-    return IconButton(onPressed: delete, icon: Icon(Icons.delete, color: AppColors.lightGrey,));
+    return IconButton(onPressed: delete, icon: const Icon(Icons.delete, color: AppColors.lightGrey,));
   },
 ),
 

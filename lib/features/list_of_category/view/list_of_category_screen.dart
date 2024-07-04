@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:Reservation/features/drawer/drawe_widget.dart';
 import 'package:Reservation/features/list_of_category/business_layer/items_cubit.dart';
@@ -49,7 +48,7 @@ class _ListOfCategoryScreenState extends State<ListOfCategoryScreen> {
           Directionality(
             textDirection: TextDirection.rtl,
             child: Container(
-              margin: EdgeInsets.all(10),
+              margin: const EdgeInsets.all(10),
               // width: 100.w,
               // height: 90.h,
               // color: Colors.red,

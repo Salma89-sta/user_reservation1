@@ -16,10 +16,10 @@ class UserUpdateDataScreen extends StatelessWidget {
 
    UserUpdateDataScreen({Key? key}) : super(key: key);
 
-  TextEditingController _nameController = new TextEditingController();
-  TextEditingController _emailController = new TextEditingController();
-  TextEditingController _passController = new TextEditingController();
-  TextEditingController _nidController = new TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passController = TextEditingController();
+  final TextEditingController _nidController = TextEditingController();
 
   CacheHelper? prefs;
 
@@ -28,10 +28,10 @@ class UserUpdateDataScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      drawer: DrawerWidget(),
+      drawer: const DrawerWidget(),
 
       appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: const IconThemeData(color: Colors.white),
 
         backgroundColor: AppColors.litePurple,
         title: Center(child: Text("تعديل البيانات الشخصيه",
@@ -43,16 +43,16 @@ class UserUpdateDataScreen extends StatelessWidget {
             textDirection: TextDirection.rtl,
             child: SingleChildScrollView(
               child: Container(
-                padding: EdgeInsets.only(right: 20),
+                padding: const EdgeInsets.only(right: 20),
                 alignment: AlignmentDirectional.center,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     const SizedBox(height: 20,),
                     Text("الاسم", style: TextStyle(color: AppColors.litePurple, fontFamily: 'Cairo', fontSize: 20.sp, fontWeight: FontWeight.bold),),
-                    SizedBox(height: 5,),
+                    const SizedBox(height: 5,),
                     TextFormFieldWidget(
-                      prefix: Icon(Icons.people_outline),
+                      prefix: const Icon(Icons.people_outline),
                         labelText: CacheHelper.getData(key: 'name'),
                         IsObsecure: false,
                         textFieldController:
@@ -61,9 +61,9 @@ class UserUpdateDataScreen extends StatelessWidget {
       
                     const SizedBox(height: 15,),
                     Text("البريد الالكتروني", style: TextStyle(color: AppColors.litePurple, fontFamily: 'Cairo', fontSize: 20.sp, fontWeight: FontWeight.bold),),
-                    SizedBox(height: 5,),
+                    const SizedBox(height: 5,),
                     TextFormFieldWidget(
-                        prefix: Icon(Icons.email_outlined),
+                        prefix: const Icon(Icons.email_outlined),
                         labelText: CacheHelper.getData(key: 'email'),
                         IsObsecure: false,
                         textFieldController:
@@ -72,9 +72,9 @@ class UserUpdateDataScreen extends StatelessWidget {
       
                     const SizedBox(height: 15,),
                     Text("رقم الهويه", style: TextStyle(color:  AppColors.litePurple, fontFamily: 'Cairo', fontSize: 20.sp, fontWeight: FontWeight.bold),),
-                    SizedBox(height: 5,),
+                    const SizedBox(height: 5,),
                     TextFormFieldWidget(
-                        prefix: Icon(Icons.camera_front_outlined),
+                        prefix: const Icon(Icons.camera_front_outlined),
                         labelText: CacheHelper.getData(key: 'nid'),
                         IsObsecure: false,
                         textFieldController:
@@ -83,17 +83,17 @@ class UserUpdateDataScreen extends StatelessWidget {
       
                     const SizedBox(height: 15,),
                     Text("الرقم السري", style: TextStyle(color:  AppColors.litePurple, fontFamily: 'Cairo', fontSize: 20.sp, fontWeight: FontWeight.bold),),
-                    SizedBox(height: 5,),
+                    const SizedBox(height: 5,),
       
                     TextFormFieldWidget(
-                      prefix: Icon(Icons.lock_open),
+                      prefix: const Icon(Icons.lock_open),
                       labelText: CacheHelper.getData(key: 'password'),
                         IsObsecure: false,
                         textFieldController:
                         _passController,
                     ),
       
-         SizedBox(height: 15,),
+         const SizedBox(height: 15,),
       
          BlocConsumer<UserUpdateDataCubit, UserUpdateDataState>(
   listener: (context, state) {
@@ -104,7 +104,7 @@ class UserUpdateDataScreen extends StatelessWidget {
       // Fluttertoast.showToast(msg: "تم تعديل البيانات بنجاح",textColor: Colors.white, backgroundColor: Colors.deepOrange);
       Navigator.push(context, MaterialPageRoute(builder: (_)=> BlocProvider(
         create: (context) => UserReservationsCubit()..getUserReservations(CacheHelper.getData(key: 'id')),
-        child: HomeScreen(),
+        child: const HomeScreen(),
       )));
 
     }else{

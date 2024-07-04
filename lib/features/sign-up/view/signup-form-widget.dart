@@ -1,6 +1,5 @@
 import 'package:sign_in_button/sign_in_button.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:Reservation/features/sign-up/business_layer/signup_cubit.dart';
 import '../../../colors/app_colors.dart';
@@ -26,12 +25,12 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
   bool passwordVisible = false;
   bool isSecure = true;
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _emailController =new TextEditingController();
-  final TextEditingController _phoneController =new TextEditingController();
-  final TextEditingController _nameController =new TextEditingController();
-  final TextEditingController _nationalIdController =new TextEditingController();
-  final TextEditingController _passwordController =new TextEditingController();
-  final TextEditingController _passwordConfirmController =new TextEditingController();
+  final TextEditingController _emailController =TextEditingController();
+  final TextEditingController _phoneController =TextEditingController();
+  final TextEditingController _nameController =TextEditingController();
+  final TextEditingController _nationalIdController =TextEditingController();
+  final TextEditingController _passwordController =TextEditingController();
+  final TextEditingController _passwordConfirmController =TextEditingController();
 
 
   final passwordFocusNode = FocusNode();
@@ -68,15 +67,15 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
 
               } else if (state is SignupSuccess) {
                 Fluttertoast.showToast(msg: "تم ارسال طلبك برجاء انتظر الموافقه ",textColor: Colors.white, backgroundColor: AppColors.litePurple);
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> LogIn()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> const LogIn()));
 
               }else if(state is SignupLoading){
-                buttonWidget =CircularProgressIndicator();
+                buttonWidget =const CircularProgressIndicator();
 
               }
             },
             builder: (context, state) {
-              return Container(
+              return SizedBox(
                 width: 100.w,
                 child: Form(
                   key: _formKey,
@@ -99,7 +98,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                               ),
                             ),
                           ),
-                          SizedBox(height: 10,),
+                          const SizedBox(height: 10,),
                           Container(
                             child: TextFormFieldWidget(
                               labelText: "",
@@ -114,7 +113,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                               fillcolor: Colors.white,
                             ),
                           ),
-                          SizedBox(height: 15,),
+                          const SizedBox(height: 15,),
 
 
                           Container(
@@ -131,7 +130,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                               ),
                             ),
                           ),
-                          SizedBox(height: 10,),
+                          const SizedBox(height: 10,),
                           Container(
                             child: TextFormFieldWidget(
                               labelText: "",
@@ -146,7 +145,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                               fillcolor: Colors.white,
                             ),
                           ),
-                          SizedBox(height: 15,),
+                          const SizedBox(height: 15,),
 
 
                           Container(
@@ -163,7 +162,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                               ),
                             ),
                           ),
-                          SizedBox(height: 10,),
+                          const SizedBox(height: 10,),
 
                           Container(
                             child: TextFormFieldWidget(
@@ -181,7 +180,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                           ),
 
 
-                          SizedBox(height: 15),
+                          const SizedBox(height: 15),
                           Container(
                             padding: EdgeInsets.only(right: 10.w),
                             alignment: AlignmentDirectional.bottomEnd,
@@ -196,7 +195,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                               ),
                             ),
                           ),
-                          SizedBox(height: 10,),
+                          const SizedBox(height: 10,),
                           Container(
                             child: TextFormFieldWidget(
                               labelText: "",
@@ -210,7 +209,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                               fillcolor: Colors.white,
                             ),
                           ),
-                          SizedBox(height: 15,),
+                          const SizedBox(height: 15,),
 
 
                           Container(
@@ -227,7 +226,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                               ),
                             ),
                           ),
-                          SizedBox(height: 10),
+                          const SizedBox(height: 10),
                           TextFormFieldWidget(
                             labelText: "",
                             prefix: IconButton(
@@ -262,7 +261,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                             color: Colors.white,
                           ),
 
-                          SizedBox(height: 15),
+                          const SizedBox(height: 15),
                           Container(
                             padding: EdgeInsets.only(right: 10.w),
                             alignment: AlignmentDirectional.bottomEnd,
@@ -277,7 +276,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                               ),
                             ),
                           ),
-                          SizedBox(height: 10),
+                          const SizedBox(height: 10),
                           TextFormFieldWidget(
 
                             labelText: "",
@@ -313,7 +312,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                             color: Colors.white,
                           ),
 
-                          SizedBox(height: 30,),
+                          const SizedBox(height: 30,),
                           Button0(widget: Center(child:buttonWidget),
                               function: () {
 
@@ -345,7 +344,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
 
                           SignInButton(
                             Buttons.google ,
-                            padding: EdgeInsets.all(10),
+                            padding: const EdgeInsets.all(10),
                             shape: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10)
                             ),
@@ -363,13 +362,13 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
                                 onTap: () =>
                                     Navigator.pushReplacement(context,
                                         MaterialPageRoute(
-                                            builder: (_) => LogIn())),
+                                            builder: (_) => const LogIn())),
                                 child: Text("هل لديك حساب بالفعل ؟",
                                   style: TextStyle(fontFamily: 'Cairo',
                                       // decoration: TextDecoration.underline,
                                       fontSize: 18.sp),)),
                           ),
-                          SizedBox(height: 10,),
+                          const SizedBox(height: 10,),
                         ],
                       ),
                     ),
@@ -381,7 +380,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
   }
 
   Future<void> _signInWithGoogle(BuildContext context) async {
-    final FirebaseAuth _auth = FirebaseAuth.instance;
+    final FirebaseAuth auth = FirebaseAuth.instance;
     final GoogleSignIn googleSignIn = GoogleSignIn();
 
     try {
@@ -397,7 +396,7 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
         );
 
         final UserCredential userCredential =
-        await _auth.signInWithCredential(credential);
+        await auth.signInWithCredential(credential);
 
         final User? user = userCredential.user;
         print("..........................................................");

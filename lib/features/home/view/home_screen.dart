@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:Reservation/features/categories/business_layer/categories_cubit.dart';
 import 'package:Reservation/features/home/view/reserved-card.dart';
@@ -17,7 +16,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 
 class HomeScreen extends StatefulWidget {
-   HomeScreen({ Key? key }) : super( key: key );
+   const HomeScreen({ Key? key }) : super( key: key );
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -38,11 +37,11 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       drawer: BlocProvider(
         create: (context) => CategoryCubit()..getCategories(),
-        child: DrawerWidget(),
+        child: const DrawerWidget(),
       ),
 
       appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: const IconThemeData(color: Colors.white),
         backgroundColor: AppColors.litePurple,
         title:const Center(child: Text("حجوزاتي", style: TextStyle(
             color: Colors.white,
@@ -66,11 +65,11 @@ class _HomeScreenState extends State<HomeScreen> {
             var cubit = UserReservationsCubit.get(context);
 
             return (state is UserReservationsLoading)
-                ? Center(child: CircularProgressIndicator())
+                ? const Center(child: CircularProgressIndicator())
                 :
             (state is UserReservationsLoaded) ? Directionality(
               textDirection: TextDirection.rtl,
-              child: Container(
+              child: SizedBox(
                 width: double.infinity,
                 height: 100.h,
                 child:

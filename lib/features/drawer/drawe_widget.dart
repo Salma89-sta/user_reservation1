@@ -10,10 +10,8 @@ import 'package:Reservation/features/categories/view/all_categories_wisget.dart'
 import 'package:Reservation/features/home/view/home_screen.dart';
 import 'package:Reservation/features/login/view/login.dart';
 import 'package:Reservation/features/user_update_data/business_layer/user_update_data_cubit.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../../colors/app_colors.dart';
 import '../home/business_layer/user_reservations_cubit.dart';
-import '../login/business_layer/login_cubit.dart';
 import '../user_update_data/view/user_update_data_screen.dart';
 
 class DrawerWidget extends StatefulWidget {
@@ -38,11 +36,11 @@ String  email =CacheHelper.getData(key: 'email');
           children: <Widget>[
             UserAccountsDrawerHeader(
               accountName: Text(
-                "${name}",
+                name,
                 style: TextStyle(fontSize: 20.sp, fontFamily: 'Cairo', fontWeight: FontWeight.bold),
               ),
               accountEmail: Text(
-                "${email}",
+                email,
                 style: TextStyle(fontSize: 16.sp, fontFamily: 'Cairo',fontWeight: FontWeight.bold),
               ),
               currentAccountPicture: InkWell(
@@ -68,7 +66,7 @@ String  email =CacheHelper.getData(key: 'email');
                           MaterialPageRoute(
                             builder: (context) => BlocProvider(
         create: (context) => UserReservationsCubit()..getUserReservations(CacheHelper.getData(key: "id")),
-        child: HomeScreen(),
+        child: const HomeScreen(),
       ),
                           ),
                         );
@@ -87,7 +85,7 @@ String  email =CacheHelper.getData(key: 'email');
                                   builder: (context) =>
          BlocProvider(
         create: (context) => CategoryCubit()..getCategories(),
-        child: ViewCategoriesScreen(),
+        child: const ViewCategoriesScreen(),
       ),
 
                                 ),
@@ -116,7 +114,7 @@ String  email =CacheHelper.getData(key: 'email');
 
                 await CacheHelper.init();
                 CacheHelper.clearAllData();
-                Navigator.pushReplacement(context,MaterialPageRoute(builder: (_)=> LogIn()));
+                Navigator.pushReplacement(context,MaterialPageRoute(builder: (_)=> const LogIn()));
                 print(CacheHelper.getData(key: 'id'));
 
               },

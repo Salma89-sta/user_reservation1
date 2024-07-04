@@ -56,17 +56,17 @@ class TextFormFieldWidget extends StatelessWidget {
   late bool IsObsecure;
   late bool? enable ;
   TextFormFieldWidget(
-      {required this.labelText, this.prefix, this.suffix, this.validator,
+      {super.key, required this.labelText, this.prefix, this.suffix, this.validator,
         required this.IsObsecure, required this.textFieldController,
           this.fillcolor, this.color , this.enable});
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 80.w,
       child: TextFormField(
-          style: TextStyle(height:1.8, color: AppColors.litePurple, fontWeight: FontWeight.w900),
+          style: const TextStyle(height:1.8, color: AppColors.litePurple, fontWeight: FontWeight.w900),
           validator: validator,
-          enabled: enable == null ? true : enable ,
+          enabled: enable ?? true ,
           obscureText: IsObsecure,
           cursorColor: AppColors.lightGrey,
           controller: textFieldController,
@@ -75,10 +75,10 @@ class TextFormFieldWidget extends StatelessWidget {
             suffixIcon: suffix,
             filled: true,
             fillColor: fillcolor,
-            floatingLabelStyle:  TextStyle(color:AppColors.litePurple),
-            labelStyle: TextStyle(color: AppColors.litePurple),
+            floatingLabelStyle:  const TextStyle(color:AppColors.litePurple),
+            labelStyle: const TextStyle(color: AppColors.litePurple),
             focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(
+              borderSide: const BorderSide(
                 width: 2,
                 color: AppColors.litePurple,
               ),
@@ -86,7 +86,7 @@ class TextFormFieldWidget extends StatelessWidget {
             ),
 
             enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color:AppColors.lightGrey, width:1.5),
+              borderSide: const BorderSide(color:AppColors.lightGrey, width:1.5),
               borderRadius: BorderRadius.circular(10)
             ),
             labelText: labelText,

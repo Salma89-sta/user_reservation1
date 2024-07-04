@@ -209,6 +209,8 @@ List<String> selectedItems = [];
 
 
 class ChecklistPage extends StatelessWidget {
+  const ChecklistPage({super.key});
+
   @override
   Widget build(BuildContext context) {
 
@@ -230,7 +232,7 @@ class ChecklistPage extends StatelessWidget {
 class _ChecklistContent extends StatefulWidget {
   final List<Data> checklistItems;
 
-  _ChecklistContent({required this.checklistItems});
+  const _ChecklistContent({required this.checklistItems});
 
   @override
   _ChecklistContentState createState() => _ChecklistContentState();
@@ -256,7 +258,7 @@ class _ChecklistContentState extends State<_ChecklistContent> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 70.w,
       child: Column(
         children: [

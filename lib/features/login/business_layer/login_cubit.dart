@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:Reservation/core/network/api_url.dart';
@@ -44,7 +43,7 @@ class AuthCubit extends Cubit<LoginState> {
 
 
       print(response.body.toString());
-      if (response!.statusCode == 200) {
+      if (response.statusCode == 200) {
 
         var jsonResponse = loginModel.fromJson(jsonDecode(response.body.toString()));
 
@@ -72,21 +71,21 @@ class AuthCubit extends Cubit<LoginState> {
           } else {
             Fluttertoast.showToast(msg: "المستخدم غير موجود",textColor: Colors.white, backgroundColor:AppColors.litePurple);
 
-            emit(LoginError("المستخدم غير موجود"));
+            emit(const LoginError("المستخدم غير موجود"));
           }
         } else {
           // Fluttertoast.showToast(msg: "حدث خطا اثناء تسجيل البيانات",textColor: Colors.white, backgroundColor: Colors.deepOrange);
 
-          emit(LoginError("حدث خطا اثناء تسجيل البيانات "));
+          emit(const LoginError("حدث خطا اثناء تسجيل البيانات "));
         }
       } else {
         Fluttertoast.showToast(msg: "حدث خطا ",textColor: Colors.white, backgroundColor:AppColors.litePurple);
 
-        emit(LoginError("حدث خطأ"));
+        emit(const LoginError("حدث خطأ"));
       }
     } catch (e) {
       print(e.toString());
-      emit(LoginError("حدث خطأ"));
+      emit(const LoginError("حدث خطأ"));
     }
   }
 }

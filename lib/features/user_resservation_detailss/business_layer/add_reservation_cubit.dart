@@ -1,10 +1,8 @@
 import 'dart:convert';
 import 'package:Reservation/features/user_resservation_detailss/data_layer/add_reservation_model.dart';
-import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:Reservation/core/network/my_http.dart';
-import 'package:Reservation/features/list_of_category_details/data_layer/additional_options_model.dart';
 import '../../../core/network/api_url.dart';
 import '../data_layer/update_reservation_model.dart';
 
@@ -59,7 +57,7 @@ class AddReservationCubit extends Cubit<AddReservationState> {
       print(from.toString());
       print(to.toString());
 
-      if(response!.statusCode ==200){
+      if(response.statusCode ==200){
 
         print("add reservation ${response.statusCode}");
         print("add reservation ${response.body}");
@@ -125,7 +123,7 @@ class AddReservationCubit extends Cubit<AddReservationState> {
       }
       );
 
-      if(response!.statusCode ==200){
+      if(response.statusCode ==200){
 
         print("edit reservation ${response.statusCode}");
 

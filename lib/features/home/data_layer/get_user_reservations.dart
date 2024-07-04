@@ -9,14 +9,14 @@ class UserReservationsModel {
     if (json['data'] != null) {
       data = <Data>[];
       json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
+        data!.add(Data.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['success'] = this.success;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['success'] = success;
     if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
@@ -84,34 +84,34 @@ class Data {
     maritalStatus = json['marital_status'];
     comments = json['comments'];
     offer = json['offer'];
-    item = json['item'] != null ? new Item.fromJson(json['item']) : null;
-    user = json['user'] != null ? new User.fromJson(json['user']) : null;
+    item = json['item'] != null ? Item.fromJson(json['item']) : null;
+    user = json['user'] != null ? User.fromJson(json['user']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['user_id'] = this.userId;
-    data['category_name'] = this.categoryName;
-    data['item_id'] = this.itemId;
-    data['package_id'] = this.packageId;
-    data['time'] = this.time;
-    data['time_of_reservation_from'] = this.timeOfReservationFrom;
-    data['time_of_reservation_to'] = this.timeOfReservationTo;
-    data['additional_options'] = this.additionalOptions;
-    data['status'] = this.status;
-    data['document'] = this.document;
-    data['approve_of_payment'] = this.approveOfPayment;
-    data['price'] = this.price;
-    data['paid'] = this.paid;
-    data['marital_status'] = this.maritalStatus;
-    data['comments'] = this.comments;
-    data['offer'] = this.offer;
-    if (this.item != null) {
-      data['item'] = this.item!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['user_id'] = userId;
+    data['category_name'] = categoryName;
+    data['item_id'] = itemId;
+    data['package_id'] = packageId;
+    data['time'] = time;
+    data['time_of_reservation_from'] = timeOfReservationFrom;
+    data['time_of_reservation_to'] = timeOfReservationTo;
+    data['additional_options'] = additionalOptions;
+    data['status'] = status;
+    data['document'] = document;
+    data['approve_of_payment'] = approveOfPayment;
+    data['price'] = price;
+    data['paid'] = paid;
+    data['marital_status'] = maritalStatus;
+    data['comments'] = comments;
+    data['offer'] = offer;
+    if (item != null) {
+      data['item'] = item!.toJson();
     }
-    if (this.user != null) {
-      data['user'] = this.user!.toJson();
+    if (user != null) {
+      data['user'] = user!.toJson();
     }
     return data;
   }
@@ -167,21 +167,21 @@ class Item {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['category_name'] = this.categoryName;
-    data['name'] = this.name;
-    data['logo'] = this.logo;
-    data['image1'] = this.image1;
-    data['image2'] = this.image2;
-    data['image3'] = this.image3;
-    data['type'] = this.type;
-    data['description'] = this.description;
-    data['address'] = this.address;
-    data['devices'] = this.devices;
-    data['status'] = this.status;
-    data['offer'] = this.offer;
-    data['price'] = this.price;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['category_name'] = categoryName;
+    data['name'] = name;
+    data['logo'] = logo;
+    data['image1'] = image1;
+    data['image2'] = image2;
+    data['image3'] = image3;
+    data['type'] = type;
+    data['description'] = description;
+    data['address'] = address;
+    data['devices'] = devices;
+    data['status'] = status;
+    data['offer'] = offer;
+    data['price'] = price;
     return data;
   }
 }
@@ -218,15 +218,15 @@ class User {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['phone'] = this.phone;
-    data['nid'] = this.nid;
-    data['type'] = this.type;
-    data['email'] = this.email;
-    data['password'] = this.password;
-    data['status'] = this.status;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['phone'] = phone;
+    data['nid'] = nid;
+    data['type'] = type;
+    data['email'] = email;
+    data['password'] = password;
+    data['status'] = status;
     return data;
   }
 }

@@ -27,7 +27,7 @@ class AddReservationScreen extends StatefulWidget {
   String offer;
 
   AddReservationScreen(
-      {required this.itemId,
+      {super.key, required this.itemId,
       required this.categoryName,
       // required this.price,
       // required this.pricePer,
@@ -85,7 +85,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime.now(),
-      lastDate: DateTime.now().add(Duration(days: 3000)),
+      lastDate: DateTime.now().add(const Duration(days: 3000)),
     );
 
     if (selectedDate != null) {
@@ -169,7 +169,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
-                              children: const <TextSpan>[
+                              children: <TextSpan>[
                                 TextSpan(text: '*', style: TextStyle(color: Colors.red)),
                               ],
                             ),
@@ -209,7 +209,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                           items: status.map((value) {
                             return DropdownMenuItem<int>(
                               value: status.indexOf(value),
-                              child: Container(
+                              child: SizedBox(
                                 width: 80.w,
                                 child: Text(
                                   value,
@@ -248,7 +248,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                             ),
-                            children: const <TextSpan>[
+                            children: <TextSpan>[
                               TextSpan(text: '*', style: TextStyle(color: Colors.red)),
                             ],
                           ),
@@ -314,7 +314,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                             ),
-                            children: const <TextSpan>[
+                            children: <TextSpan>[
                               TextSpan(text: '*', style: TextStyle(color: Colors.red)),
                             ],
                           ),
@@ -378,7 +378,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                             ),
-                            children: const <TextSpan>[
+                            children: <TextSpan>[
                               TextSpan(text: '*', style: TextStyle(color: Colors.red)),
                             ],
                           ),
@@ -543,7 +543,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                             final itemName = option.name.toString();
                             final itemPrice = option.price.toString();
 
-                            if(addOp.options.length ==0){
+                            if(addOp.options.isEmpty){
                               return Center(child: Text("لا يوجد",  style: TextStyle(
                                 color: Colors.indigo,
                                 fontFamily: 'Cairo',
@@ -645,7 +645,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                                               ..getUserReservations(
                                                   CacheHelper.getData(
                                                       key: 'id')),
-                                        child: HomeScreen(),
+                                        child: const HomeScreen(),
                                       )));
                         } else if (state is AddReservationFailed) {
                           EasyLoading.dismiss();
@@ -672,9 +672,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                                 child:button),
                             function: () {
 
-                              if( statusIndex != null && _fromDateTimeController.text.toString() !=null
-                                  && _toDateTimeController.text.toString() !=null &&
-                                  selectedPackage.toString() != null
+                              if( statusIndex != null
                               ){
                                 if(fromDate.isBefore(toDate)){
                                   if(statusIndex == 0){
@@ -690,7 +688,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                                           return AlertDialog(
                                             title: Center(child: Column(
                                               children: [
-                                                Text('السعر'),
+                                                const Text('السعر'),
                                                 Text(totalSalary.toString()),
                                               ],
                                             )),
@@ -700,7 +698,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                                                 onPressed: () {
                                                   Navigator.pop(context);
                                                 },
-                                                child: Text('غلق'),
+                                                child: const Text('غلق'),
                                               ),
                                               SizedBox(width: 20.w,),
                                               TextButton(
@@ -733,65 +731,61 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
 
                                     }
                                   }else if (statusIndex == 1){
-                                    if(_attachment.toString() != null){
-                                      if (_formKey.currentState!.validate()){
+                                    if (_formKey.currentState!.validate()){
 
 
-                                        double totalSalary = calculateTotalSalary(
-                                            selectedItemsPrice, double.parse(salary!));
-                                        showDialog(
-                                          context: context,
-                                          builder: (BuildContext dialogContext) {
+                                      double totalSalary = calculateTotalSalary(
+                                          selectedItemsPrice, double.parse(salary!));
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext dialogContext) {
 
-                                            return AlertDialog(
-                                              title: Center(child: Column(
-                                                children: [
-                                                  Text('السعر'),
-                                                  Text(totalSalary.toString()),
-                                                ],
-                                              )),
-                                              // content: Text(totalSalary.toString()),
-                                              actions: [
-                                                TextButton(
-                                                  onPressed: () {
-                                                    Navigator.pop(context);
-                                                  },
-                                                  child: Text('غلق'),
-                                                ),
-                                                SizedBox(width: 20.w,),
-                                                TextButton(
-                                                  onPressed: () {
-                                                    print(_fromDateTimeController.text);
-                                                    final cubit = AddReservationCubit.get(context);
-                                                    cubit.addReservation(
-                                                      doc: _attachment.toString(),
-                                                      userId: CacheHelper.getData(key: 'id'),
-                                                      categoryName: widget.categoryName,
-                                                      itemId: widget.itemId,
-                                                      time: DateTime.now().toString(),
-                                                      from: "${_fromDateTimeController.text} 00:00:00",
-                                                      to: '${_toDateTimeController.text} 00:00:00',
-                                                      price: salary.toString(),
-                                                      additionalOp: selectedItems.toString(),
-                                                      maritalStatus: statusIndex.toString(),
-                                                      offer: widget.offer,
-                                                      comment: _notesController.text,
-                                                      packageId:selectedPackage.toString(),
-                                                    );
-                                                  },
-                                                  child:const Text('تأكيد الحجز'),
-                                                ),
+                                          return AlertDialog(
+                                            title: Center(child: Column(
+                                              children: [
+                                                const Text('السعر'),
+                                                Text(totalSalary.toString()),
                                               ],
-                                            );
-                                          },
-                                        );
+                                            )),
+                                            // content: Text(totalSalary.toString()),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                child: const Text('غلق'),
+                                              ),
+                                              SizedBox(width: 20.w,),
+                                              TextButton(
+                                                onPressed: () {
+                                                  print(_fromDateTimeController.text);
+                                                  final cubit = AddReservationCubit.get(context);
+                                                  cubit.addReservation(
+                                                    doc: _attachment.toString(),
+                                                    userId: CacheHelper.getData(key: 'id'),
+                                                    categoryName: widget.categoryName,
+                                                    itemId: widget.itemId,
+                                                    time: DateTime.now().toString(),
+                                                    from: "${_fromDateTimeController.text} 00:00:00",
+                                                    to: '${_toDateTimeController.text} 00:00:00',
+                                                    price: salary.toString(),
+                                                    additionalOp: selectedItems.toString(),
+                                                    maritalStatus: statusIndex.toString(),
+                                                    offer: widget.offer,
+                                                    comment: _notesController.text,
+                                                    packageId:selectedPackage.toString(),
+                                                  );
+                                                },
+                                                child:const Text('تأكيد الحجز'),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      );
 
 
-                                      }
-                                    }else{
-                                      Fluttertoast.showToast(msg: "برجاء رفع قسميه الزواج", textColor: Colors.white, backgroundColor:AppColors.litePurple);
                                     }
-                                  }
+                                                                    }
                                 }else{
                                   Fluttertoast.showToast(msg: "برجاء التاكد من اختيار الميعاد بشكل صحيح", textColor: Colors.white, backgroundColor:AppColors.litePurple);
 

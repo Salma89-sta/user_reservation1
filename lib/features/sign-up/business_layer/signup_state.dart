@@ -12,5 +12,5 @@ class SignupSuccess extends SignupState{}
 class SignupDublicate extends SignupState{}
 class SignupError extends SignupState{
   final String errorMessage;
-  SignupError(this.errorMessage);
+  const SignupError(this.errorMessage);
 }

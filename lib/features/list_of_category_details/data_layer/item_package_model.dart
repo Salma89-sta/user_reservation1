@@ -9,14 +9,14 @@ class itemPackage {
     if (json['data'] != null) {
       data = <Data>[];
       json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
+        data!.add(Data.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['success'] = this.success;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['success'] = success;
     if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
@@ -53,14 +53,14 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['item_id'] = this.itemId;
-    data['available_time_from'] = this.availableTimeFrom;
-    data['available_time_to'] = this.availableTimeTo;
-    data['date'] = this.date;
-    data['status'] = this.status;
-    data['price'] = this.price;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['item_id'] = itemId;
+    data['available_time_from'] = availableTimeFrom;
+    data['available_time_to'] = availableTimeTo;
+    data['date'] = date;
+    data['status'] = status;
+    data['price'] = price;
     return data;
   }
 }

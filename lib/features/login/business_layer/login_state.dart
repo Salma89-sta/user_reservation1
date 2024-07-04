@@ -13,7 +13,7 @@ class LoginSuccess extends LoginState{
 }
 class LoginError extends LoginState{
   final String errorMessage;
-  LoginError(this.errorMessage);
+  const LoginError(this.errorMessage);
 }
 
 class LoginNotAcceptedYet extends LoginState{}

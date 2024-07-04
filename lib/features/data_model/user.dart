@@ -18,11 +18,11 @@ json["password"],
 User(this.id,this.name,this.phone,this.nid,this.email,this.password);
 
 Map<String, dynamic> toJson() => {
-  "id": this.id.toString() ,
-  "name": this.name.toString(),
-  "phone": this.phone.toString(),
-  "nid": this.nid.toString(),
-  "email": this.email.toString(),
-  "password": this.password.toString()
+  "id": id.toString() ,
+  "name": name.toString(),
+  "phone": phone.toString(),
+  "nid": nid.toString(),
+  "email": email.toString(),
+  "password": password.toString()
 };
 }

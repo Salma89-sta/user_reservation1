@@ -1,5 +1,4 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:Reservation/features/sign-up/business_layer/signup_cubit.dart';
 import '../../../colors/app_colors.dart';
@@ -7,12 +6,10 @@ import '../../../common/button.dart';
 import '../../../common/text-form-field.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../login/view/login.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class CompleteSignupFormWidget extends StatefulWidget {
-   CompleteSignupFormWidget(this.email, this.name);
+   CompleteSignupFormWidget(this.email, this.name, {super.key});
   String email;
   String name;
   @override
@@ -25,11 +22,11 @@ class _SignupFormWidgetState extends State<CompleteSignupFormWidget> {
   bool isSecure = true;
   final _formKey = GlobalKey<FormState>();
   // final TextEditingController _emailController =new TextEditingController();
-  final TextEditingController _phoneController =new TextEditingController();
+  final TextEditingController _phoneController =TextEditingController();
   // final TextEditingController _nameController =new TextEditingController();
-  final TextEditingController _nationalIdController =new TextEditingController();
-  final TextEditingController _passwordController =new TextEditingController();
-  final TextEditingController _passwordConfirmController =new TextEditingController();
+  final TextEditingController _nationalIdController =TextEditingController();
+  final TextEditingController _passwordController =TextEditingController();
+  final TextEditingController _passwordConfirmController =TextEditingController();
 
 
   final passwordFocusNode = FocusNode();
@@ -67,10 +64,10 @@ class _SignupFormWidgetState extends State<CompleteSignupFormWidget> {
 
               } else if (state is SignupSuccess) {
                 Fluttertoast.showToast(msg: "تم ارسال طلبك برجاء انتظر الموافقه ",textColor: Colors.white, backgroundColor:AppColors.litePurple);
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> LogIn()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> const LogIn()));
 
               }else if(state is SignupLoading){
-                buttonWidget =CircularProgressIndicator();
+                buttonWidget =const CircularProgressIndicator();
 
               }
             },
@@ -84,7 +81,7 @@ class _SignupFormWidgetState extends State<CompleteSignupFormWidget> {
                       fontSize: 20.sp,
                       fontWeight: FontWeight.bold,),),
                   ),
-                  Container(
+                  SizedBox(
                     width: 100.w,
                     child: Form(
                       key: _formKey,
@@ -154,7 +151,7 @@ class _SignupFormWidgetState extends State<CompleteSignupFormWidget> {
                               //     fillcolor: Colors.white,
                               //   ),
                               // ),
-                              SizedBox(height: 15,),
+                              const SizedBox(height: 15,),
 
 
                               Container(
@@ -171,7 +168,7 @@ class _SignupFormWidgetState extends State<CompleteSignupFormWidget> {
                                   ),
                                 ),
                               ),
-                              SizedBox(height: 10,),
+                              const SizedBox(height: 10,),
 
                               Container(
                                 child: TextFormFieldWidget(
@@ -189,7 +186,7 @@ class _SignupFormWidgetState extends State<CompleteSignupFormWidget> {
                               ),
 
 
-                              SizedBox(height: 15),
+                              const SizedBox(height: 15),
                               Container(
                                 padding: EdgeInsets.only(right: 10.w),
                                 alignment: AlignmentDirectional.bottomEnd,
@@ -204,7 +201,7 @@ class _SignupFormWidgetState extends State<CompleteSignupFormWidget> {
                                   ),
                                 ),
                               ),
-                              SizedBox(height: 10,),
+                              const SizedBox(height: 10,),
                               Container(
                                 child: TextFormFieldWidget(
                                   labelText: "",
@@ -218,7 +215,7 @@ class _SignupFormWidgetState extends State<CompleteSignupFormWidget> {
                                   fillcolor: Colors.white,
                                 ),
                               ),
-                              SizedBox(height: 15,),
+                              const SizedBox(height: 15,),
 
 
                               Container(
@@ -235,7 +232,7 @@ class _SignupFormWidgetState extends State<CompleteSignupFormWidget> {
                                   ),
                                 ),
                               ),
-                              SizedBox(height: 10),
+                              const SizedBox(height: 10),
                               TextFormFieldWidget(
                                 labelText: "",
                                 prefix: IconButton(
@@ -321,7 +318,7 @@ class _SignupFormWidgetState extends State<CompleteSignupFormWidget> {
                                 color: Colors.white,
                               ),
 
-                              SizedBox(height: 30,),
+                              const SizedBox(height: 30,),
                               Button0(widget: Center(child:buttonWidget),
                                   function: () {
 
@@ -350,7 +347,7 @@ class _SignupFormWidgetState extends State<CompleteSignupFormWidget> {
 
                                   }),
 
-                              SizedBox(height: 10,),
+                              const SizedBox(height: 10,),
                             ],
                           ),
                         ),

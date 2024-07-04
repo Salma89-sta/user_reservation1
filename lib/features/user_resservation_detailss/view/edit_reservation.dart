@@ -364,12 +364,9 @@
 //
 
 import 'dart:io';
-import 'package:Reservation/features/user_update_data/business_layer/user_update_data_cubit.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:intl/intl.dart';
 import 'package:Reservation/common/button.dart';
 import 'package:Reservation/core/cache_helper/cache_helper.dart';
 import 'package:Reservation/features/home/business_layer/user_reservations_cubit.dart';
@@ -396,7 +393,7 @@ class EditReservationScreen extends StatefulWidget {
   String salary;
 
   EditReservationScreen(
-      {
+      {super.key, 
         required this.time,
         required this.salary,
         required this.itemId,
@@ -512,7 +509,7 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
                               create: (context) => UserReservationsCubit()
                                 ..getUserReservations(
                                     CacheHelper.getData(key: 'id')),
-                              child: HomeScreen(),
+                              child: const HomeScreen(),
                             )));
               } else if(state is UpdateReservationLoading){
                 EasyLoading.show();
@@ -550,7 +547,7 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
                         controller: _paiedController,
                         decoration: InputDecoration(
                           labelText: widget.paid,
-                          suffixIcon: Icon(Icons.money),
+                          suffixIcon: const Icon(Icons.money),
                           focusedBorder: OutlineInputBorder(
                             borderSide:const BorderSide(
                               width: 2,
@@ -559,7 +556,7 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
                             borderRadius: BorderRadius.circular(15),
                           ),
                           enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                                 color: AppColors.lightGrey, width: 1.5),
                             borderRadius: BorderRadius.circular(15),
                           ),

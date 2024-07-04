@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:Reservation/core/cache_helper/cache_helper.dart';
@@ -26,9 +25,9 @@ class UserReservationsCubit extends Cubit<UserReservationsState> {
     var response = await MyHttp.post(endPoint: API.getUserReservations, data: {"user_id": CacheHelper.getData(key: 'id')});
 
     print(id);
-    if (response?.statusCode==200){
+    if (response.statusCode==200){
       print("userReservations");
-      print(response!.body.toString());
+      print(response.body.toString());
 
       var jsonResponse = UserReservationsModel.fromJson(jsonDecode(response.body));
       print("......................................");

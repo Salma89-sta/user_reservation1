@@ -19,21 +19,19 @@ class CategoryCubit extends Cubit<CategoryState> {
       var response = await MyDio.get(endPoint: API.getCategories);
       print("-----------------  getCategories  -----------------");
       print(response!.statusCode);
-      if (response!.statusCode == 200) {
+      if (response.statusCode == 200) {
         print(response.data);
         var decodedData = json.decode(response.data);
         print(decodedData);
-        var jsonResponse =await CategoriesModel.fromJson(decodedData);
+        var jsonResponse =CategoriesModel.fromJson(decodedData);
 
         if (jsonResponse.success!) {
           print("categories");
           categories = jsonResponse.data!;
           print(categories);
-          if(categories.toString() != null){
-            print("...................00000........");
-            emit(GetCategoriesSuccess());
-          }
-        } else {
+          print("...................00000........");
+          emit(GetCategoriesSuccess());
+                } else {
           print(response.data);
           print(response.statusCode);
           emit(GetCategoriesFailure());

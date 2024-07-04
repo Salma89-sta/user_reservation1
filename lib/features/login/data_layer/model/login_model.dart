@@ -7,15 +7,15 @@ class loginModel {
   loginModel.fromJson(Map<String, dynamic> json) {
     success = json['success'];
     userData = json['userData'] != null
-        ? new UserData.fromJson(json['userData'])
+        ? UserData.fromJson(json['userData'])
         : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['success'] = this.success;
-    if (this.userData != null) {
-      data['userData'] = this.userData!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['success'] = success;
+    if (userData != null) {
+      data['userData'] = userData!.toJson();
     }
     return data;
   }
@@ -53,15 +53,15 @@ class UserData {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['phone'] = this.phone;
-    data['nid'] = this.nid;
-    data['type'] = this.type;
-    data['email'] = this.email;
-    data['password'] = this.password;
-    data['status'] = this.status;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['phone'] = phone;
+    data['nid'] = nid;
+    data['type'] = type;
+    data['email'] = email;
+    data['password'] = password;
+    data['status'] = status;
     return data;
   }
 }

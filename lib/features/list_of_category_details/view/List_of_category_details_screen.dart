@@ -125,7 +125,7 @@ class _ListOfCategoryDetailsScreenState
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "${widget.name}",
+                      widget.name,
                       style: TextStyle(
                           color: AppColors.litePurple,
                           fontFamily: 'Cairo',
@@ -138,12 +138,12 @@ class _ListOfCategoryDetailsScreenState
                 const SizedBox(height: 5,),
 
                 //slider
-                Container(
+                SizedBox(
                   width: 100.w,
                   height: 30.h,
                   child: BlocProvider(
                     create: (context) => SliderCubit(),
-                    child: SliderWidget(),
+                    child: const SliderWidget(),
                   ),
                 ),
 
@@ -218,7 +218,7 @@ class _ListOfCategoryDetailsScreenState
                                     borderRadius: BorderRadius.all(Radius.circular(10.sp)),
                                   ),
                                   child: Text(
-                                    "${widget.description}",
+                                    widget.description,
                                     style: TextStyle(
                                       color: AppColors.litePurple,
                                       fontFamily: 'Cairo',

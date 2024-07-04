@@ -1,7 +1,6 @@
 
 import 'dart:convert';
 
-import 'package:bloc/bloc.dart';
 import 'package:Reservation/core/network/api_url.dart';
 import 'package:Reservation/core/network/my_http.dart';
 import 'package:Reservation/features/list_of_category/data_layer/items_model.dart';

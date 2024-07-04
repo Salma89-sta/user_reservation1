@@ -1,5 +1,3 @@
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:Reservation/core/cache_helper/cache_helper.dart';
 import 'package:Reservation/features/home/business_layer/user_reservations_cubit.dart';
@@ -8,8 +6,6 @@ import '../../../colors/app_colors.dart';
 import '../../../common/button.dart';
 import '../../../common/text-form-field.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../../../core/network/api_url.dart';
-import '../../../core/network/my_http.dart';
 import '../../sign-up/view/signup.dart';
 import '../business_layer/login_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,7 +14,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginWithGoogle extends StatefulWidget {
   String email ;
-  LoginWithGoogle(this.email);
+  LoginWithGoogle(this.email, {super.key});
 
   @override
   State<LoginWithGoogle> createState() => _LoginWithGoogleState(email);
@@ -34,7 +30,7 @@ class _LoginWithGoogleState extends State<LoginWithGoogle> {
   bool isSecure = true;
   final _formKey = GlobalKey<FormState>();
   TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   final passwordFocusNode = FocusNode();
   bool userFound = false;
@@ -70,7 +66,7 @@ class _LoginWithGoogleState extends State<LoginWithGoogle> {
           Navigator.push(
               context, MaterialPageRoute(builder: (_) => BlocProvider(
   create: (context) => UserReservationsCubit()..getUserReservations(CacheHelper.getData(key: "id")),
-  child:HomeScreen(),
+  child:const HomeScreen(),
 )
           ));
           print("Login Success");
@@ -83,7 +79,7 @@ class _LoginWithGoogleState extends State<LoginWithGoogle> {
 
           Fluttertoast.showToast(msg: "لم يتم قبول حسابك بعد برجاء الانتظار",textColor: Colors.white, backgroundColor: AppColors.litePurple);
         }else if (state is LoginLoading) {
-          this.buttonWidget= CircularProgressIndicator();}
+          buttonWidget= const CircularProgressIndicator();}
       }, builder: (context, state) {
           return Container(
             alignment: AlignmentDirectional.centerEnd,
@@ -97,7 +93,7 @@ class _LoginWithGoogleState extends State<LoginWithGoogle> {
                     Container(
                       padding: EdgeInsets.only(right: 10.w, bottom: 1.h),
                       alignment: AlignmentDirectional.bottomEnd,
-                      child: Text(
+                      child: const Text(
                         "البريد الالكتروني",
                         textAlign: TextAlign.end,
                         style: TextStyle(
@@ -182,7 +178,7 @@ class _LoginWithGoogleState extends State<LoginWithGoogle> {
                       height: 30,
                     ),
                     Button0(
-                        widget:Center(child:this.buttonWidget,),
+                        widget:Center(child:buttonWidget,),
                         function: () {
                           print("object");
                           if(_emailController.text.isNotEmpty && _passwordController.text.isNotEmpty){
@@ -231,7 +227,7 @@ class _LoginWithGoogleState extends State<LoginWithGoogle> {
                           onTap: () => Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (_) => SignupScreen())),
+                                  builder: (_) => const SignupScreen())),
                           child: Text(
                             "هل تريد انشاء حساب ؟",
                             style: TextStyle(

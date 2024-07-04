@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:Reservation/features/list_of_category/business_layer_free_times/free_times_cubit.dart';
@@ -41,8 +40,8 @@ class ListOfCategory extends StatelessWidget {
   Widget build(BuildContext context) {
     var cubit = FreeTimesCubit.get(context);
 
-    CalendarFormat _calendarFormat = CalendarFormat.month;
-    DateTime _selectedDate = DateTime.now();
+    CalendarFormat calendarFormat = CalendarFormat.month;
+    DateTime selectedDate = DateTime.now();
     return BlocConsumer<FreeTimesCubit, FreeTimesState>(
       listener: (context, state) {
         if (state is ItemFreeTimesLoading) {
@@ -55,11 +54,11 @@ class ListOfCategory extends StatelessWidget {
               context: context,
               builder: (BuildContext context) {
                 return AlertDialog(
-                  content: Container(
+                  content: SizedBox(
                     height: 60.h,
                     child: Column(
                       children: [
-                        Text(
+                        const Text(
                           "المواعيد المتاحه",
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
@@ -75,24 +74,11 @@ class ListOfCategory extends StatelessWidget {
                               shrinkWrap: false,
                               itemCount: cubit.freeTimes.length,
                               itemBuilder: (context, index) {
-                                if (state is ItemFreeTimesLoaded) {
-                                  if (index < cubit.freeTimes.length) {
-                                    return ListTile(
-                                      title: Text(" متاح من  :" +
-                                          cubit.freeTimes![index].toString()),
-                                      // ... other code
-                                    );
-                                  } else {
-                                    return ListTile(
-                                      title: Text("لا يوجد مواعيد متاحه",
-                                          style: TextStyle(
-                                              fontSize: 20.sp,
-                                              fontWeight: FontWeight.bold)),
-                                      // ... other code
-                                    );
-                                  }
-                                } else if (state is ItemFreeTimesLoading) {
-                                  return CircularProgressIndicator();
+                                if (index < cubit.freeTimes.length) {
+                                  return ListTile(
+                                    title: Text(" متاح من  :${cubit.freeTimes[index]}"),
+                                    // ... other code
+                                  );
                                 } else {
                                   return ListTile(
                                     title: Text("لا يوجد مواعيد متاحه",
@@ -102,7 +88,7 @@ class ListOfCategory extends StatelessWidget {
                                     // ... other code
                                   );
                                 }
-                              }),
+                                                            }),
                         ),
                       ],
                     ),
@@ -117,7 +103,7 @@ class ListOfCategory extends StatelessWidget {
               context: context,
               builder: (BuildContext context) {
                 return AlertDialog(
-                  content: Container(
+                  content: SizedBox(
                     height: 30.h,
                     child: Column(
                       children: [
@@ -176,7 +162,7 @@ class ListOfCategory extends StatelessWidget {
               ),
 
               Text(
-                "$listOfCategoryName",
+                listOfCategoryName,
                 style: TextStyle(
                     color: AppColors.litePurple,
                     fontFamily: 'Cairo',
@@ -202,7 +188,7 @@ class ListOfCategory extends StatelessWidget {
                   ),
 
                   Text(
-                    "$listOfCategoryStatus",
+                    listOfCategoryStatus,
                     style: TextStyle(
                         color: AppColors.litePurple,
                         fontFamily: 'Cairo',
@@ -218,7 +204,7 @@ class ListOfCategory extends StatelessWidget {
 
                   InkWell(
                     onTap: forMoreDetails,
-                    child: Text(
+                    child: const Text(
                       "لمزيد من التفاصيل",
                       style: TextStyle(
                         color: Colors.black,
@@ -238,16 +224,16 @@ class ListOfCategory extends StatelessWidget {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   TableCalendar(
-                                    calendarFormat: _calendarFormat,
+                                    calendarFormat: calendarFormat,
                                     startingDayOfWeek:
                                     StartingDayOfWeek.sunday,
-                                    focusedDay: _selectedDate,
+                                    focusedDay: selectedDate,
                                     firstDay:
                                     DateTime(DateTime.now().year - 1),
                                     lastDay:
                                     DateTime(DateTime.now().year + 1),
                                     selectedDayPredicate: (date) {
-                                      return isSameDay(_selectedDate, date);
+                                      return isSameDay(selectedDate, date);
                                     },
                                     onDaySelected: (date, events) {
                                       print(
@@ -257,7 +243,7 @@ class ListOfCategory extends StatelessWidget {
                                           .format(date);
                                       cubit.getItemFreeTimes(
                                           formattedTime, itemId);
-                                      _selectedDate = date;
+                                      selectedDate = date;
                                     },
                                     calendarStyle: const CalendarStyle(
                                       // weekendTextStyle: TextStyle(color: Colors.red),

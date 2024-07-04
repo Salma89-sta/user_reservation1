@@ -93,7 +93,7 @@ class DateSelectionField extends StatefulWidget {
   final dynamic fillcolor;
   bool isFrom;
 
-  DateSelectionField({this.labelText, this.prefix, this.fillcolor, required this.isFrom});
+  DateSelectionField({super.key, this.labelText, this.prefix, this.fillcolor, required this.isFrom});
 
   @override
   _DateSelectionFieldState createState() => _DateSelectionFieldState();
@@ -138,7 +138,7 @@ class _DateSelectionFieldState extends State<DateSelectionField> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 80.w,
       height: 15.h,
       child: TextButton(
@@ -149,23 +149,23 @@ class _DateSelectionFieldState extends State<DateSelectionField> {
           child: TextFormField(
             decoration: InputDecoration(
               prefixIcon: widget.prefix,
-              suffixIcon: Icon(
+              suffixIcon: const Icon(
                 Icons.calendar_today,
                 color: AppColors.lightGrey,
               ),
               filled: true,
               fillColor: widget.fillcolor,
-              floatingLabelStyle: TextStyle(color:AppColors.litePurple),
-              labelStyle: TextStyle(color:AppColors.litePurple),
+              floatingLabelStyle: const TextStyle(color:AppColors.litePurple),
+              labelStyle: const TextStyle(color:AppColors.litePurple),
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                   width: 2,
                   color: AppColors.litePurple,
                 ),
                 borderRadius: BorderRadius.circular(15),
               ),
               enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: AppColors.lightGrey, width: 1.5),
+                borderSide: const BorderSide(color: AppColors.lightGrey, width: 1.5),
                 borderRadius: BorderRadius.circular(15),
               ),
               labelText: '',
