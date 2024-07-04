@@ -400,7 +400,9 @@ class _SignupFormWidgetState extends State<SignupFormWidget> {
         await _auth.signInWithCredential(credential);
 
         final User? user = userCredential.user;
+        print("..........................................................");
 
+        print(user);
         if (user != null) {
           print("..........................................................");
           String email= user.email.toString();

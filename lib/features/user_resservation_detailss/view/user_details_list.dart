@@ -46,7 +46,8 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
 
   final _formKey = GlobalKey<FormState>();
   String? packageId;
-
+  late DateTime fromDate;
+  late DateTime toDate;
   final _fromDateTimeController = TextEditingController();
   final _toDateTimeController = TextEditingController();
   final _notesController = TextEditingController();
@@ -79,7 +80,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
     }
   }
 
-  Future<void> _selectDate(TextEditingController controller) async {
+  Future<void> _selectDate(TextEditingController controller , String condition) async {
     final selectedDate = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
@@ -91,6 +92,12 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
       final formattedDate = intlDateFormat.DateFormat('yyyy-MM-dd').format(selectedDate);
 
       controller.text = formattedDate;
+
+      if(condition =='to'){
+        toDate = selectedDate;
+      }else{
+        fromDate = selectedDate;
+      }
     }
   }
 
@@ -146,23 +153,38 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                 child: Column(
                   children: [
                     const SizedBox(height: 10,),
-                  const  Padding(
-                      padding:  EdgeInsets.only(right: 20.0, bottom: 20),
+                    Padding(
+                      padding:const  EdgeInsets.only(right: 20.0, bottom: 20),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         crossAxisAlignment: CrossAxisAlignment.end,
 
                         children: [
-                           Text(
-                            "الحاله الاجتماعيه",
-                            // textAlign: TextAlign.start,
-                            style: TextStyle(
+                          RichText(
+                            text:const TextSpan(
+                              text: "الحاله الاجتماعيه",
+                              style:  TextStyle(
                               fontFamily: 'Cairo',
-                              color: AppColors.litePurple,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
+                        color: AppColors.litePurple,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                              children: const <TextSpan>[
+                                TextSpan(text: '*', style: TextStyle(color: Colors.red)),
+                              ],
                             ),
                           ),
+
+                          //  Text(
+                          //   "الحاله الاجتماعيه",
+                          //   // textAlign: TextAlign.start,
+                          //   style: TextStyle(
+                          //     fontFamily: 'Cairo',
+                          //     color: AppColors.litePurple,
+                          //     fontSize: 20,
+                          //     fontWeight: FontWeight.bold,
+                          //   ),
+                          // ),
                         ],
                       ),
                     ),
@@ -217,16 +239,31 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                       padding: const EdgeInsets.only(right: 20.0, bottom: 10),
                       child: Container(
                         alignment: AlignmentDirectional.centerEnd,
-                        child: const Text(
-                          " من تاريخ  ",
-                          textAlign: TextAlign.end,
-                          style: TextStyle(
-                            fontFamily: 'Cairo',
-                            color: AppColors.litePurple,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
+                        child:  RichText(
+                          text:const TextSpan(
+                            text: "من تاريخ",
+                            style:  TextStyle(
+                              fontFamily: 'Cairo',
+                              color: AppColors.litePurple,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            children: const <TextSpan>[
+                              TextSpan(text: '*', style: TextStyle(color: Colors.red)),
+                            ],
                           ),
                         ),
+
+                        // const Text(
+                        //   " من تاريخ  ",
+                        //   textAlign: TextAlign.end,
+                        //   style: TextStyle(
+                        //     fontFamily: 'Cairo',
+                        //     color: AppColors.litePurple,
+                        //     fontSize: 20,
+                        //     fontWeight: FontWeight.bold,
+                        //   ),
+                        // ),
                       ),
                     ),
                     Padding(
@@ -234,7 +271,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                       child: TextFormField(
                         controller: _fromDateTimeController,
                         readOnly: true,
-                        onTap: () => _selectDate(_fromDateTimeController),
+                        onTap: () => _selectDate(_fromDateTimeController,'from'),
                         decoration: InputDecoration(
                           labelText: '',
                           suffixIcon:const Icon(Icons.calendar_today),
@@ -268,16 +305,31 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                       padding: const EdgeInsets.only(right: 20.0, bottom: 10),
                       child: Container(
                         alignment: AlignmentDirectional.centerEnd,
-                        child: const Text(
-                          " الي تاريخ ",
-                          textAlign: TextAlign.end,
-                          style: TextStyle(
-                            fontFamily: 'Cairo',
-                            color: AppColors.litePurple,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
+                        child:  RichText(
+                          text:const TextSpan(
+                            text: "الي تاريخ",
+                            style:  TextStyle(
+                              fontFamily: 'Cairo',
+                              color: AppColors.litePurple,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            children: const <TextSpan>[
+                              TextSpan(text: '*', style: TextStyle(color: Colors.red)),
+                            ],
                           ),
                         ),
+
+                        // const Text(
+                        //   " الي تاريخ ",
+                        //   textAlign: TextAlign.end,
+                        //   style: TextStyle(
+                        //     fontFamily: 'Cairo',
+                        //     color: AppColors.litePurple,
+                        //     fontSize: 20,
+                        //     fontWeight: FontWeight.bold,
+                        //   ),
+                        // ),
                       ),
                     ),
                     Padding(
@@ -285,10 +337,10 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                       child: TextFormField(
                         controller: _toDateTimeController,
                         readOnly: true,
-                        onTap: () => _selectDate(_toDateTimeController),
+                        onTap: () => _selectDate(_toDateTimeController,'to'),
                         decoration: InputDecoration(
                           labelText: '',
-                          suffixIcon: Icon(Icons.calendar_today),
+                          suffixIcon:const Icon(Icons.calendar_today),
                           focusedBorder: OutlineInputBorder(
                             borderSide:const BorderSide(
                               width: 2,
@@ -297,7 +349,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                             borderRadius: BorderRadius.circular(15),
                           ),
                           enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
+                            borderSide:const BorderSide(
                                 color: AppColors.lightGrey, width: 1.5),
                             borderRadius: BorderRadius.circular(15),
                           ),
@@ -313,19 +365,35 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                     const SizedBox(height: 20,),
 
                     Padding(
-                      padding: EdgeInsets.only(right: 20),
+                      padding:const EdgeInsets.only(right: 20),
                       child: Container(
                         alignment: AlignmentDirectional.centerEnd,
-                        child: const Text(
-                          " اختيار المعاد ",
-                          textAlign: TextAlign.end,
-                          style: TextStyle(
-                            fontFamily: 'Cairo',
-                            color: AppColors.litePurple,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
+                        child:
+                        RichText(
+                          text:const TextSpan(
+                            text: "اختيار الميعاد",
+                            style:  TextStyle(
+                              fontFamily: 'Cairo',
+                              color: AppColors.litePurple,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            children: const <TextSpan>[
+                              TextSpan(text: '*', style: TextStyle(color: Colors.red)),
+                            ],
                           ),
                         ),
+
+                        // const Text(
+                        //   " اختيار المعاد ",
+                        //   textAlign: TextAlign.end,
+                        //   style: TextStyle(
+                        //     fontFamily: 'Cairo',
+                        //     color: AppColors.litePurple,
+                        //     fontSize: 20,
+                        //     fontWeight: FontWeight.bold,
+                        //   ),
+                        // ),
                       ),
                     ),
                     BlocConsumer<ItemPackageCubit, ItemPackageState>(
@@ -357,9 +425,28 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                                     children: [
                                       Text(
                                         textAlign: TextAlign.end,
-                                        'من: $from , الي: $to , السعر :$price',
+                                        'من الساعه: $from',
                                         style: TextStyle(
 
+                                          fontFamily: 'Cairo',
+                                          color: Colors.black,
+                                          fontSize: 18.sp,
+                                        ),
+                                      ),
+                                      Text(
+                                        textAlign: TextAlign.end,
+                                        'الي الساعه: $to ',
+                                        style: TextStyle(
+
+                                          fontFamily: 'Cairo',
+                                          color: Colors.black,
+                                          fontSize: 18.sp,
+                                        ),
+                                      ),
+                                      Text(
+                                        textAlign: TextAlign.end,
+                                        'السعر: $price',
+                                        style: TextStyle(
                                           fontFamily: 'Cairo',
                                           color: Colors.black,
                                           fontSize: 18.sp,
@@ -410,7 +497,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                         controller: _notesController,
                         decoration: InputDecoration(
                           labelText: '',
-                          suffixIcon: Icon(Icons.notes),
+                          suffixIcon:const Icon(Icons.notes),
                           focusedBorder: OutlineInputBorder(
                             borderSide: const BorderSide(
                               width: 2,
@@ -529,7 +616,7 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                       ),
                       child: TextButton(
                         onPressed: _selectAttachment,
-                        child: Text('اختر مرفق', style: TextStyle(fontWeight: FontWeight.bold, color: AppColors.litePurple, fontSize: 20.sp),),
+                        child: Text('برجاء اضافه قسميه الجواز اذا كانت الحاله الاجتماعيه متزوج', style: TextStyle(fontWeight: FontWeight.bold, color: AppColors.litePurple, fontSize: 20.sp),),
                       ),
                     ),
                     if (_attachment != null) Padding(
@@ -584,61 +671,137 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
                             widget: Center(
                                 child:button),
                             function: () {
-                              if (_formKey.currentState!.validate()) {
+
+                              if( statusIndex != null && _fromDateTimeController.text.toString() !=null
+                                  && _toDateTimeController.text.toString() !=null &&
+                                  selectedPackage.toString() != null
+                              ){
+                                if(fromDate.isBefore(toDate)){
+                                  if(statusIndex == 0){
+                                    if (_formKey.currentState!.validate()) {
 
 
-                                double totalSalary = calculateTotalSalary(
-                                    selectedItemsPrice, double.parse(salary!));
-                                showDialog(
-                                  context: context,
-                                  builder: (BuildContext dialogContext) {
+                                      double totalSalary = calculateTotalSalary(
+                                          selectedItemsPrice, double.parse(salary!));
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext dialogContext) {
 
-                                    return AlertDialog(
-                                      title: Center(child: Column(
-                                        children: [
-                                          Text('السعر'),
-                                          Text(totalSalary.toString()),
-                                        ],
-                                      )),
-                                      // content: Text(totalSalary.toString()),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () {
-                                            Navigator.pop(context);
-                                          },
-                                          child: Text('غلق'),
-                                        ),
-                                        SizedBox(width: 20.w,),
-                                        TextButton(
-                                          onPressed: () {
-                                            print(_fromDateTimeController.text);
-                                            final cubit = AddReservationCubit.get(context);
-                                            cubit.addReservation(
-                                              doc: _attachment.toString(),
-                                              userId: CacheHelper.getData(key: 'id'),
-                                              categoryName: widget.categoryName,
-                                              itemId: widget.itemId,
-                                              time: DateTime.now().toString(),
-                                              from: "${_fromDateTimeController.text} 00:00:00",
-                                              to: '${_toDateTimeController.text} 00:00:00',
-                                              price: salary.toString(),
-                                              additionalOp: selectedItems.toString(),
-                                              maritalStatus: statusIndex.toString(),
-                                              offer: widget.offer,
-                                              comment: _notesController.text,
-                                              packageId:selectedPackage.toString(),
+                                          return AlertDialog(
+                                            title: Center(child: Column(
+                                              children: [
+                                                Text('السعر'),
+                                                Text(totalSalary.toString()),
+                                              ],
+                                            )),
+                                            // content: Text(totalSalary.toString()),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Text('غلق'),
+                                              ),
+                                              SizedBox(width: 20.w,),
+                                              TextButton(
+                                                onPressed: () {
+                                                  print(_fromDateTimeController.text);
+                                                  final cubit = AddReservationCubit.get(context);
+                                                  cubit.addReservation(
+                                                    doc: _attachment.toString(),
+                                                    userId: CacheHelper.getData(key: 'id'),
+                                                    categoryName: widget.categoryName,
+                                                    itemId: widget.itemId,
+                                                    time: DateTime.now().toString(),
+                                                    from: "${_fromDateTimeController.text} 00:00:00",
+                                                    to: '${_toDateTimeController.text} 00:00:00',
+                                                    price: salary.toString(),
+                                                    additionalOp: selectedItems.toString(),
+                                                    maritalStatus: statusIndex.toString(),
+                                                    offer: widget.offer,
+                                                    comment: _notesController.text,
+                                                    packageId:selectedPackage.toString(),
+                                                  );
+                                                },
+                                                child:const Text('تأكيد الحجز'),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      );
+
+
+                                    }
+                                  }else if (statusIndex == 1){
+                                    if(_attachment.toString() != null){
+                                      if (_formKey.currentState!.validate()){
+
+
+                                        double totalSalary = calculateTotalSalary(
+                                            selectedItemsPrice, double.parse(salary!));
+                                        showDialog(
+                                          context: context,
+                                          builder: (BuildContext dialogContext) {
+
+                                            return AlertDialog(
+                                              title: Center(child: Column(
+                                                children: [
+                                                  Text('السعر'),
+                                                  Text(totalSalary.toString()),
+                                                ],
+                                              )),
+                                              // content: Text(totalSalary.toString()),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () {
+                                                    Navigator.pop(context);
+                                                  },
+                                                  child: Text('غلق'),
+                                                ),
+                                                SizedBox(width: 20.w,),
+                                                TextButton(
+                                                  onPressed: () {
+                                                    print(_fromDateTimeController.text);
+                                                    final cubit = AddReservationCubit.get(context);
+                                                    cubit.addReservation(
+                                                      doc: _attachment.toString(),
+                                                      userId: CacheHelper.getData(key: 'id'),
+                                                      categoryName: widget.categoryName,
+                                                      itemId: widget.itemId,
+                                                      time: DateTime.now().toString(),
+                                                      from: "${_fromDateTimeController.text} 00:00:00",
+                                                      to: '${_toDateTimeController.text} 00:00:00',
+                                                      price: salary.toString(),
+                                                      additionalOp: selectedItems.toString(),
+                                                      maritalStatus: statusIndex.toString(),
+                                                      offer: widget.offer,
+                                                      comment: _notesController.text,
+                                                      packageId:selectedPackage.toString(),
+                                                    );
+                                                  },
+                                                  child:const Text('تأكيد الحجز'),
+                                                ),
+                                              ],
                                             );
                                           },
-                                          child:const Text('تأكيد الحجز'),
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                );
+                                        );
 
+
+                                      }
+                                    }else{
+                                      Fluttertoast.showToast(msg: "برجاء رفع قسميه الزواج", textColor: Colors.white, backgroundColor:AppColors.litePurple);
+                                    }
+                                  }
+                                }else{
+                                  Fluttertoast.showToast(msg: "برجاء التاكد من اختيار الميعاد بشكل صحيح", textColor: Colors.white, backgroundColor:AppColors.litePurple);
+
+                                }
+
+
+                              }else {
+                                Fluttertoast.showToast(msg: "برجاء ملئ جميع البيانات المطلوبه", textColor: Colors.white, backgroundColor:AppColors.litePurple);
 
                               }
-                              ;
                             });
                       },
                     )

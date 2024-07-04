@@ -270,7 +270,7 @@ class _SignupFormWidgetState extends State<CompleteSignupFormWidget> {
                                 color: Colors.white,
                               ),
 
-                              SizedBox(height: 15),
+                              const SizedBox(height: 15),
                               Container(
                                 padding: EdgeInsets.only(right: 10.w),
                                 alignment: AlignmentDirectional.bottomEnd,
@@ -285,7 +285,7 @@ class _SignupFormWidgetState extends State<CompleteSignupFormWidget> {
                                   ),
                                 ),
                               ),
-                              SizedBox(height: 10),
+                              const SizedBox(height: 10),
                               TextFormFieldWidget(
 
                                 labelText: "",
